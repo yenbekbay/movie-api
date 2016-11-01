@@ -23,39 +23,41 @@ type SearchResult = {
   year: number,
 };
 
-const loadResults = async (query: Query): Promise<Object> => {
+const loadResultsHtml = async (query: Query): Promise<string> => {
   const html = await request({
     url: 'http://plus.kinopoisk.ru/search',
     qs: { text: query.title },
   });
 
-  return cheerio.load(html);
+  return html;
 };
 
-const scrapeResults = (
-  $: () => Object,
-): Promise<Array<SearchResult>> => $('.film-snippet_type_movie')
-  .get()
-  .map((snippet: any) => {
-    const titleNode = $(snippet).find('.film-snippet__title-link');
-    const id = parseInt(
-      R.nth(1, titleNode.attr('href').match(/\/film\/(.+)\//)),
-      10,
-    );
+const scrapeResults = (html: string): Promise<Array<SearchResult>> => {
+  const $ = cheerio.load(html);
 
-    if (isNaN(id)) return null;
+  return $('.film-snippet_type_movie')
+    .get()
+    .map((snippet: any) => {
+      const titleNode = $(snippet).find('.film-snippet__title-link');
+      const id = parseInt(
+        R.nth(1, titleNode.attr('href').match(/\/film\/(.+)\//)),
+        10,
+      );
 
-    const infoNode = $(snippet).find('.film-snippet__info');
-    const title = titleNode.text().replace(/\s\s+/g, ' ');
-    const countries = R.pipe(
-      R.split(','),
-      R.map(R.trim),
-      R.filter((country: ?string) => !!country && isNaN(country)),
-    )(infoNode.text());
-    const year = parseInt(R.head(infoNode.text().match(/\d+/)), 10);
+      if (isNaN(id)) return null;
 
-    return { id, title, countries, year };
-  });
+      const infoNode = $(snippet).find('.film-snippet__info');
+      const title = titleNode.text().replace(/\s\s+/g, ' ');
+      const countries = R.pipe(
+        R.split(','),
+        R.map(R.trim),
+        R.filter((country: ?string) => !!country && isNaN(country)),
+      )(infoNode.text());
+      const year = parseInt(R.head(infoNode.text().match(/\d+/)), 10);
+
+      return { id, title, countries, year };
+    });
+};
 
 const filterResults = (
   query: Query,
@@ -75,21 +77,21 @@ const filterResults = (
     : R.always(true)),
 ]))(results);
 
-const bestIdFromResults = (query: Query, results: Object) => R.pipe(
+const bestIdFromResultsHtml = (query: Query, html: string): ?number => R.pipe(
   scrapeResults,
   R.curry(filterResults)(query),
   R.sortBy(({ title }: SearchResult) => similarity(title, query.title)),
   R.head,
   R.prop('id'),
-)(results);
+)(html);
 
 const getMovieId = async (query: Query): Promise<?number> =>
-  bestIdFromResults(query, await loadResults(query));
+  bestIdFromResultsHtml(query, await loadResultsHtml(query));
 
 export {
-  loadResults as __loadResults,
+  loadResultsHtml as __loadResultsHtml,
   scrapeResults as __scrapeResults,
   filterResults as __filterResults,
-  bestIdFromResults as __bestIdFromResults,
+  bestIdFromResultsHtml as __bestIdFromResultsHtml,
 };
 export default getMovieId;

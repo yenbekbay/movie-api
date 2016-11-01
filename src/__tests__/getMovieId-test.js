@@ -1,10 +1,10 @@
 /* @flow */
 
 import {
-  __loadResults,
+  __loadResultsHtml,
   __scrapeResults,
   __filterResults,
-  __bestIdFromResults,
+  __bestIdFromResultsHtml,
 } from '../getMovieId';
 
 const query = {
@@ -12,10 +12,10 @@ const query = {
 };
 
 describe('getMovieId', () => {
-  let results: Object;
+  let results: string;
 
   beforeAll(async () => {
-    results = await __loadResults(query);
+    results = await __loadResultsHtml(query);
   });
 
   it('scrapes results', () => {
@@ -27,7 +27,7 @@ describe('getMovieId', () => {
       null,
       undefined,
       { id: 1, title: 'foo', countries: [], year: 2016 },
-    ])).toEqual([{ id: 1, title: 'foo', countries: [], year: 2016 }]);
+    ])).toMatchSnapshot();
 
     expect(__filterResults({ title: 'Звёздные войны' }, [
       { id: 1, title: 'Звёздные войны', countries: [], year: 2015 },
@@ -53,6 +53,6 @@ describe('getMovieId', () => {
   });
 
   it('finds best movie id from given results', async () => {
-    expect(__bestIdFromResults(query, results)).toMatchSnapshot();
+    expect(__bestIdFromResultsHtml(query, results)).toMatchSnapshot();
   });
 });

@@ -1,0 +1,10 @@
+{
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [80],
+  "editor.tabSize": 2,
+  "editor.wrappingColumn": 100,
+
+  "files.exclude": {
+    "coverage": true
+  }
+}

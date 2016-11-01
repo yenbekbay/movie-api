@@ -1,0 +1,6 @@
+{
+  "extends": [
+    "anvilabs",
+    "anvilabs/jest"
+  ]
+}

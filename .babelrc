@@ -4,9 +4,10 @@
     "stage-0"
   ],
   "plugins": [
-    "ramda",
+    "syntax-flow",
     "transform-flow-strip-types",
-    "transform-runtime"
+    "transform-runtime",
+    "ramda"
   ],
   "comments": false
 }

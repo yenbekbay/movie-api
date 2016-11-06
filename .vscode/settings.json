@@ -5,5 +5,7 @@
 
   "files.exclude": {
     "coverage": true
-  }
+  },
+
+  "javascript.validate.enable": false
 }

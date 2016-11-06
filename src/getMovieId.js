@@ -8,7 +8,6 @@ import similarity from 'similarity';
 const request = rp.defaults({
   headers: { 'User-Agent': 'movie-api' },
   gzip: true,
-  json: true,
 });
 
 type Query = {

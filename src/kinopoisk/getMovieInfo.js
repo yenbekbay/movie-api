@@ -2,7 +2,7 @@
 
 import R from 'ramda';
 
-import connector from './kinopoisk/connector';
+import connector from './connector';
 
 const kinopoiskCdnUrl = 'http://st.kp.yandex.net/images';
 const normalizeCdnImageUrl = (imageUrl: string) =>

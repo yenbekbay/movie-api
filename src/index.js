@@ -1,6 +1,5 @@
 /* @flow */
 
-import getMovieId from './getMovieId';
-import getMovieInfo from './getMovieInfo';
+import * as Kinopoisk from './kinopoisk';
 
-export { getMovieId, getMovieInfo };
+export { Kinopoisk }; // eslint-disable-line import/prefer-default-export

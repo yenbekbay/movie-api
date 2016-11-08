@@ -1,0 +1,196 @@
+exports[`getCrew fetches movie crew from kinopoisk for a given id 1`] = `
+Object {
+  "cast": Array [
+    Object {
+      "name": Object {
+        "en": "John Boyega",
+        "ru": "Джон Бойега",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_2196854.jpg?d=20130703131657",
+    },
+    Object {
+      "name": Object {
+        "en": "Daisy Ridley",
+        "ru": "Дэйзи Ридли",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_3016071.jpg?d=20140430113652",
+    },
+    Object {
+      "name": Object {
+        "en": "Oscar Isaac",
+        "ru": "Оскар Айзек",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_43284.jpg",
+    },
+    Object {
+      "name": Object {
+        "en": "Adam Driver",
+        "ru": "Адам Драйвер",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_1833677.jpg?d=20130521201357",
+    },
+    Object {
+      "name": Object {
+        "en": "Domhnall Gleeson",
+        "ru": "Донал Глисон",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_671252.jpg?d=20150622214531",
+    },
+    Object {
+      "name": Object {
+        "en": "Harrison Ford",
+        "ru": "Харрисон Форд",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_5679.jpg?d=20130506141058",
+    },
+    Object {
+      "name": Object {
+        "en": "Mark Hamill",
+        "ru": "Марк Хэмилл",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_23716.jpg?d=20130705122542",
+    },
+    Object {
+      "name": Object {
+        "en": "Carrie Fisher",
+        "ru": "Кэрри Фишер",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_8459.jpg?d=20130705123958",
+    },
+    Object {
+      "name": Object {
+        "en": "Max von Sydow",
+        "ru": "Макс фон Сюдов",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_3311.jpg",
+    },
+    Object {
+      "name": Object {
+        "en": "Andy Serkis",
+        "ru": "Энди Серкис",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_13176.jpg",
+    },
+  ],
+  "composers": Array [
+    Object {
+      "name": Object {
+        "en": "John Williams",
+        "ru": "Джон Уильямс",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_225027.jpg?d=20130908235640",
+    },
+  ],
+  "directors": Array [
+    Object {
+      "name": Object {
+        "en": "J.J. Abrams",
+        "ru": "Джей Джей Абрамс",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
+    },
+  ],
+  "producers": Array [
+    Object {
+      "name": Object {
+        "en": "J.J. Abrams",
+        "ru": "Джей Джей Абрамс",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
+    },
+    Object {
+      "name": Object {
+        "en": "Bryan Burk",
+        "ru": "Брайан Берк",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_663746.jpg",
+    },
+    Object {
+      "name": Object {
+        "en": "Kathleen Kennedy",
+        "ru": "Кэтлин Кеннеди",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_20396.jpg?d=20150721001100",
+    },
+    Object {
+      "name": Object {
+        "en": "Pippa Anderson",
+        "ru": "Пиппа Андерсон",
+      },
+      "photoUrl": null,
+    },
+    Object {
+      "name": Object {
+        "en": "Michael Arndt",
+        "ru": "Майкл Арндт",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_936886.jpg?d=20130612003448",
+    },
+    Object {
+      "name": Object {
+        "en": "Leifur B. Dagfinnsson",
+        "ru": "Лейфур Б. Дагфиннссон",
+      },
+      "photoUrl": null,
+    },
+    Object {
+      "name": Object {
+        "en": "Tommy Gormley",
+        "ru": "Томми Гормли",
+      },
+      "photoUrl": null,
+    },
+    Object {
+      "name": Object {
+        "en": "Tommy Harper",
+        "ru": "Томми Харпер",
+      },
+      "photoUrl": null,
+    },
+    Object {
+      "name": Object {
+        "en": "Jason D. McGatlin",
+        "ru": "Джейсон Д. МакГатлин",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_43725.jpg",
+    },
+    Object {
+      "name": Object {
+        "en": "Michelle Rejwan",
+        "ru": "Мишель Рейван",
+      },
+      "photoUrl": null,
+    },
+  ],
+  "writers": Array [
+    Object {
+      "name": Object {
+        "en": "Lawrence Kasdan",
+        "ru": "Лоуренс Кэздан",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_26537.jpg?d=20131017121035",
+    },
+    Object {
+      "name": Object {
+        "en": "J.J. Abrams",
+        "ru": "Джей Джей Абрамс",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
+    },
+    Object {
+      "name": Object {
+        "en": "Michael Arndt",
+        "ru": "Майкл Арндт",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_936886.jpg?d=20130612003448",
+    },
+    Object {
+      "name": Object {
+        "en": "George Lucas",
+        "ru": "Джордж Лукас",
+      },
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_24284.jpg",
+    },
+  ],
+}
+`;

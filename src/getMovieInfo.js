@@ -1,20 +1,9 @@
 /* @flow */
 
 import R from 'ramda';
-import rp from 'request-promise-native';
 
-const request = rp.defaults({
-  headers: { 'User-Agent': 'movie-api' },
-  gzip: true,
-  json: true,
-});
-const kinopoiskApiRequest = (
-  endpoint: string,
-  query: { [key: string]: mixed },
-): Promise<any> => request({
-  url: `http://api.kinopoisk.cf/${endpoint}`,
-  qs: query,
-});
+import connector from './kinopoisk/connector';
+
 const kinopoiskCdnUrl = 'http://st.kp.yandex.net/images';
 const normalizeCdnImageUrl = (imageUrl: string) =>
   `${kinopoiskCdnUrl}/${imageUrl}`
@@ -59,7 +48,7 @@ const parseRuntime = (rawRuntime: ?string): number => (
 
 const getInfo = async (id: number) => {
   const res: ?KinopoiskApi$GetFilmResponse =
-    await kinopoiskApiRequest('getFilm', { filmID: id });
+    await connector.get('getFilm', { filmID: id });
 
   if (!res) return null;
 
@@ -135,7 +124,7 @@ const getCrew = async (id: number): Promise<?{
   composers: Array<StaffMember>,
 }> => {
   const res: ?KinopoiskApi$GetStaffResponse =
-    await kinopoiskApiRequest('getStaff', { filmID: id });
+    await connector.get('getStaff', { filmID: id });
 
   if (!res) return null;
 
@@ -177,7 +166,7 @@ type KinopoiskApi$GetGalleryResponse = {
 
 const getStills = async (id: number): Promise<?Array<string>> => {
   const res: ?KinopoiskApi$GetGalleryResponse =
-    await kinopoiskApiRequest('getGallery', { filmID: id });
+    await connector.get('getGallery', { filmID: id });
 
   if (!res) return null;
 

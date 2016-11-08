@@ -1,11 +1,11 @@
 /* @flow */
 
 import {
-  __loadResultsHtml,
   __scrapeResults,
   __filterResults,
   __bestIdFromResultsHtml,
 } from '../getMovieId';
+import connector from '../connector';
 
 const query = {
   title: 'Звёздные войны: Пробуждение силы',
@@ -15,7 +15,7 @@ describe('getMovieId', () => {
   let results: string;
 
   beforeAll(async () => {
-    results = await __loadResultsHtml(query);
+    results = await connector.htmlGet('search', { text: query.title });
   });
 
   it('scrapes results', () => {

@@ -43,7 +43,7 @@ const parseRuntime = (rawRuntime: ?string): number => (
 
 const getGeneralInfo = async (id: number) => {
   const res: ?KinopoiskApi$GetFilmResponse =
-    await connector.get('getFilm', { filmID: id });
+    await connector.apiGet('getFilm', { filmID: id });
 
   if (!res) return null;
 

@@ -2,13 +2,9 @@
 
 import cheerio from 'cheerio';
 import R from 'ramda';
-import rp from 'request-promise-native';
 import similarity from 'similarity';
 
-const request = rp.defaults({
-  headers: { 'User-Agent': 'movie-api' },
-  gzip: true,
-});
+import connector from './connector';
 
 type Query = {
   title: string,
@@ -20,15 +16,6 @@ type SearchResult = {
   title: string,
   countries: Array<string>,
   year: number,
-};
-
-const loadResultsHtml = async (query: Query): Promise<string> => {
-  const html = await request({
-    url: 'http://plus.kinopoisk.ru/search',
-    qs: { text: query.title },
-  });
-
-  return html;
 };
 
 const scrapeResults = (html: string): Promise<Array<SearchResult>> => {
@@ -84,11 +71,12 @@ const bestIdFromResultsHtml = (query: Query, html: string): ?number => R.pipe(
   R.prop('id'),
 )(html);
 
-const getMovieId = async (query: Query): Promise<?number> =>
-  bestIdFromResultsHtml(query, await loadResultsHtml(query));
+const getMovieId = async (query: Query): Promise<?number> => bestIdFromResultsHtml(
+  query,
+  await connector.htmlGet('search', { text: query.title }),
+);
 
 export {
-  loadResultsHtml as __loadResultsHtml,
   scrapeResults as __scrapeResults,
   filterResults as __filterResults,
   bestIdFromResultsHtml as __bestIdFromResultsHtml,

@@ -35,7 +35,7 @@ type Crew = {
 
 const getCrew = async (id: number): Promise<?Crew> => {
   const res: ?KinopoiskApi$GetStaffResponse =
-    await connector.get('getStaff', { filmID: id });
+    await connector.apiGet('getStaff', { filmID: id });
 
   if (!res) return null;
 

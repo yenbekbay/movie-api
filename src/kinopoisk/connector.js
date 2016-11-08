@@ -5,32 +5,46 @@ import querystring from 'querystring';
 import DataLoader from 'dataloader';
 import rp from 'request-promise-native';
 
-const KINOPOISK_API_ROOT = 'http://api.kinopoisk.cf';
+const KINOPOISK_API_ROOT = 'https://api.kinopoisk.cf';
+const KINOPOISK_PLUS_ROOT = 'https://plus.kinopoisk.ru';
+
+type Loader = { load: (url: string) => Promise<any> };
 
 class KinopoiskConnector {
-  rp: (options: Object) => Promise<any>;
-  loader: { load: (url: string) => Promise<any> };
+  rp: (options: Object) => Promise<any> = rp.defaults({
+    headers: { 'User-Agent': 'movie-api' },
+    gzip: true,
+  });
 
-  constructor() {
-    this.rp = rp.defaults({
-      headers: { 'User-Agent': 'movie-api' },
-      gzip: true,
-      json: true,
-    });
-    this.loader = new DataLoader(this.fetch.bind(this), {
-      // The Kinoposik API doesn't have batching, so we should send requests as
-      // soon as we know about them
+  apiLoader: Loader = new DataLoader(
+    (urls: Array<string>) => Promise.all(
+      urls.map((url: string) => this.rp({ uri: url, json: true })),
+    ), {
+      // The Kinoposik API doesn't have batching, so we should send requests
+      // as soon as we know about them
       batch: false,
-    });
-  }
+    },
+  );
 
-  fetch(urls: Array<string>) {
-    return Promise.all(urls.map((url: string) => this.rp({ uri: url })));
-  }
+  htmlLoader: Loader = new DataLoader(
+    (urls: Array<string>) => Promise.all(
+      urls.map((url: string) => this.rp({ uri: url })),
+    ), {
+      batch: false,
+    },
+  );
 
-  get(endpoint: string, query: { [key: string]: mixed }) {
-    return this.loader.load(
+  apiGet(endpoint: string, query: { [key: string]: mixed }) {
+    return this.apiLoader.load(
       `${KINOPOISK_API_ROOT}/${endpoint}?${querystring.stringify(query)}`,
+    );
+  }
+
+  htmlGet(path: string, query: ?{ [key: string]: mixed }) {
+    return this.htmlLoader.load(
+      `${KINOPOISK_PLUS_ROOT}/${path}${
+        query ? `?${querystring.stringify(query)}` : ''
+      }`,
     );
   }
 }

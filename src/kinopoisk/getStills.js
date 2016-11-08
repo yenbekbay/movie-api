@@ -19,7 +19,7 @@ type KinopoiskApi$GetGalleryResponse = {
 
 const getStills = async (id: number): Promise<?Array<string>> => {
   const res: ?KinopoiskApi$GetGalleryResponse =
-    await connector.get('getGallery', { filmID: id });
+    await connector.apiGet('getGallery', { filmID: id });
 
   if (!res) return null;
 

@@ -2,7 +2,7 @@
 
 import getCrew from './getCrew';
 import getGeneralInfo from './getGeneralInfo';
-import getMovieId from './getMovieId';
+import getId from './getId';
 import getStills from './getStills';
 
-export { getMovieId, getGeneralInfo, getCrew, getStills };
+export { getId, getGeneralInfo, getCrew, getStills };

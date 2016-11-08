@@ -1,25 +1,32 @@
 /* @flow */
 
-import {
+import getId, {
   __scrapeResults,
   __filterResults,
-  __bestIdFromResultsHtml,
-} from '../getMovieId';
+} from '../getId';
 import connector from '../connector';
 
-const query = {
+const movieQuery = {
   title: 'Звёздные войны: Пробуждение силы',
 };
+const tvShowQuery = {
+  title: 'Игра престолов',
+  isTvShow: true,
+};
 
-describe('getMovieId', () => {
-  let results: string;
-
-  beforeAll(async () => {
-    results = await connector.htmlGet('search', { text: query.title });
+describe('getId', () => {
+  it('scrapes movie search results', async () => {
+    expect(__scrapeResults(
+      movieQuery,
+      await connector.htmlGet('search', { text: movieQuery.title }),
+    )).toMatchSnapshot();
   });
 
-  it('scrapes results', () => {
-    expect(__scrapeResults(results)).toMatchSnapshot();
+  it('scrapes tv show search results', async () => {
+    expect(__scrapeResults(
+      tvShowQuery,
+      await connector.htmlGet('search', { text: tvShowQuery.title }),
+    )).toMatchSnapshot();
   });
 
   it('filters results', () => {
@@ -52,7 +59,11 @@ describe('getMovieId', () => {
     ])).toMatchSnapshot();
   });
 
-  it('finds best movie id from given results', async () => {
-    expect(__bestIdFromResultsHtml(query, results)).toMatchSnapshot();
+  it('finds best movie id for a given query', async () => {
+    expect(await getId(movieQuery)).toMatchSnapshot();
+  });
+
+  it('finds best tv show id for a given query', async () => {
+    expect(await getId(tvShowQuery)).toMatchSnapshot();
   });
 });

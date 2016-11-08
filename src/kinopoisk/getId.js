@@ -10,6 +10,7 @@ type Query = {
   title: string,
   year?: number,
   countries?: Array<string>,
+  isTvShow?: boolean,
 };
 type SearchResult = {
   id: number,
@@ -18,10 +19,13 @@ type SearchResult = {
   year: number,
 };
 
-const scrapeResults = (html: string): Promise<Array<SearchResult>> => {
+const scrapeResults = (
+  query: Query,
+  html: string,
+): Array<SearchResult> => {
   const $ = cheerio.load(html);
 
-  return $('.film-snippet_type_movie')
+  return $(`.film-snippet_type_${query.isTvShow ? 'show' : 'movie'}`)
     .get()
     .map((snippet: any) => {
       const titleNode = $(snippet).find('.film-snippet__title-link');
@@ -37,7 +41,9 @@ const scrapeResults = (html: string): Promise<Array<SearchResult>> => {
       const countries = R.pipe(
         R.split(','),
         R.map(R.trim),
-        R.filter((country: ?string) => !!country && isNaN(country)),
+        R.filter(
+          (country: ?string) => !!country && isNaN(parseInt(country, 10)),
+        ),
       )(infoNode.text());
       const year = parseInt(R.head(infoNode.text().match(/\d+/)), 10);
 
@@ -63,22 +69,20 @@ const filterResults = (
     : R.always(true)),
 ]))(results);
 
-const bestIdFromResultsHtml = (query: Query, html: string): ?number => R.pipe(
-  scrapeResults,
-  R.curry(filterResults)(query),
-  R.sortBy(({ title }: SearchResult) => similarity(title, query.title)),
-  R.head,
-  R.prop('id'),
-)(html);
+const getId = async (query: Query): Promise<?number> => {
+  const html = await connector.htmlGet('search', { text: query.title });
 
-const getMovieId = async (query: Query): Promise<?number> => bestIdFromResultsHtml(
-  query,
-  await connector.htmlGet('search', { text: query.title }),
-);
+  return R.pipe(
+    R.curry(scrapeResults)(query),
+    R.curry(filterResults)(query),
+    R.sortBy(({ title }: SearchResult) => similarity(title, query.title)),
+    R.head,
+    R.prop('id'),
+  )(html);
+};
 
 export {
   scrapeResults as __scrapeResults,
   filterResults as __filterResults,
-  bestIdFromResultsHtml as __bestIdFromResultsHtml,
 };
-export default getMovieId;
+export default getId;

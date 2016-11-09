@@ -19,13 +19,13 @@ describe('kinopoisk/getId', () => {
     expect(__scrapeResults(
       await connector.htmlGet('search/films', { text: movieQuery.title }),
     )).toMatchSnapshot();
-  });
+  }, 7000);
 
   it('scrapes tv show search results', async () => {
     expect(__scrapeResults(
       await connector.htmlGet('search/series', { text: tvShowQuery.title }),
     )).toMatchSnapshot();
-  });
+  }, 7000);
 
   it('filters results', () => {
     expect(__filterResults({ title: 'foo' }, [
@@ -59,9 +59,9 @@ describe('kinopoisk/getId', () => {
 
   it('finds best movie id for a given query', async () => {
     expect(await getId(movieQuery)).toMatchSnapshot();
-  });
+  }, 7000);
 
   it('finds best tv show id for a given query', async () => {
     expect(await getId(tvShowQuery)).toMatchSnapshot();
-  });
+  }, 7000);
 });

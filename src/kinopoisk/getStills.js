@@ -2,7 +2,7 @@
 
 import R from 'ramda';
 
-import { normalizeCdnImageUrl } from './utils';
+import { imageUrlFromPath } from './utils';
 import connector from './connector';
 
 type KinopoiskApi$GalleryItem = {
@@ -26,7 +26,7 @@ const getStills = async (id: number): Promise<?Array<string>> => {
   return R.pipe(
     R.propOr([], 'kadr'),
     R.map(
-      ({ image }: KinopoiskApi$GalleryItem) => normalizeCdnImageUrl(image),
+      ({ image }: KinopoiskApi$GalleryItem) => imageUrlFromPath(image),
     ),
   )(res.gallery);
 };

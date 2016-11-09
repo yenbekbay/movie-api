@@ -1,0 +1,126 @@
+exports[`kinopoisk/getCredits fetches movie credits from kinopoisk for a given id 1`] = `
+Object {
+  "cast": Array [
+    Object {
+      "name": "Джон Бойега",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_2196854.jpg?d=20130703131657",
+    },
+    Object {
+      "name": "Дэйзи Ридли",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_3016071.jpg?d=20140430113652",
+    },
+    Object {
+      "name": "Оскар Айзек",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_43284.jpg",
+    },
+    Object {
+      "name": "Адам Драйвер",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_1833677.jpg?d=20130521201357",
+    },
+    Object {
+      "name": "Донал Глисон",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_671252.jpg?d=20150622214531",
+    },
+    Object {
+      "name": "Харрисон Форд",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_5679.jpg?d=20130506141058",
+    },
+    Object {
+      "name": "Марк Хэмилл",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_23716.jpg?d=20130705122542",
+    },
+    Object {
+      "name": "Кэрри Фишер",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_8459.jpg?d=20130705123958",
+    },
+    Object {
+      "name": "Макс фон Сюдов",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_3311.jpg",
+    },
+    Object {
+      "name": "Энди Серкис",
+      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_13176.jpg",
+    },
+  ],
+  "crew": Object {
+    "cinematographers": Array [
+      Object {
+        "name": "Дэниэл Миндел",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_610174.jpg?d=20150813191602",
+      },
+    ],
+    "composers": Array [
+      Object {
+        "name": "Джон Уильямс",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_225027.jpg?d=20130908235640",
+      },
+    ],
+    "directors": Array [
+      Object {
+        "name": "Джей Джей Абрамс",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
+      },
+    ],
+    "producers": Array [
+      Object {
+        "name": "Джей Джей Абрамс",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
+      },
+      Object {
+        "name": "Брайан Берк",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_663746.jpg",
+      },
+      Object {
+        "name": "Кэтлин Кеннеди",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_20396.jpg?d=20150721001100",
+      },
+      Object {
+        "name": "Пиппа Андерсон",
+        "photoUrl": null,
+      },
+      Object {
+        "name": "Майкл Арндт",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_936886.jpg?d=20130612003448",
+      },
+      Object {
+        "name": "Лейфур Б. Дагфиннссон",
+        "photoUrl": null,
+      },
+      Object {
+        "name": "Томми Гормли",
+        "photoUrl": null,
+      },
+      Object {
+        "name": "Томми Харпер",
+        "photoUrl": null,
+      },
+      Object {
+        "name": "Джейсон Д. МакГатлин",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_43725.jpg",
+      },
+      Object {
+        "name": "Мишель Рейван",
+        "photoUrl": null,
+      },
+    ],
+    "writers": Array [
+      Object {
+        "name": "Лоуренс Кэздан",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_26537.jpg?d=20131017121035",
+      },
+      Object {
+        "name": "Джей Джей Абрамс",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
+      },
+      Object {
+        "name": "Майкл Арндт",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_936886.jpg?d=20130612003448",
+      },
+      Object {
+        "name": "Джордж Лукас",
+        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_24284.jpg",
+      },
+    ],
+  },
+}
+`;

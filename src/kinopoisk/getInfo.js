@@ -2,21 +2,23 @@
 
 import R from 'ramda';
 
-import { normalizeCdnImageUrl } from './utils';
+import { imageUrlFromPath } from './utils';
 import connector from './connector';
+import getCredits from './getCredits';
+import getStills from './getStills';
 
 type KinopoiskApi$GetFilmResponse = {
-  filmID?: ?string,
-  imdbID?: ?string,
-  nameRU?: ?string,
-  nameEN?: ?string,
-  posterURL?: ?string,
-  year?: ?string,
+  bigPosterURL?: ?string,
+  country?: ?string,
   description?: ?string,
+  filmID: string,
   filmLength?: ?string,
   genre?: ?string,
+  imdbID?: ?string,
+  nameEN?: ?string,
+  nameRU: string,
+  posterURL?: ?string,
   ratingAgeLimits?: ?string,
-  ratingMPAA?: ?string,
   ratingData: {
     rating?: ?string,
     ratingVoteCount?: ?string,
@@ -25,6 +27,11 @@ type KinopoiskApi$GetFilmResponse = {
     ratingFilmCritics?: ?string,
     ratingFilmCriticsVoteCount?: ?string,
   },
+  ratingMPAA?: ?string,
+  slogan?: ?string,
+  type: 'KPFilm' | 'KPSerial',
+  webURL: string,
+  year?: ?string,
 };
 
 const parseRuntime = (rawRuntime: ?string): number => (
@@ -41,39 +48,38 @@ const parseRuntime = (rawRuntime: ?string): number => (
     : NaN
 );
 
-const getGeneralInfo = async (id: number) => {
+const getInfo = async (id: number) => {
   const res: ?KinopoiskApi$GetFilmResponse =
     await connector.apiGet('getFilm', { filmID: id });
 
   if (!res) return null;
 
   const {
-    filmID,
-    imdbID,
-    nameRU,
-    nameEN,
-    posterURL,
-    year,
     description,
+    filmID,
     filmLength,
     genre,
+    imdbID,
+    nameEN,
+    nameRU,
+    posterURL,
     ratingAgeLimits,
-    ratingMPAA,
     ratingData = {},
+    ratingMPAA,
+    year,
   } = res;
+
+  const credits = await getCredits(id);
+  const stills = await getStills(id);
 
   return {
     kpId: parseInt(filmID, 10),
     imdbID,
-    title: {
-      ru: nameRU,
-      original: nameEN,
-    },
-    posterUrl: posterURL ? normalizeCdnImageUrl(posterURL) : null,
+    title: nameRU,
+    originalTitle: nameEN,
+    posterUrl: posterURL ? imageUrlFromPath(posterURL) : null,
     year: parseInt(year, 10),
-    synopsis: {
-      ru: description,
-    },
+    synopsis: description,
     runtime: parseRuntime(filmLength),
     genres: (genre || '').split(', '),
     ageRating: parseInt(ratingAgeLimits, 10),
@@ -87,8 +93,10 @@ const getGeneralInfo = async (id: number) => {
       ratingData.ratingFilmCriticsVoteCount,
       10,
     ),
+    stills,
+    credits,
   };
 };
 
 export { parseRuntime as __parseRuntime };
-export default getGeneralInfo;
+export default getInfo;

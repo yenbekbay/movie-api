@@ -1,8 +1,6 @@
 /* @flow */
 
-import getCrew from './getCrew';
-import getGeneralInfo from './getGeneralInfo';
 import getId from './getId';
-import getStills from './getStills';
+import getInfo from './getInfo';
 
-export { getId, getGeneralInfo, getCrew, getStills };
+export { getId, getInfo };

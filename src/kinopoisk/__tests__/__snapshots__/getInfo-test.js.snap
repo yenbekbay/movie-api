@@ -1,0 +1,32 @@
+exports[`kinopoisk/getInfo fetches movie info from kinopoisk for a given id 1`] = `
+Object {
+  "ageRating": "Number",
+  "credits": Object {
+    "cast": "Array<Object>",
+    "crew": Object {
+      "cinematographers": "Array<Object>",
+      "composers": "Array<Object>",
+      "directors": "Array<Object>",
+      "producers": "Array<Object>",
+      "writers": "Array<Object>",
+    },
+  },
+  "genres": "Array<String>",
+  "imdbID": "String",
+  "imdbRating": "Number",
+  "imdbRatingVoteCount": "Number",
+  "kpId": "Number",
+  "kpRating": "Number",
+  "kpRatingVoteCount": "Number",
+  "mpaaRating": "String",
+  "originalTitle": "String",
+  "posterUrl": "String",
+  "rtCriticsRating": "Number",
+  "rtCriticsRatingVoteCount": "Number",
+  "runtime": "Number",
+  "stills": "Array<String>",
+  "synopsis": "String",
+  "title": "String",
+  "year": "Number",
+}
+`;

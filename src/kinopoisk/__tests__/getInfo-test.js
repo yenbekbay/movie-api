@@ -2,7 +2,7 @@
 
 import R from 'ramda';
 
-import getGeneralInfo from '../getGeneralInfo';
+import getInfo from '../getInfo';
 
 const kpId = 714888; // Star Wars: The Force Awakens
 
@@ -22,8 +22,8 @@ const modelFromObject = (obj: ?Object) => R.map(
   obj,
 );
 
-describe('kinopoisk/getGeneralInfo', () => {
-  it('fetches general movie info from kinopoisk for a given id', async () => {
-    expect(modelFromObject(await getGeneralInfo(kpId))).toMatchSnapshot();
+describe('kinopoisk/getInfo', () => {
+  it('fetches movie info from kinopoisk for a given id', async () => {
+    expect(modelFromObject(await getInfo(kpId))).toMatchSnapshot();
   });
 });

@@ -19,13 +19,10 @@ type SearchResult = {
   year: number,
 };
 
-const scrapeResults = (
-  query: Query,
-  html: string,
-): Array<SearchResult> => {
+const scrapeResults = (html: string): Array<SearchResult> => {
   const $ = cheerio.load(html);
 
-  return $(`.film-snippet_type_${query.isTvShow ? 'show' : 'movie'}`)
+  return $('.film-snippet')
     .get()
     .map((snippet: any) => {
       const titleNode = $(snippet).find('.film-snippet__title-link');
@@ -70,10 +67,13 @@ const filterResults = (
 ]))(results);
 
 const getId = async (query: Query): Promise<?number> => {
-  const html = await connector.htmlGet('search', { text: query.title });
+  const html = await connector.htmlGet(
+    `search/${query.isTvShow ? 'series' : 'films'}`,
+    { text: query.title },
+  );
 
   return R.pipe(
-    R.curry(scrapeResults)(query),
+    scrapeResults,
     R.curry(filterResults)(query),
     R.sortBy(({ title }: SearchResult) => similarity(title, query.title)),
     R.head,

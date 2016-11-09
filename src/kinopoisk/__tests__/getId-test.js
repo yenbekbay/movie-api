@@ -17,15 +17,13 @@ const tvShowQuery = {
 describe('getId', () => {
   it('scrapes movie search results', async () => {
     expect(__scrapeResults(
-      movieQuery,
-      await connector.htmlGet('search', { text: movieQuery.title }),
+      await connector.htmlGet('search/films', { text: movieQuery.title }),
     )).toMatchSnapshot();
   });
 
   it('scrapes tv show search results', async () => {
     expect(__scrapeResults(
-      tvShowQuery,
-      await connector.htmlGet('search', { text: tvShowQuery.title }),
+      await connector.htmlGet('search/series', { text: tvShowQuery.title }),
     )).toMatchSnapshot();
   });
 

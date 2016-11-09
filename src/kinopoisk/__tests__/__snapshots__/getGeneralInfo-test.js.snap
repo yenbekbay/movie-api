@@ -1,4 +1,4 @@
-exports[`getGeneralInfo fetches general movie info from kinopoisk for a given id 1`] = `
+exports[`kinopoisk/getGeneralInfo fetches general movie info from kinopoisk for a given id 1`] = `
 Object {
   "ageRating": "Number",
   "genres": "Array<String>",

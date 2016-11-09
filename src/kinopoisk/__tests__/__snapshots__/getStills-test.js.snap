@@ -1,4 +1,4 @@
-exports[`getStills fetches movie stills from kinopoisk for a given id 1`] = `
+exports[`kinopoisk/getStills fetches movie stills from kinopoisk for a given id 1`] = `
 Array [
   "http://st.kp.yandex.net/images/kadr/2751407.jpg",
   "http://st.kp.yandex.net/images/kadr/2751406.jpg",

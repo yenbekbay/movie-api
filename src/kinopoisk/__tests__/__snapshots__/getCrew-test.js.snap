@@ -1,4 +1,4 @@
-exports[`getCrew fetches movie crew from kinopoisk for a given id 1`] = `
+exports[`kinopoisk/getCrew fetches movie crew from kinopoisk for a given id 1`] = `
 Object {
   "cast": Array [
     Object {

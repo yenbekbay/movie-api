@@ -14,7 +14,7 @@ const tvShowQuery = {
   isTvShow: true,
 };
 
-describe('getId', () => {
+describe('kinopoisk/getId', () => {
   it('scrapes movie search results', async () => {
     expect(__scrapeResults(
       await connector.htmlGet('search/films', { text: movieQuery.title }),

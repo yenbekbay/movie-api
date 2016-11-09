@@ -22,7 +22,7 @@ const modelFromObject = (obj: ?Object) => R.map(
   obj,
 );
 
-describe('getGeneralInfo', () => {
+describe('kinopoisk/getGeneralInfo', () => {
   it('fetches general movie info from kinopoisk for a given id', async () => {
     expect(modelFromObject(await getGeneralInfo(kpId))).toMatchSnapshot();
   });

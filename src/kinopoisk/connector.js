@@ -20,7 +20,7 @@ class KinopoiskConnector {
     (urls: Array<string>) => Promise.all(
       urls.map((url: string) => this.rp({ uri: url, json: true })),
     ), {
-      // The Kinoposik API doesn't have batching, so we should send requests
+      // The Kinopoisk API doesn't have batching, so we should send requests
       // as soon as we know about them
       batch: false,
     },

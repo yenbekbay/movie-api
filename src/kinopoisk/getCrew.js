@@ -18,6 +18,7 @@ type KinopoiskApi$CrewMember = {
 type KinopoiskApi$GetStaffResponse = {
   creators?: Array<Array<KinopoiskApi$CrewMember>>,
 };
+
 type CrewMember = {
   name: {
     ru: ?string,

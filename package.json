@@ -65,6 +65,7 @@
     "date-fns": "^1.10.0",
     "graphql-anywhere": "^0.2.4",
     "graphql-tag": "^0.1.16",
+    "parent-package-json": "^2.0.0",
     "ramda": "^0.22.1",
     "request": "^2.78.0",
     "request-promise-native": "^1.0.3",

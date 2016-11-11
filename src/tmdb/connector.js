@@ -5,6 +5,7 @@ import querystring from 'querystring';
 import DataLoader from 'dataloader';
 import rp from 'request-promise-native';
 
+import { userAgent } from '../utils';
 import env from '../env';
 
 const TMDB_API_ROOT = 'https://api.themoviedb.org/3';
@@ -24,7 +25,7 @@ class TmdbConnector {
     this._language = language;
 
     this.rp = rp.defaults({
-      headers: { 'User-Agent': 'movie-api' },
+      headers: { 'User-Agent': userAgent },
       gzip: true,
       qs: {
         api_key: this._apiKey,

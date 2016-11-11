@@ -9,6 +9,8 @@ import dateFormat from 'date-fns/format';
 import R from 'ramda';
 import rp from 'request-promise-native';
 
+import { userAgent } from '../utils';
+
 const KINOPOISK_API_ROOT = 'https://ext.kinopoisk.ru/ios/3.11.0';
 const KINOPOISK_API_KEY = 'a17qbcw1du0aedm';
 const KINOPOISK_PLUS_ROOT = 'https://plus.kinopoisk.ru';
@@ -37,7 +39,7 @@ class KinopoiskConnector {
     json: true,
   });
   htmlRp: Rp = rp.defaults({
-    headers: { 'User-Agent': 'movie-api' },
+    headers: { 'User-Agent': userAgent },
     gzip: true,
   });
 

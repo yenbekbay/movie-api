@@ -107,7 +107,7 @@ const detailMethods = [
 type CastMember = {
   character: ?string,
   name: string,
-  photoUrl: string,
+  photoUrl: ?string,
 };
 
 const getCast = (

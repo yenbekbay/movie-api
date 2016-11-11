@@ -19,7 +19,7 @@ type Rp = (options: Object) => Promise<any>;
 type Loader = { load: (url: string) => Promise<any> };
 
 class KinopoiskConnector {
-  apiRp: Rp = rp.defaults({
+  _apiRp: Rp = rp.defaults({
     headers: {
       'Accept-Encoding': 'gzip',
       'Android-Api-Version': '22',
@@ -38,7 +38,7 @@ class KinopoiskConnector {
     },
     json: true,
   });
-  htmlRp: Rp = rp.defaults({
+  _htmlRp: Rp = rp.defaults({
     headers: { 'User-Agent': userAgent },
     gzip: true,
   });
@@ -46,7 +46,7 @@ class KinopoiskConnector {
   apiLoader: Loader = new DataLoader(
     (urls: Array<string>) => Promise.all(
       urls.map(async (url: string) => {
-        const json = await this.apiRp({
+        const json = await this._apiRp({
           uri: url,
           qs: {
             key: crypto
@@ -66,7 +66,7 @@ class KinopoiskConnector {
 
   htmlLoader: Loader = new DataLoader(
     (urls: Array<string>) => Promise.all(
-      urls.map((url: string) => this.htmlRp({ uri: url })),
+      urls.map((url: string) => this._htmlRp({ uri: url })),
     ), {
       batch: false,
     },

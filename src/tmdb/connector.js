@@ -15,7 +15,7 @@ type Loader = { load: (url: string) => Promise<any> };
 class TmdbConnector {
   _apiKey: string;
   _language: string;
-  rp: (options: Object) => Promise<any>;
+  _rp: (options: Object) => Promise<any>;
 
   constructor({ apiKey, language = 'ru' }: {
     apiKey?: string,
@@ -24,7 +24,7 @@ class TmdbConnector {
     this._apiKey = apiKey || env.getTmdbApiKey();
     this._language = language;
 
-    this.rp = rp.defaults({
+    this._rp = rp.defaults({
       headers: { 'User-Agent': userAgent },
       gzip: true,
       qs: {
@@ -36,7 +36,7 @@ class TmdbConnector {
 
   apiLoader: Loader = new DataLoader(
     (urls: Array<string>) => Promise.all(
-      urls.map((url: string) => this.rp({ uri: url, json: true })),
+      urls.map((url: string) => this._rp({ uri: url, json: true })),
     ), {
       // The TMDB API doesn't have batching, so we should send requests
       // as soon as we know about them

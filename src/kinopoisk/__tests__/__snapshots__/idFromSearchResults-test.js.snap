@@ -1,4 +1,4 @@
-exports[`kinopoisk/getId filters results 1`] = `
+exports[`kinopoisk/idFromSearchResults filters results 1`] = `
 Array [
   Object {
     "countries": Array [],
@@ -9,7 +9,7 @@ Array [
 ]
 `;
 
-exports[`kinopoisk/getId filters results 2`] = `
+exports[`kinopoisk/idFromSearchResults filters results 2`] = `
 Array [
   Object {
     "countries": Array [],
@@ -26,7 +26,7 @@ Array [
 ]
 `;
 
-exports[`kinopoisk/getId filters results 3`] = `
+exports[`kinopoisk/idFromSearchResults filters results 3`] = `
 Array [
   Object {
     "countries": Array [],
@@ -43,7 +43,7 @@ Array [
 ]
 `;
 
-exports[`kinopoisk/getId filters results 4`] = `
+exports[`kinopoisk/idFromSearchResults filters results 4`] = `
 Array [
   Object {
     "countries": Array [
@@ -63,37 +63,6 @@ Array [
     "id": 4,
     "title": "foo",
     "year": 2016,
-  },
-]
-`;
-
-exports[`kinopoisk/getId finds best movie id for a given query 1`] = `714888`;
-
-exports[`kinopoisk/getId finds best tv show id for a given query 1`] = `464963`;
-
-exports[`kinopoisk/getId scrapes movie search results 1`] = `
-Array [
-  Object {
-    "countries": Array [
-      "США",
-    ],
-    "id": 714888,
-    "title": "Звёздные войны: Пробуждение силы",
-    "year": 2015,
-  },
-]
-`;
-
-exports[`kinopoisk/getId scrapes tv show search results 1`] = `
-Array [
-  Object {
-    "countries": Array [
-      "США",
-      "Великобритания",
-    ],
-    "id": 464963,
-    "title": "Игра престолов",
-    "year": 2011,
   },
 ]
 `;

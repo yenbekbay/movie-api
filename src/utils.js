@@ -1,6 +1,9 @@
 /* @flow */
 
+import gql from 'graphql-tag';
+import graphql from 'graphql-anywhere';
 import parent from 'parent-package-json';
+import R from 'ramda';
 
 const getUserAgent = () => {
   const pathToParent = parent();
@@ -14,6 +17,10 @@ const getUserAgent = () => {
   return 'movie-api';
 };
 
+const transformResWithGqlQuery = (res: Object, query: ?string): Object => (
+  query ? graphql(R.prop, gql`${query}`, res) : res
+);
+
 const userAgent = getUserAgent();
 
-export { userAgent }; // eslint-disable-line import/prefer-default-export
+export { transformResWithGqlQuery, userAgent };

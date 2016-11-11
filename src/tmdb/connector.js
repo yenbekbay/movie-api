@@ -10,6 +10,11 @@ import env from '../env';
 
 const TMDB_API_ROOT = 'https://api.themoviedb.org/3';
 
+export type TmdbConnectorConfig = {
+  apiKey?: string,
+  language: string,
+};
+
 type Loader = { load: (url: string) => Promise<any> };
 
 class TmdbConnector {
@@ -17,10 +22,7 @@ class TmdbConnector {
   _language: string;
   _rp: (options: Object) => Promise<any>;
 
-  constructor({ apiKey, language = 'ru' }: {
-    apiKey?: string,
-    language: string,
-  } = {}) {
+  constructor({ apiKey, language = 'ru' }: TmdbConnectorConfig = {}) {
     this._apiKey = apiKey || env.getTmdbApiKey();
     this._language = language;
 
@@ -51,7 +53,4 @@ class TmdbConnector {
   }
 }
 
-const connector = new TmdbConnector();
-
-export { TmdbConnector };
-export default connector;
+export default TmdbConnector;

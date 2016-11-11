@@ -1,6 +1,6 @@
 /* @flow */
 
-import * as Kinopoisk from './kinopoisk';
-import * as Tmdb from './tmdb';
+import Kinopoisk from './kinopoisk';
+import Tmdb from './tmdb';
 
 export { Kinopoisk, Tmdb };

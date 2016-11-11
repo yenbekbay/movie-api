@@ -4,14 +4,13 @@ import cheerio from 'cheerio';
 import R from 'ramda';
 import similarity from 'similarity';
 
-import connector from './connector';
-
-type Query = {
+export type SearchQuery = {
   title: string,
   year?: number,
   countries?: Array<string>,
   isTvShow?: boolean,
 };
+
 type SearchResult = {
   id: number,
   title: string,
@@ -49,7 +48,7 @@ const scrapeResults = (html: string): Array<SearchResult> => {
 };
 
 const filterResults = (
-  query: Query,
+  query: SearchQuery,
   results: Array<?SearchResult>,
 ): Array<SearchResult> => R.filter(R.allPass([
   Boolean,
@@ -66,23 +65,16 @@ const filterResults = (
     : R.always(true)),
 ]))(results);
 
-const getId = async (query: Query): Promise<?number> => {
-  const html = await connector.htmlGet(
-    `search/${query.isTvShow ? 'series' : 'films'}`,
-    { text: query.title },
-  );
-
-  return R.pipe(
-    scrapeResults,
-    R.curry(filterResults)(query),
-    R.sortBy(({ title }: SearchResult) => similarity(title, query.title)),
-    R.head,
-    R.prop('id'),
-  )(html);
-};
+const idFromSearchResults = (html: string, query: SearchQuery) => R.pipe(
+  scrapeResults,
+  R.curry(filterResults)(query),
+  R.sortBy(({ title }: SearchResult) => similarity(title, query.title)),
+  R.head,
+  R.prop('id'),
+)(html);
 
 export {
   scrapeResults as __scrapeResults,
   filterResults as __filterResults,
 };
-export default getId;
+export default idFromSearchResults;

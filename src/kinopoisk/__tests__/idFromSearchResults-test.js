@@ -1,32 +1,8 @@
 /* @flow */
 
-import getId, {
-  __scrapeResults,
-  __filterResults,
-} from '../getId';
-import connector from '../connector';
+import { __filterResults } from '../idFromSearchResults';
 
-const movieQuery = {
-  title: 'Звёздные войны: Пробуждение силы',
-};
-const tvShowQuery = {
-  title: 'Игра престолов',
-  isTvShow: true,
-};
-
-describe('kinopoisk/getId', () => {
-  it('scrapes movie search results', async () => {
-    expect(__scrapeResults(
-      await connector.htmlGet('search/films', { text: movieQuery.title }),
-    )).toMatchSnapshot();
-  }, 7000);
-
-  it('scrapes tv show search results', async () => {
-    expect(__scrapeResults(
-      await connector.htmlGet('search/series', { text: tvShowQuery.title }),
-    )).toMatchSnapshot();
-  }, 7000);
-
+describe('kinopoisk/idFromSearchResults', () => {
   it('filters results', () => {
     expect(__filterResults({ title: 'foo' }, [
       null,
@@ -56,12 +32,4 @@ describe('kinopoisk/getId', () => {
       { id: 4, title: 'foo', countries: ['США', 'Россия'], year: 2016 },
     ])).toMatchSnapshot();
   });
-
-  it('finds best movie id for a given query', async () => {
-    expect(await getId(movieQuery)).toMatchSnapshot();
-  }, 7000);
-
-  it('finds best tv show id for a given query', async () => {
-    expect(await getId(tvShowQuery)).toMatchSnapshot();
-  }, 7000);
 });

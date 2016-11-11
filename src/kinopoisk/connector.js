@@ -87,7 +87,4 @@ class KinopoiskConnector {
   }
 }
 
-const connector = new KinopoiskConnector();
-
-export { KinopoiskConnector };
-export default connector;
+export default KinopoiskConnector;

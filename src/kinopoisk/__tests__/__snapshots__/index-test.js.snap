@@ -1,4 +1,4 @@
-exports[`kinopoisk/getCredits fetches movie credits from kinopoisk for a given id 1`] = `
+exports[`Kinopoisk fetches movie credits from kinopoisk for a given id 1`] = `
 Object {
   "cast": Array [
     Object {
@@ -122,5 +122,40 @@ Object {
       },
     ],
   },
+}
+`;
+
+exports[`Kinopoisk fetches movie info from kinopoisk for a given id 1`] = `
+Object {
+  "ageRating": "Number",
+  "genres": "Array<String>",
+  "imdbRating": "Number",
+  "imdbRatingVoteCount": "Number",
+  "kpId": "Number",
+  "kpRating": "Number",
+  "kpRatingVoteCount": "Number",
+  "mpaaRating": "String",
+  "originalTitle": "String",
+  "posterUrl": "String",
+  "productionCountries": "Array<String>",
+  "rtCriticsRating": "Number",
+  "rtCriticsRatingVoteCount": "Number",
+  "runtime": "Number",
+  "stills": "Array<String>",
+  "synopsis": "String",
+  "title": "String",
+  "year": "Number",
+}
+`;
+
+exports[`Kinopoisk finds best movie id for a given query 1`] = `714888`;
+
+exports[`Kinopoisk finds best tv show id for a given query 1`] = `464963`;
+
+exports[`Kinopoisk formats response according to graphql query 1`] = `
+Object {
+  "kpId": "Number",
+  "synopsis": "String",
+  "title": "String",
 }
 `;

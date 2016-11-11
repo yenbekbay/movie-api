@@ -1,4 +1,8 @@
-exports[`tmdb/getInfo fetches movie info from tmdb for a given id 1`] = `
+exports[`TMDB fetches movie id by imdb id 1`] = `140607`;
+
+exports[`TMDB fetches movie id by title 1`] = `140607`;
+
+exports[`TMDB fetches movie info from tmdb for a given id 1`] = `
 Object {
   "backdropUrl": "String",
   "budget": "Number",
@@ -33,7 +37,11 @@ Object {
 }
 `;
 
-exports[`tmdb/getInfo formats response according to graphql query 1`] = `
+exports[`TMDB fetches tv show id by imdb id 1`] = `1399`;
+
+exports[`TMDB fetches tv show id by title 1`] = `1399`;
+
+exports[`TMDB formats response according to graphql query 1`] = `
 Object {
   "imdbId": "String",
   "synopsis": "String",

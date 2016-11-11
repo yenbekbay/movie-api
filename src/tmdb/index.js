@@ -1,5 +1,6 @@
 /* @flow */
 
 import getId from './getId';
+import getInfo from './getInfo';
 
-export { getId }; // eslint-disable-line import/prefer-default-export
+export { getId, getInfo };

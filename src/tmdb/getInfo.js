@@ -1,5 +1,7 @@
 /* @flow */
 
+import gql from 'graphql-tag';
+import graphql from 'graphql-anywhere';
 import R from 'ramda';
 
 import { imageUrlFromPath } from './utils';
@@ -144,7 +146,7 @@ const getCreditsByJob = (
   })),
 )(credits);
 
-const getInfo = async (id: number) => {
+const getInfo = async (id: number, query: void | string) => {
   const res: ?TmdbApi$GetMovieDetailsResponse = await connector.apiGet(
     `movie/${id}`,
     { append_to_response: detailMethods.join(',') },
@@ -176,7 +178,7 @@ const getInfo = async (id: number) => {
     credits,
   } = res;
 
-  return {
+  const finalRes = {
     backdropUrl: backdropPath ? imageUrlFromPath(backdropPath, 1000) : null,
     budget,
     genres: genres.map(({ name }: TmdbApi$Genre) => name),
@@ -215,6 +217,10 @@ const getInfo = async (id: number) => {
       },
     },
   };
+
+  if (!query) return finalRes;
+
+  return graphql(R.prop, gql`${query}`, finalRes);
 };
 
 export default getInfo;

@@ -32,3 +32,12 @@ Object {
   "tmdbRatingVoteCount": "Number",
 }
 `;
+
+exports[`tmdb/getInfo formats response according to graphql query 1`] = `
+Object {
+  "imdbId": "String",
+  "synopsis": "String",
+  "title": "String",
+  "tmdbId": "Number",
+}
+`;

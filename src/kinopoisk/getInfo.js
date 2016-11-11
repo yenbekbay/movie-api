@@ -1,5 +1,7 @@
 /* @flow */
 
+import gql from 'graphql-tag';
+import graphql from 'graphql-anywhere';
 import R from 'ramda';
 
 import { imageUrlFromPath } from './utils';
@@ -50,7 +52,7 @@ const parseRuntime = (rawRuntime: ?string): number => (
     : NaN
 );
 
-const getInfo = async (id: number) => {
+const getInfo = async (id: number, query: void | string) => {
   const [res, credits] = await Promise.all([
     (connector.apiGet(
       'getKPFilmDetailView', { filmID: id, still_limit: 100 },
@@ -76,7 +78,7 @@ const getInfo = async (id: number) => {
     year,
   } = res;
 
-  return {
+  const finalRes = {
     kpId: parseInt(filmID, 10),
     title: nameRU,
     originalTitle: nameEN,
@@ -107,6 +109,10 @@ const getInfo = async (id: number) => {
     ),
     credits,
   };
+
+  if (!query) return finalRes;
+
+  return graphql(R.prop, gql`${query}`, finalRes);
 };
 
 export { parseRuntime as __parseRuntime };

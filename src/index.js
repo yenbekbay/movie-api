@@ -1,5 +1,6 @@
 /* @flow */
 
 import * as Kinopoisk from './kinopoisk';
+import * as Tmdb from './tmdb';
 
-export { Kinopoisk }; // eslint-disable-line import/prefer-default-export
+export { Kinopoisk, Tmdb };

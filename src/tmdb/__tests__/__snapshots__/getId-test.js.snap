@@ -1,0 +1,7 @@
+exports[`tmdb/getId fetches movie id by imdb id 1`] = `140607`;
+
+exports[`tmdb/getId fetches movie id by title 1`] = `140607`;
+
+exports[`tmdb/getId fetches tv show id by imdb id 1`] = `1399`;
+
+exports[`tmdb/getId fetches tv show id by title 1`] = `1399`;

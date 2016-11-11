@@ -40,6 +40,9 @@
     "coverageReporters": [
       "lcov"
     ],
+    "setupFiles": [
+      "scripts/jest-env.js"
+    ],
     "testEnvironment": "node",
     "testPathDirs": [
       "<rootDir>/src"
@@ -83,6 +86,7 @@
     "babel-preset-stage-0": "^6.16.0",
     "commitizen": "^2.8.6",
     "cz-conventional-changelog": "^1.2.0",
+    "dotenv": "^2.0.0",
     "eslint": "~3.8.1",
     "eslint-config-anvilabs": "^1.6.3",
     "flow-bin": "^0.34.0",

@@ -1,0 +1,34 @@
+exports[`tmdb/getInfo fetches movie info from tmdb for a given id 1`] = `
+Object {
+  "backdropUrl": "String",
+  "budget": "Number",
+  "credits": Object {
+    "cast": "Array<Object>",
+    "crew": Object {
+      "cinematographers": "Array<Object>",
+      "composers": "Array<Object>",
+      "directors": "Array<Object>",
+      "producers": "Array<Object>",
+      "writers": "Array<Object>",
+    },
+  },
+  "genres": "Array<String>",
+  "homepage": "String",
+  "imdbId": "String",
+  "originalLanguage": "String",
+  "originalTitle": "String",
+  "posterUrl": "String",
+  "productionCompanies": "Array<String>",
+  "productionCountries": "Array<Object>",
+  "releaseDate": "String",
+  "revenue": "Number",
+  "runtime": "Number",
+  "synopsis": "String",
+  "tagline": "String",
+  "title": "String",
+  "tmdbId": "Number",
+  "tmdbPopularity": "Number",
+  "tmdbRating": "Number",
+  "tmdbRatingVoteCount": "Number",
+}
+`;

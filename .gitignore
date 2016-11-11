@@ -8,6 +8,9 @@ node_modules/
 # Logs
 *.log
 
+# Private environment variables
+.env
+
 # Coverage directory used by jest
 coverage
 

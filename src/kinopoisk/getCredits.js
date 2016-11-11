@@ -36,7 +36,7 @@ type Credits = {
 
 const getCredits = async (id: number): Promise<?Credits> => {
   const res: ?KinopoiskApi$GetStaffResponse =
-    await connector.apiGet('getStaff', { filmID: id });
+    await connector.apiGet('getStaffList', { filmID: id });
 
   if (!res) return null;
 

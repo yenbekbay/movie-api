@@ -4,6 +4,14 @@
   version "0.17.31"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.17.31.tgz#bfeda3e3e8647a6e49b2998d137c81d5d8ab52d0"
 
+"@types/date-fns":
+  version "2.5.3"
+  resolved "https://registry.yarnpkg.com/@types/date-fns/-/date-fns-2.5.3.tgz#f2748929dc31d02c4d60578ee76228d56582e81a"
+
+"@types/dotenv":
+  version "2.0.19"
+  resolved "https://registry.yarnpkg.com/@types/dotenv/-/dotenv-2.0.19.tgz#31a20215a568a0ba62c47b6a68b771638d9f8711"
+
 "@types/form-data@*":
   version "0.0.32"
   resolved "https://registry.yarnpkg.com/@types/form-data/-/form-data-0.0.32.tgz#218134515d38929524ff562ba1c6ce93981f3a45"
@@ -32,6 +40,10 @@
   resolved "https://registry.yarnpkg.com/@types/request-promise-native/-/request-promise-native-1.0.1.tgz#78e15eac239fa1d21ee4683a32d3e2f84fda2bc4"
   dependencies:
     "@types/request" "*"
+
+"@types/rimraf":
+  version "0.0.28"
+  resolved "https://registry.yarnpkg.com/@types/rimraf/-/rimraf-0.0.28.tgz#5562519bc7963caca8abf7f128cae3b594d41d06"
 
 abab@^1.0.0:
   version "1.0.3"

@@ -72,10 +72,13 @@
   },
   "devDependencies": {
     "@types/cheerio": "^0.17.31",
+    "@types/date-fns": "^2.5.3",
+    "@types/dotenv": "^2.0.19",
     "@types/jest": "^15.1.32",
     "@types/ramda": "^0.0.2",
     "@types/request": "^0.0.32",
     "@types/request-promise-native": "^1.0.1",
+    "@types/rimraf": "^0.0.28",
     "babel-cli": "^6.18.0",
     "babel-jest": "^16.0.0",
     "babel-plugin-ramda": "^1.1.6",

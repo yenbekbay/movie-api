@@ -11,7 +11,7 @@ yarn add movie-api # npm install movie-api --save
 ## Usage
 
 ```js
-import { Kinopoisk } from 'movie-api'
+import { Kinopoisk } from 'movie-api';
 
 const kp = new Kinopoisk();
 

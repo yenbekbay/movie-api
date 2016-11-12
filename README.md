@@ -32,6 +32,8 @@ const kp = new Kinopoisk();
 (async () => {
   const movieId = await kp.getId({
     title: 'Звёздные войны: Пробуждение силы',
+    year: 2015, // optionally specify release year
+    countries: ['США'], // optionally specify production countries
   });
   // 714888
 
@@ -48,15 +50,47 @@ const kp = new Kinopoisk();
       {
         kpId
         title
+        originalTitle
+        posterUrl
+        year
+        productionCountries
         synopsis
+        runtime
+        genres
+        ageRating
+        mpaaRating
+        kpRating
+        kpRatingVoteCount
+        imdbRating
+        imdbRatingVoteCount
+        rtCriticsRating
+        rtCriticsRatingVoteCount
+        stills
       }
     `,
   );
-  // {
-  //   kpId: 714888,
-  //   title: 'Звёздные войны: Пробуждение силы',
-  //   synopsis: 'Через тридцать лет после гибели Дарта Вейдера...'
-  // }
+// { kpId: 714888,
+//   title: 'Звёздные войны: Пробуждение силы',
+//   originalTitle: 'Star Wars: Episode VII - The Force Awakens',
+//   posterUrl: 'http://st.kp.yandex.net/images/film_iphone/iphone360_714888.jpg?d=20151105180111',
+//   year: 2015,
+//   productionCountries: [ 'США' ],
+//   synopsis: 'Через тридцать лет после гибели Дарта Вейдера...',
+//   runtime: 138,
+//   genres: [ 'фантастика', 'фэнтези', 'боевик' ],
+//   ageRating: 12,
+//   mpaaRating: 'PG-13',
+//   kpRating: 7.2,
+//   kpRatingVoteCount: 114481,
+//   imdbRating: 8.2,
+//   imdbRatingVoteCount: 590220,
+//   rtCriticsRating: 92,
+//   rtCriticsRatingVoteCount: 346,
+//   stills:
+//     [ 'http://st.kp.yandex.net/images/kadr/2751407.jpg',
+//       'http://st.kp.yandex.net/images/kadr/2751406.jpg',
+//       'http://st.kp.yandex.net/images/kadr/2751405.jpg',
+//       ... ] }
 
   const movieCredits = await kp.getCredits(
     movieId,
@@ -79,27 +113,24 @@ const kp = new Kinopoisk();
       }
     `
   );
-  // {
-  //   cast: [
-  //     {
-  //       "name": "Джон Бойега",
-  //       "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_2196854.jpg?d=20130703131657",
-  //     },
-  //     ...
-  //   ],
-  //   crew: {
-  //     cinematographers: [
-  //       {
-  //         "name": "Дэниэл Миндел",
-  //         "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_610174.jpg?d=20150813191602",
-  //       }
-  //     ],
-  //     composers: [...],
-  //     directors: [...],
-  //     producers: [...],
-  //     writers: [...]
-  //   }
-  // }
+  // { cast:
+  //    [ { name: 'Джон Бойега',
+  //        photoUrl: 'http://st.kp.yandex.net/images/actor_iphone/iphone360_2196854.jpg?d=20130703131657' },
+  //      { name: 'Дэйзи Ридли',
+  //        photoUrl: 'http://st.kp.yandex.net/images/actor_iphone/iphone360_3016071.jpg?d=20140430113652' },
+  //      { name: 'Оскар Айзек',
+  //        photoUrl: 'http://st.kp.yandex.net/images/actor_iphone/iphone360_43284.jpg' },
+  //      ... ],
+  //   crew:
+  //    { cinematographers: [ [Object] ],
+  //      composers: [ [Object] ],
+  //      directors: [ [Object] ],
+  //      producers:
+  //       [ [Object],
+  //         [Object],
+  //         [Object],
+  //         ... ],
+  //      writers: [ [Object], [Object], [Object], [Object] ] } }
 })();
 ```
 
@@ -134,19 +165,79 @@ const tmdb = new Tmdb({
     // optionally specify desired fields with a GraphQL query
     `
       {
+        backdropUrl
+        budget
+        genres
+        homepage
         tmdbId
         imdbId
-        title
+        originalLanguage
+        originalTitle
         synopsis
+        tmdbPopularity
+        posterUrl
+        productionCompanies
+        productionCountries {
+          iso_3166_1
+          name
+        }
+        releaseDate
+        revenue
+        runtime
+        tagline
+        title
+        tmdbRating
+        tmdbRatingVoteCount
+        credits {
+          cast { ...MemberProfile }
+          crew {
+            cinematographers { ...MemberProfile }
+            composers { ...MemberProfile }
+            directors { ...MemberProfile }
+            producers { ...MemberProfile }
+            writers { ...MemberProfile }
+          }
+        }
+      }
+
+      fragment MemberProfile on Member {
+        name
+        photoUrl
       }
     `,
   );
-  // {
+  // { backdropUrl: 'https://image.tmdb.org/t/p/w1000/c2Ax8Rox5g6CneChwy1gmu4UbSb.jpg',
+  //   budget: 200000000,
+  //   genres: [ 'боевик', 'приключения', 'фантастика', 'фэнтези' ],
+  //   homepage: 'http://www.starwars.ru/',
   //   tmdbId: 140607,
   //   imdbId: 'tt2488496',
+  //   originalLanguage: 'en',
+  //   originalTitle: 'Star Wars: The Force Awakens',
+  //   synopsis: 'Через тридцать лет после гибели Дарта Вейдера...',
+  //   tmdbPopularity: 10.222112,
+  //   posterUrl: 'https://image.tmdb.org/t/p/w500/q7b8zH4bCsHME86Hawia32ZuvJF.jpg',
+  //   productionCompanies: [ 'Lucasfilm', 'Truenorth Productions', 'Bad Robot' ],
+  //   productionCountries: [ { iso_3166_1: 'US', name: 'United States of America' } ],
+  //   releaseDate: '2015-12-15',
+  //   revenue: 2068178225,
+  //   runtime: 135,
+  //   tagline: 'У каждого поколения - своя история',
   //   title: 'Звёздные войны: Эпизод 7 - Пробуждение силы',
-  //   synopsis: 'Через тридцать лет после гибели Дарта Вейдера...'
-  // }
+  //   tmdbRating: 7.5,
+  //   tmdbRatingVoteCount: 4946,
+  //   credits:
+  //    { cast:
+  //       [ [Object],
+  //         [Object],
+  //         [Object],
+  //         ... ],
+  //      crew:
+  //       { cinematographers: [Object],
+  //         composers: [Object],
+  //         directors: [Object],
+  //         producers: [Object],
+  //         writers: [Object] } } }
 })();
 ```
 

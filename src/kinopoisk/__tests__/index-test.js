@@ -23,7 +23,7 @@ describe('Kinopoisk', () => {
     expect(modelFromObject(await kp.getInfo(kpId))).toMatchSnapshot();
   });
 
-  it('formats response according to graphql query', async () => {
+  it('formats movie info response according to graphql query', async () => {
     const res = await kp.getInfo(kpId, `
       {
         kpId
@@ -45,5 +45,23 @@ describe('Kinopoisk', () => {
 
   it('fetches movie credits from kinopoisk for a given id', async () => {
     expect(await kp.getCredits(kpId)).toMatchSnapshot();
+  });
+
+  it('formats movie credits response according to graphql query', async () => {
+    const res = await kp.getCredits(kpId, `
+      {
+        cast { ...MemberProfile }
+        crew {
+          cinematographers { ...MemberProfile }
+        }
+      }
+
+      fragment MemberProfile on Member {
+        name
+        photoUrl
+      }
+    `);
+
+    expect(modelFromObject(res)).toMatchSnapshot();
   });
 });

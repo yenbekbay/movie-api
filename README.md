@@ -58,7 +58,27 @@ const kp = new Kinopoisk();
   //   synopsis: 'Через тридцать лет после гибели Дарта Вейдера...'
   // }
 
-  const movieCredits = await kp.getCredits(movieId);
+  const movieCredits = await kp.getCredits(
+    movieId,
+    // optionally specify desired fields with a GraphQL query
+    `
+      {
+        cast { ...MemberProfile }
+        crew {
+          cinematographers { ...MemberProfile }
+          composers { ...MemberProfile }
+          directors { ...MemberProfile }
+          producers { ...MemberProfile }
+          writers { ...MemberProfile }
+        }
+      }
+
+      fragment MemberProfile on Member {
+        name
+        photoUrl
+      }
+    `
+  );
   // {
   //   cast: [
   //     {

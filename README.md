@@ -31,7 +31,7 @@ const kp = new Kinopoisk();
 
 (async () => {
   const movieId = await kp.getId({
-    title: 'Звёздные войны: Пробуждение силы'
+    title: 'Звёздные войны: Пробуждение силы',
   });
   // 714888
 
@@ -50,7 +50,7 @@ const kp = new Kinopoisk();
         title
         synopsis
       }
-    `
+    `,
   );
   // {
   //   kpId: 714888,
@@ -80,7 +80,7 @@ const kp = new Kinopoisk();
   //     writers: [...]
   //   }
   // }
-});
+})();
 ```
 
 #### Basic TMDB example
@@ -119,7 +119,7 @@ const tmdb = new Tmdb({
         title
         synopsis
       }
-    `
+    `,
   );
   // {
   //   tmdbId: 140607,
@@ -127,7 +127,7 @@ const tmdb = new Tmdb({
   //   title: 'Звёздные войны: Эпизод 7 - Пробуждение силы',
   //   synopsis: 'Через тридцать лет после гибели Дарта Вейдера...'
   // }
-});
+})();
 ```
 
 ## API Reference

@@ -8,7 +8,7 @@
 
 > Get info for movies and TV shows
 
-Supported sources: [Kinopoisk](https://kinopoisk.ru), [TMDB](https://tmdb.com).
+Supported sources: [Kinopoisk](https://kinopoisk.ru), [TMDB](https://www.themoviedb.org/).
 
 **Warning:** This module is experimental, and the API is likely to change.
 

@@ -1,5 +1,11 @@
 # movie-api
 
+[![Build Status](https://img.shields.io/travis/anvilabs/movie-api.svg)](https://travis-ci.org/anvilabs/movie-api)
+[![Coverage Status](https://img.shields.io/codecov/c/github/anvilabs/movie-api.svg)](https://codecov.io/gh/anvilabs/movie-api)
+[![Dependency Status](https://img.shields.io/david/anvilabs/movie-api.svg)](https://david-dm.org/anvilabs/movie-api)
+[![devDependency Status](https://img.shields.io/david/dev/anvilabs/movie-api.svg)](https://david-dm.org/anvilabs/movie-api?type=dev)
+[![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli)
+
 🚧 WIP
 
 ## Installation

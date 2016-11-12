@@ -40,7 +40,7 @@ const kp = new Kinopoisk();
   const tvShowId = await kp.getId({
     title: 'Игра престолов',
     isTvShow: true,
-  });;
+  });
   // 464963
 
   const movieInfo = await kp.getInfo(
@@ -69,28 +69,28 @@ const kp = new Kinopoisk();
       }
     `,
   );
-// { kpId: 714888,
-//   title: 'Звёздные войны: Пробуждение силы',
-//   originalTitle: 'Star Wars: Episode VII - The Force Awakens',
-//   posterUrl: 'http://st.kp.yandex.net/images/film_iphone/iphone360_714888.jpg?d=20151105180111',
-//   year: 2015,
-//   productionCountries: [ 'США' ],
-//   synopsis: 'Через тридцать лет после гибели Дарта Вейдера...',
-//   runtime: 138,
-//   genres: [ 'фантастика', 'фэнтези', 'боевик' ],
-//   ageRating: 12,
-//   mpaaRating: 'PG-13',
-//   kpRating: 7.2,
-//   kpRatingVoteCount: 114481,
-//   imdbRating: 8.2,
-//   imdbRatingVoteCount: 590220,
-//   rtCriticsRating: 92,
-//   rtCriticsRatingVoteCount: 346,
-//   stills:
-//     [ 'http://st.kp.yandex.net/images/kadr/2751407.jpg',
-//       'http://st.kp.yandex.net/images/kadr/2751406.jpg',
-//       'http://st.kp.yandex.net/images/kadr/2751405.jpg',
-//       ... ] }
+  // { kpId: 714888,
+  //   title: 'Звёздные войны: Пробуждение силы',
+  //   originalTitle: 'Star Wars: Episode VII - The Force Awakens',
+  //   posterUrl: 'http://st.kp.yandex.net/images/film_iphone/iphone360_714888.jpg?d=20151105180111',
+  //   year: 2015,
+  //   productionCountries: [ 'США' ],
+  //   synopsis: 'Через тридцать лет после гибели Дарта Вейдера...',
+  //   runtime: 138,
+  //   genres: [ 'фантастика', 'фэнтези', 'боевик' ],
+  //   ageRating: 12,
+  //   mpaaRating: 'PG-13',
+  //   kpRating: 7.2,
+  //   kpRatingVoteCount: 114481,
+  //   imdbRating: 8.2,
+  //   imdbRatingVoteCount: 590220,
+  //   rtCriticsRating: 92,
+  //   rtCriticsRatingVoteCount: 346,
+  //   stills:
+  //     [ 'http://st.kp.yandex.net/images/kadr/2751407.jpg',
+  //       'http://st.kp.yandex.net/images/kadr/2751406.jpg',
+  //       'http://st.kp.yandex.net/images/kadr/2751405.jpg',
+  //       ... ] }
 
   const movieCredits = await kp.getCredits(
     movieId,
@@ -111,7 +111,7 @@ const kp = new Kinopoisk();
         name
         photoUrl
       }
-    `
+    `,
   );
   // { cast:
   //    [ { name: 'Джон Бойега',

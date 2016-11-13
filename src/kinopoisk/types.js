@@ -28,6 +28,14 @@ export type KinopoiskApi$FilmsListItem = {
   genre?: ?string,
   filmTypeText: 'Похожие фильмы',
 };
+export type KinopoiskApi$Country = {
+  countryID: string,
+  countryName: string,
+};
+export type KinopoiskApi$City = {
+  cityID: string,
+  cityName: string,
+};
 
 export type KinopoiskApi$GetStaffResponse = {
   creators?: Array<Array<KinopoiskApi$CrewMember>>,
@@ -69,4 +77,14 @@ export type KinopoiskApi$GetGalleryResponse = {
 export type KinopoiskApi$GetFilmsListResponse = {
   class: 'KPFilmsList',
   items?: Array<KinopoiskApi$FilmsListItem>,
+};
+export type KinopoiskApi$GetCountryViewResponse = {
+  class: 'KPCountryView',
+  countryData: Array<KinopoiskApi$Country>,
+};
+export type KinopoiskApi$GetAllCitiesViewResponse = {
+  class: 'KPAllCitiesView',
+  countryID: string,
+  countryName: string,
+  cityData?: Array<KinopoiskApi$City>,
 };

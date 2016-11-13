@@ -1,131 +1,75 @@
-exports[`Kinopoisk fetches movie credits from kinopoisk for a given id 1`] = `
+exports[`Kinopoisk fetches cinema info for given arguments 1`] = `
 Object {
-  "cast": Array [
-    Object {
-      "name": "Джон Бойега",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_2196854.jpg?d=20130703131657",
-    },
-    Object {
-      "name": "Дэйзи Ридли",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_3016071.jpg?d=20140430113652",
-    },
-    Object {
-      "name": "Оскар Айзек",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_43284.jpg",
-    },
-    Object {
-      "name": "Адам Драйвер",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_1833677.jpg?d=20130521201357",
-    },
-    Object {
-      "name": "Донал Глисон",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_671252.jpg?d=20150622214531",
-    },
-    Object {
-      "name": "Харрисон Форд",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_5679.jpg?d=20130506141058",
-    },
-    Object {
-      "name": "Марк Хэмилл",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_23716.jpg?d=20130705122542",
-    },
-    Object {
-      "name": "Кэрри Фишер",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_8459.jpg?d=20130705123958",
-    },
-    Object {
-      "name": "Макс фон Сюдов",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_3311.jpg",
-    },
-    Object {
-      "name": "Энди Серкис",
-      "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_13176.jpg",
-    },
-  ],
+  "address": "String",
+  "homepage": "String",
+  "id": "Number",
+  "location": Object {
+    "lat": "Number",
+    "lng": "Number",
+  },
+  "name": "String",
+  "phoneNumbers": "Array<Object>",
+  "showtimes": "Array<Object>",
+}
+`;
+
+exports[`Kinopoisk fetches cinema info for given arguments 2`] = `
+Object {
+  "filmId": "Number",
+  "items": "Array<Object>",
+}
+`;
+
+exports[`Kinopoisk fetches cinema info for given arguments 3`] = `
+Object {
+  "date": "String",
+  "formats": "Array<String>",
+  "time": "String",
+  "timestamp": "Date",
+}
+`;
+
+exports[`Kinopoisk fetches cinemas for a given city id 1`] = `
+Object {
+  "address": "String",
+  "id": "Number",
+  "location": Object {
+    "lat": "Number",
+    "lng": "Number",
+  },
+  "name": "String",
+}
+`;
+
+exports[`Kinopoisk fetches movie credits for a given id 1`] = `
+Object {
+  "cast": "Array<Object>",
   "crew": Object {
-    "cinematographers": Array [
-      Object {
-        "name": "Дэниэл Миндел",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_610174.jpg?d=20150813191602",
-      },
-    ],
-    "composers": Array [
-      Object {
-        "name": "Джон Уильямс",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_225027.jpg?d=20130908235640",
-      },
-    ],
-    "directors": Array [
-      Object {
-        "name": "Джей Джей Абрамс",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
-      },
-    ],
-    "producers": Array [
-      Object {
-        "name": "Джей Джей Абрамс",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
-      },
-      Object {
-        "name": "Брайан Берк",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_663746.jpg",
-      },
-      Object {
-        "name": "Кэтлин Кеннеди",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_20396.jpg?d=20150721001100",
-      },
-      Object {
-        "name": "Пиппа Андерсон",
-        "photoUrl": null,
-      },
-      Object {
-        "name": "Майкл Арндт",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_936886.jpg?d=20130612003448",
-      },
-      Object {
-        "name": "Лейфур Б. Дагфиннссон",
-        "photoUrl": null,
-      },
-      Object {
-        "name": "Томми Гормли",
-        "photoUrl": null,
-      },
-      Object {
-        "name": "Томми Харпер",
-        "photoUrl": null,
-      },
-      Object {
-        "name": "Джейсон Д. МакГатлин",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_43725.jpg",
-      },
-      Object {
-        "name": "Мишель Рейван",
-        "photoUrl": null,
-      },
-    ],
-    "writers": Array [
-      Object {
-        "name": "Лоуренс Кэздан",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_26537.jpg?d=20131017121035",
-      },
-      Object {
-        "name": "Джей Джей Абрамс",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_27741.jpg?d=20150827134539",
-      },
-      Object {
-        "name": "Майкл Арндт",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_936886.jpg?d=20130612003448",
-      },
-      Object {
-        "name": "Джордж Лукас",
-        "photoUrl": "http://st.kp.yandex.net/images/actor_iphone/iphone360_24284.jpg",
-      },
-    ],
+    "cinematographers": "Array<Object>",
+    "composers": "Array<Object>",
+    "directors": "Array<Object>",
+    "producers": "Array<Object>",
+    "writers": "Array<Object>",
   },
 }
 `;
 
-exports[`Kinopoisk fetches movie info from kinopoisk for a given id 1`] = `
+exports[`Kinopoisk fetches movie credits for a given id 2`] = `
+Object {
+  "name": "String",
+  "photoUrl": "String",
+}
+`;
+
+exports[`Kinopoisk fetches movie gallery for a given id 1`] = `
+Object {
+  "behindTheScenes": "Array<String>",
+  "posters": "Array<String>",
+  "stills": "Array<String>",
+}
+`;
+
+exports[`Kinopoisk fetches movie info for a given id 1`] = `
 Object {
   "ageRating": "Number",
   "genres": "Array<String>",
@@ -148,16 +92,71 @@ Object {
 }
 `;
 
+exports[`Kinopoisk fetches similar movies for a given id 1`] = `
+Object {
+  "genres": "Array<String>",
+  "kpId": "Number",
+  "kpRating": "Number",
+  "kpRatingVoteCount": "Number",
+  "originalTitle": "String",
+  "posterUrl": "String",
+  "productionCountries": "Array<String>",
+  "runtime": "Number",
+  "title": "String",
+  "year": "Number",
+}
+`;
+
+exports[`Kinopoisk fetches supported cities for a given country id 1`] = `
+Object {
+  "id": "Number",
+  "name": "String",
+}
+`;
+
+exports[`Kinopoisk fetches supported countries 1`] = `
+Object {
+  "id": "Number",
+  "name": "String",
+}
+`;
+
 exports[`Kinopoisk finds best movie id for a given query 1`] = `714888`;
 
 exports[`Kinopoisk finds best tv show id for a given query 1`] = `464963`;
 
+exports[`Kinopoisk formats cinema info response according to graphql query 1`] = `
+Object {
+  "id": "Number",
+  "name": "String",
+  "showtimes": "Array<Object>",
+}
+`;
+
+exports[`Kinopoisk formats cinema info response according to graphql query 2`] = `
+Object {
+  "timestamp": "Date",
+}
+`;
+
 exports[`Kinopoisk formats movie credits response according to graphql query 1`] = `
 Object {
-  "cast": "Array<Object>",
-  "crew": Object {
-    "cinematographers": "Array<Object>",
-  },
+  "name": "String",
+  "photoUrl": "String",
+}
+`;
+
+exports[`Kinopoisk formats movie credits response according to graphql query 2`] = `
+Object {
+  "name": "String",
+  "photoUrl": "String",
+}
+`;
+
+exports[`Kinopoisk formats movie gallery response according to graphql query 1`] = `
+Object {
+  "posters": "Array<String>",
+  "stills": "Array<String>",
 }
 `;
 
@@ -165,6 +164,13 @@ exports[`Kinopoisk formats movie info response according to graphql query 1`] = 
 Object {
   "kpId": "Number",
   "synopsis": "String",
+  "title": "String",
+}
+`;
+
+exports[`Kinopoisk formats similar movies response according to graphql query 1`] = `
+Object {
+  "kpId": "Number",
   "title": "String",
 }
 `;

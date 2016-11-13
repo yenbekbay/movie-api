@@ -2,7 +2,10 @@
 
 import R from 'ramda';
 
-const childTypesForArray = R.memoize(R.pipe(R.map(R.type), R.uniq));
+const childTypesForArray = R.memoize(
+  R.pipe(R.map(R.type), R.uniq),
+);
+
 const modelFromObject = (obj: ?Object) => R.map(
   R.cond([
     [
@@ -18,4 +21,13 @@ const modelFromObject = (obj: ?Object) => R.map(
   obj,
 );
 
-export { modelFromObject }; // eslint-disable-line import/prefer-default-export
+const modelFromFirstElement = R.pipe(
+  R.head,
+  modelFromObject,
+);
+const modelFromFirstElementAtPath = (path: string) => R.pipe(
+  R.pathOr([], path.split('.')),
+  modelFromFirstElement,
+);
+
+export { modelFromObject, modelFromFirstElement, modelFromFirstElementAtPath };

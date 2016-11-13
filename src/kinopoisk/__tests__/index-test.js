@@ -1,9 +1,13 @@
 /* @flow */
 
-import { modelFromObject } from '../../test-utils';
+import {
+  modelFromObject,
+  modelFromFirstElement,
+  modelFromFirstElementAtPath,
+} from '../../test-utils';
 import Kinopoisk from '../';
 
-const kpId = 714888; // Star Wars: The Force Awakens
+const filmId = 714888; // Star Wars: The Force Awakens
 const movieQuery = {
   title: 'Звёздные войны: Пробуждение силы',
 };
@@ -11,6 +15,9 @@ const tvShowQuery = {
   title: 'Игра престолов',
   isTvShow: true,
 };
+const countryId = 122; // Kazakhstan
+const cityId = 706; // Almaty
+const cinemaId = 281144; // CINEMAX Dostyk Multiplex
 
 describe('Kinopoisk', () => {
   let kp: Kinopoisk;
@@ -19,12 +26,12 @@ describe('Kinopoisk', () => {
     kp = new Kinopoisk();
   });
 
-  it('fetches movie info from kinopoisk for a given id', async () => {
-    expect(modelFromObject(await kp.getInfo(kpId))).toMatchSnapshot();
+  it('fetches movie info for a given id', async () => {
+    expect(modelFromObject(await kp.getFilmInfo(filmId))).toMatchSnapshot();
   });
 
   it('formats movie info response according to graphql query', async () => {
-    const res = await kp.getInfo(kpId, `
+    const res = await kp.getFilmInfo(filmId, `
       {
         kpId
         title
@@ -36,19 +43,22 @@ describe('Kinopoisk', () => {
   });
 
   it('finds best movie id for a given query', async () => {
-    expect(await kp.getId(movieQuery)).toMatchSnapshot();
+    expect(await kp.getFilmId(movieQuery)).toMatchSnapshot();
   }, 7000);
 
   it('finds best tv show id for a given query', async () => {
-    expect(await kp.getId(tvShowQuery)).toMatchSnapshot();
+    expect(await kp.getFilmId(tvShowQuery)).toMatchSnapshot();
   }, 7000);
 
-  it('fetches movie credits from kinopoisk for a given id', async () => {
-    expect(await kp.getCredits(kpId)).toMatchSnapshot();
+  it('fetches movie credits for a given id', async () => {
+    const res = await kp.getFilmCredits(filmId);
+
+    expect(modelFromObject(res)).toMatchSnapshot();
+    expect(modelFromFirstElementAtPath('cast')(res)).toMatchSnapshot();
   });
 
   it('formats movie credits response according to graphql query', async () => {
-    const res = await kp.getCredits(kpId, `
+    const res = await kp.getFilmCredits(filmId, `
       {
         cast { ...MemberProfile }
         crew {
@@ -62,6 +72,100 @@ describe('Kinopoisk', () => {
       }
     `);
 
+    expect(modelFromFirstElementAtPath('cast')(res)).toMatchSnapshot();
+    expect(
+      modelFromFirstElementAtPath('crew.cinematographers')(res),
+    ).toMatchSnapshot();
+  });
+
+  it('fetches movie gallery for a given id', async () => {
+    expect(modelFromObject(await kp.getFilmGallery(filmId))).toMatchSnapshot();
+  });
+
+  it('formats movie gallery response according to graphql query', async () => {
+    const res = await kp.getFilmGallery(filmId, `
+      {
+        stills
+        posters
+      }
+    `);
+
     expect(modelFromObject(res)).toMatchSnapshot();
+  });
+
+  it('fetches similar movies for a given id', async () => {
+    const res = await kp.getSimilarFilms(filmId);
+
+    expect(modelFromFirstElementAtPath('items')(res)).toMatchSnapshot();
+  });
+
+  it('formats similar movies response according to graphql query', async () => {
+    const res = await kp.getSimilarFilms(filmId, `
+      {
+        items {
+          kpId
+          title
+        }
+      }
+    `);
+
+    expect(modelFromFirstElementAtPath('items')(res)).toMatchSnapshot();
+  });
+
+  it('fetches supported countries', async () => {
+    const res = await kp.getSupportedCountries();
+
+    expect(modelFromFirstElement(res)).toMatchSnapshot();
+  });
+
+  it('fetches supported cities for a given country id', async () => {
+    const res = await kp.getSupportedCities(countryId);
+
+    expect(modelFromFirstElement(res)).toMatchSnapshot();
+  });
+
+  it('fetches cinemas for a given city id', async () => {
+    const res = await kp.getCinemasInCity(cityId);
+
+    expect(modelFromFirstElement(res)).toMatchSnapshot();
+  });
+
+  it('fetches cinema info for given arguments', async () => {
+    const res = await kp.getCinemaInfo({
+      cinemaId,
+      date: '14.11.2016',
+      utcOffset: '+0600',
+    });
+
+    expect(modelFromObject(res)).toMatchSnapshot();
+    expect(modelFromFirstElementAtPath('showtimes')(res)).toMatchSnapshot();
+    expect(
+      modelFromFirstElementAtPath('showtimes.0.items')(res),
+    ).toMatchSnapshot();
+  });
+
+  it('formats cinema info response according to graphql query', async () => {
+    const res = await kp.getCinemaInfo(
+      {
+        cinemaId,
+        date: '14.11.2016',
+        utcOffset: '+0600',
+      }, `
+        {
+          id
+          name
+          showtimes {
+            items {
+              timestamp
+            }
+          }
+        }
+      `,
+    );
+
+    expect(modelFromObject(res)).toMatchSnapshot();
+    expect(
+      modelFromFirstElementAtPath('showtimes.0.items')(res),
+    ).toMatchSnapshot();
   });
 });

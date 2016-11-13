@@ -13,26 +13,24 @@ describe('TMDB', () => {
   });
 
   it('fetches movie id by imdb id', async () => {
-    expect(await tmdb.getId({ imdbId: 'tt2488496' })).toMatchSnapshot();
+    expect(await tmdb.getMovieId({ imdbId: 'tt2488496' })).toMatchSnapshot();
   });
 
   it('fetches movie id by title', async () => {
-    expect(await tmdb.getId({
+    expect(await tmdb.getMovieId({
       title: 'Star Wars: The Force Awakens',
     })).toMatchSnapshot();
   });
 
   it('fetches tv show id by imdb id', async () => {
-    expect(await tmdb.getId({
+    expect(await tmdb.getTvShowId({
       imdbId: 'tt0944947',
-      isTvShow: true,
     })).toMatchSnapshot();
   });
 
   it('fetches tv show id by title', async () => {
-    expect(await tmdb.getId({
+    expect(await tmdb.getTvShowId({
       title: 'Game of Thrones',
-      isTvShow: true,
     })).toMatchSnapshot();
   });
 

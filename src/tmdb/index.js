@@ -15,11 +15,10 @@ class Tmdb {
     this._connector = new TmdbConnector(config);
   }
 
-  getId = async (query: {
+  getTvShowId = async (query: {
     title?: string,
     year?: number,
     imdbId?: string,
-    isTvShow?: boolean,
   }) => {
     if (query.imdbId) {
       const res = await this._connector.apiGet(
@@ -27,16 +26,12 @@ class Tmdb {
         { external_source: 'imdb_id' },
       );
 
-      const results = query.isTvShow
-        ? R.propOr([], 'tv_results', res)
-        : R.propOr([], 'movie_results', res);
-
-      return R.pipe(R.head, R.prop('id'))(results);
+      return R.pipe(R.propOr([], 'tv_results'), R.head, R.prop('id'))(res);
     }
 
     if (query.title) {
       const res = await this._connector.apiGet(
-        `search/${query.isTvShow ? 'tv' : 'movie'}`,
+        'search/tv',
         { query: query.title, year: query.year },
       );
 
@@ -44,7 +39,33 @@ class Tmdb {
     }
 
     return null;
-  }
+  };
+
+  getMovieId = async (query: {
+    title?: string,
+    year?: number,
+    imdbId?: string,
+  }) => {
+    if (query.imdbId) {
+      const res = await this._connector.apiGet(
+        `find/${query.imdbId}`,
+        { external_source: 'imdb_id' },
+      );
+
+      return R.pipe(R.propOr([], 'movie_results'), R.head, R.prop('id'))(res);
+    }
+
+    if (query.title) {
+      const res = await this._connector.apiGet(
+        'search/movie',
+        { query: query.title, year: query.year },
+      );
+
+      return R.pipe(R.prop('results'), R.head, R.prop('id'))(res);
+    }
+
+    return null;
+  };
 
   getInfo = async (id: number, query: void | string) => {
     const res: ?TmdbApi$GetMovieDetailsResponse = await this._connector.apiGet(

@@ -1,5 +1,6 @@
 /* @flow */
 
+export type KinopoiskApi$MovieType = 'KPFilm' | 'KPSerial';
 export type KinopoiskApi$GalleryItem = {
   preview: string,
 };
@@ -12,6 +13,20 @@ export type KinopoiskApi$CrewMember = {
   description?: ?string,
   professionText: string,
   professionKey: 'actor' | 'director' | 'producer' | 'writer' | 'composer',
+};
+export type KinopoiskApi$FilmsListItem = {
+  type: KinopoiskApi$MovieType,
+  id: string,
+  nameRU: string,
+  nameEN?: ?string,
+  year?: ?string,
+  rating?: ?string,
+  ratingVoteCount?: ?string,
+  posterURL?: ?string,
+  filmLength?: ?string,
+  country?: ?string,
+  genre?: ?string,
+  filmTypeText: 'Похожие фильмы',
 };
 
 export type KinopoiskApi$GetStaffResponse = {
@@ -39,7 +54,19 @@ export type KinopoiskApi$GetFilmResponse = {
   },
   ratingMPAA?: ?string,
   slogan?: ?string,
-  type: 'KPFilm' | 'KPSerial',
+  type: KinopoiskApi$MovieType,
   webURL: string,
   year?: ?string,
+};
+export type KinopoiskApi$GetGalleryResponse = {
+  class: 'Gallery',
+  gallery?: {
+    kadr?: Array<KinopoiskApi$GalleryItem>,
+    kadr_sp?: Array<KinopoiskApi$GalleryItem>,
+    poster?: Array<KinopoiskApi$GalleryItem>,
+  },
+};
+export type KinopoiskApi$GetFilmsListResponse = {
+  class: 'KPFilmsList',
+  items?: Array<KinopoiskApi$FilmsListItem>,
 };

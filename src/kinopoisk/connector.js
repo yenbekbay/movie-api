@@ -14,8 +14,9 @@ const KINOPOISK_API_ROOT = 'https://ext.kinopoisk.ru/ios/3.11.0';
 const KINOPOISK_API_KEY = 'a17qbcw1du0aedm';
 const KINOPOISK_PLUS_ROOT = 'https://plus.kinopoisk.ru';
 
-type Endpoint =
+export type Endpoint =
  // Movie info
+ | 'getGallery'
  | 'getStaffList'
  | 'getKPFilmDetailView'
  | 'getKPFilmsList'
@@ -46,9 +47,10 @@ type Endpoint =
  | 'getPopularIndex'
  // Search
  | 'getKPGlobalSearch'
+ | 'getKPLiveSearch'
+ | 'getKPSearchInCinemas'
  | 'getKPSearchInFilms'
  | 'getKPSearchInPeople'
- | 'getKPSearchInCinemas'
  | 'navigator'
  | 'navigatorFilters'
  // Geo Reference

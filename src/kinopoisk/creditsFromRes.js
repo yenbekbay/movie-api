@@ -24,7 +24,7 @@ type Credits = {
 };
 
 const creditsFromRes = (
-  res: KinopoiskApi$GetStaffResponse,
+  { creators }: KinopoiskApi$GetStaffResponse,
 ): Credits => R.pipe(
   R.flatten,
   R.groupBy(R.prop('professionKey')),
@@ -46,6 +46,6 @@ const creditsFromRes = (
       cinematographers: operator,
     },
   }),
-)(res.creators);
+)(creators);
 
 export default creditsFromRes;

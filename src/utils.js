@@ -17,7 +17,7 @@ const getUserAgent = () => {
   return 'movie-api';
 };
 
-const transformResWithGqlQuery = (res: Object, query: ?string): Object => (
+const transformResWithGqlQuery = (res: mixed, query: ?string): mixed => (
   query ? graphql(R.prop, gql`${query}`, res) : res
 );
 

@@ -8,7 +8,7 @@ import type {
   KinopoiskApi$GetFilmsListResponse,
 } from './types';
 
-const infoListFromRes = (
+const filmInfoListFromRes = (
   { items }: KinopoiskApi$GetFilmsListResponse,
 ) => (items || []).map((item: KinopoiskApi$FilmsListItem) => ({
   kpId: parseInt(item.id, 10),
@@ -25,4 +25,4 @@ const infoListFromRes = (
   ),
 }));
 
-export default infoListFromRes;
+export default filmInfoListFromRes;

@@ -23,7 +23,7 @@ type Credits = {
   },
 };
 
-const creditsFromRes = (
+const filmCreditsFromRes = (
   { creators }: KinopoiskApi$GetStaffResponse,
 ): Credits => R.pipe(
   R.flatten,
@@ -48,4 +48,4 @@ const creditsFromRes = (
   }),
 )(creators);
 
-export default creditsFromRes;
+export default filmCreditsFromRes;

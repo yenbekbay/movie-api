@@ -1,11 +1,11 @@
 /* @flow */
 
 import { transformResWithGqlQuery } from '../utils';
-import creditsFromRes from './creditsFromRes';
-import galleryFromRes from './galleryFromRes';
-import idFromSearchResults from './idFromSearchResults';
-import infoFromRes from './infoFromRes';
-import infoListFromRes from './infoListFromRes';
+import filmCreditsFromRes from './filmCreditsFromRes';
+import filmGalleryFromRes from './filmGalleryFromRes';
+import filmIdFromSearchResults from './filmIdFromSearchResults';
+import filmInfoFromRes from './filmInfoFromRes';
+import filmInfoListFromRes from './filmInfoListFromRes';
 import KinopoiskConnector from './connector';
 import type {
   KinopoiskApi$GetFilmResponse,
@@ -13,8 +13,7 @@ import type {
   KinopoiskApi$GetGalleryResponse,
   KinopoiskApi$GetStaffResponse,
 } from './types';
-import type { Endpoint } from './connector';
-import type { SearchQuery } from './idFromSearchResults';
+import type { SearchQuery } from './filmIdFromSearchResults';
 
 class Kinopoisk {
   _connector: KinopoiskConnector;
@@ -23,44 +22,44 @@ class Kinopoisk {
     this._connector = new KinopoiskConnector();
   }
 
-  getInfo = async (id: number, query: void | string) => {
+  getFilmInfo = async (id: number, query: void | string) => {
     const res: ?KinopoiskApi$GetFilmResponse = await this._connector.apiGet(
       'getKPFilmDetailView', { filmID: id, still_limit: 100, sr: 1 },
     );
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(infoFromRes(res), query);
+    return transformResWithGqlQuery(filmInfoFromRes(res), query);
   };
 
-  getId = async (query: SearchQuery): Promise<?number> => {
+  getFilmId = async (query: SearchQuery): Promise<?number> => {
     const html = await this._connector.htmlGet(
       `search/${query.isTvShow ? 'series' : 'films'}`,
       { text: query.title },
     );
 
-    return idFromSearchResults(html, query);
+    return filmIdFromSearchResults(html, query);
   };
 
-  getCredits = async (id: number, query: void | string) => {
+  getFilmCredits = async (id: number, query: void | string) => {
     const res: ?KinopoiskApi$GetStaffResponse =
       await this._connector.apiGet('getStaffList', { filmID: id });
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(creditsFromRes(res), query);
+    return transformResWithGqlQuery(filmCreditsFromRes(res), query);
   };
 
-  getGallery = async (id: number, query: void | string) => {
+  getFilmGallery = async (id: number, query: void | string) => {
     const res: ?KinopoiskApi$GetGalleryResponse =
       await this._connector.apiGet('getGallery', { filmID: id });
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(galleryFromRes(res), query);
+    return transformResWithGqlQuery(filmGalleryFromRes(res), query);
   };
 
-  getSimilar = async (id: number, query: void | string) => {
+  getSimilarFilms = async (id: number, query: void | string) => {
     const res: ?KinopoiskApi$GetFilmsListResponse =
       await this._connector.apiGet('getKPFilmsList', {
         filmID: id,
@@ -69,7 +68,7 @@ class Kinopoisk {
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(infoListFromRes(res), query);
+    return transformResWithGqlQuery(filmInfoListFromRes(res), query);
   };
 }
 

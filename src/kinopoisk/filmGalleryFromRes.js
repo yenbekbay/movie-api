@@ -18,7 +18,7 @@ const imageUrlFromGalleryItem = (
   preview.replace('kadr/sm_', 'kadr/'),
 );
 
-const galleryFromRes = ({
+const filmGalleryFromRes = ({
   gallery: { kadr, poster, kadr_sp: kadrSp } = {},
 }: KinopoiskApi$GetGalleryResponse): Gallery => ({
   stills: (kadr || []).map(imageUrlFromGalleryItem),
@@ -26,4 +26,4 @@ const galleryFromRes = ({
   behindTheScenes: (kadrSp || []).map(imageUrlFromGalleryItem),
 });
 
-export default galleryFromRes;
+export default filmGalleryFromRes;

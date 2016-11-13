@@ -1,8 +1,8 @@
 /* @flow */
 
-import { __filterResults } from '../idFromSearchResults';
+import { __filterResults } from '../filmIdFromSearchResults';
 
-describe('kinopoisk/idFromSearchResults', () => {
+describe('kinopoisk/filmIdFromSearchResults', () => {
   it('filters results', () => {
     expect(__filterResults({ title: 'foo' }, [
       null,

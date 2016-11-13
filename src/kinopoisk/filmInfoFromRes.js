@@ -8,7 +8,7 @@ import type {
   KinopoiskApi$GetFilmResponse,
 } from './types';
 
-const infoFromRes = (
+const filmInfoFromRes = (
   res: KinopoiskApi$GetFilmResponse,
 ) => ({
   kpId: parseInt(res.filmID, 10),
@@ -41,4 +41,4 @@ const infoFromRes = (
   ),
 });
 
-export default infoFromRes;
+export default filmInfoFromRes;

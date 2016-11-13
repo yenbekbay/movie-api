@@ -65,7 +65,7 @@ const filterResults = (
     : R.always(true)),
 ]))(results);
 
-const idFromSearchResults = (html: string, query: SearchQuery) => R.pipe(
+const filmIdFromSearchResults = (html: string, query: SearchQuery) => R.pipe(
   scrapeResults,
   R.curry(filterResults)(query),
   R.sortBy(({ title }: SearchResult) => similarity(title, query.title)),
@@ -77,4 +77,4 @@ export {
   scrapeResults as __scrapeResults,
   filterResults as __filterResults,
 };
-export default idFromSearchResults;
+export default filmIdFromSearchResults;

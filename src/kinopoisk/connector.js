@@ -38,6 +38,7 @@ class KinopoiskConnector {
     },
     json: true,
   });
+
   _htmlRp: Rp = rp.defaults({
     headers: { 'User-Agent': userAgent },
     gzip: true,
@@ -72,19 +73,21 @@ class KinopoiskConnector {
     },
   );
 
-  apiGet(endpoint: string, query: { [key: string]: mixed }) {
-    return this.apiLoader.load(
-      `${KINOPOISK_API_ROOT}/${endpoint}?${querystring.stringify(query)}`,
-    );
-  }
+  apiGet = (
+    endpoint: Endpoint,
+    query: { [key: string]: mixed },
+  ) => this.apiLoader.load(
+    `${KINOPOISK_API_ROOT}/${endpoint}?${querystring.stringify(query)}`,
+  );
 
-  htmlGet(path: string, query: ?{ [key: string]: mixed }) {
-    return this.htmlLoader.load(
-      `${KINOPOISK_PLUS_ROOT}/${path}${
-        query ? `?${querystring.stringify(query)}` : ''
-      }`,
-    );
-  }
+  htmlGet = (
+    path: string,
+    query: ?{ [key: string]: mixed },
+  ) => this.htmlLoader.load(
+    `${KINOPOISK_PLUS_ROOT}/${path}${
+      query ? `?${querystring.stringify(query)}` : ''
+    }`,
+  );
 }
 
 export default KinopoiskConnector;

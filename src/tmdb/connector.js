@@ -15,8 +15,6 @@ export type TmdbConnectorConfig = {
   language: string,
 };
 
-type Loader = { load: (url: string) => Promise<any> };
-
 class TmdbConnector {
   _apiKey: string;
   _language: string;
@@ -36,7 +34,7 @@ class TmdbConnector {
     });
   }
 
-  apiLoader: Loader = new DataLoader(
+  apiLoader: { load: (url: string) => Promise<any> } = new DataLoader(
     (urls: Array<string>) => Promise.all(
       urls.map((url: string) => this._rp({ uri: url, json: true })),
     ), {
@@ -46,11 +44,12 @@ class TmdbConnector {
     },
   );
 
-  apiGet(endpoint: string, query: { [key: string]: mixed }) {
-    return this.apiLoader.load(
-      `${TMDB_API_ROOT}/${endpoint}?${querystring.stringify(query)}`,
-    );
-  }
+  apiGet = (
+    endpoint: string,
+    query: { [key: string]: mixed },
+  ) => this.apiLoader.load(
+    `${TMDB_API_ROOT}/${endpoint}?${querystring.stringify(query)}`,
+  );
 }
 
 export default TmdbConnector;

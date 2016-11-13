@@ -3,7 +3,7 @@
 import R from 'ramda';
 
 import { transformResWithGqlQuery } from '../utils';
-import infoFromRes from './infoFromRes';
+import movieInfoFromRes from './movieInfoFromRes';
 import TmdbConnector from './connector';
 import type { TmdbApi$GetMovieDetailsResponse } from './types';
 import type { TmdbConnectorConfig } from './connector';
@@ -67,7 +67,7 @@ class Tmdb {
     return null;
   };
 
-  getInfo = async (id: number, query: void | string) => {
+  getMovieInfo = async (id: number, query: void | string) => {
     const res: ?TmdbApi$GetMovieDetailsResponse = await this._connector.apiGet(
       `movie/${id}`,
       { append_to_response: ['credits', 'keywords', 'videos'].join(',') },
@@ -75,8 +75,8 @@ class Tmdb {
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(infoFromRes(res, query), query);
-  }
+    return transformResWithGqlQuery(movieInfoFromRes(res), query);
+  };
 }
 
 export default Tmdb;

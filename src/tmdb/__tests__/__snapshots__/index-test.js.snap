@@ -41,7 +41,7 @@ exports[`TMDB fetches tv show id by imdb id 1`] = `1399`;
 
 exports[`TMDB fetches tv show id by title 1`] = `1399`;
 
-exports[`TMDB formats response according to graphql query 1`] = `
+exports[`TMDB formats movie info response according to graphql query 1`] = `
 Object {
   "imdbId": "String",
   "synopsis": "String",

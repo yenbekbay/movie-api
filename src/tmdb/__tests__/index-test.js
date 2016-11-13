@@ -35,11 +35,11 @@ describe('TMDB', () => {
   });
 
   it('fetches movie info from tmdb for a given id', async () => {
-    expect(modelFromObject(await tmdb.getInfo(tmdbId))).toMatchSnapshot();
+    expect(modelFromObject(await tmdb.getMovieInfo(tmdbId))).toMatchSnapshot();
   });
 
-  it('formats response according to graphql query', async () => {
-    const res = await tmdb.getInfo(tmdbId, `
+  it('formats movie info response according to graphql query', async () => {
+    const res = await tmdb.getMovieInfo(tmdbId, `
       {
         tmdbId
         imdbId

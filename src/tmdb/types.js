@@ -49,9 +49,9 @@ export type TmdbApi$Video = {
   iso_3166_1: string,
   key: string,
   name: string,
-  site: 'YouTube',
+  site: string,
   size: number,
-  type: 'Trailer' | 'Teaser' | 'Clip' | 'Featurette',
+  type: string,
 };
 
 export type TmdbApi$GetMovieDetailsResponse = {
@@ -74,7 +74,7 @@ export type TmdbApi$GetMovieDetailsResponse = {
   revenue: number,
   runtime: number,
   spoken_languages: ?Array<TmdbApi$Language>,
-  status: 'Released',
+  status: string,
   tagline: ?string,
   title: string,
   video: boolean,

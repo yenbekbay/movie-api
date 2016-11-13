@@ -10,19 +10,23 @@ import type {
 
 const filmInfoListFromRes = (
   { items }: KinopoiskApi$GetFilmsListResponse,
-) => (items || []).map((item: KinopoiskApi$FilmsListItem) => ({
-  kpId: parseInt(item.id, 10),
-  title: item.nameRU,
-  originalTitle: item.nameEN,
-  posterUrl: item.posterURL ? imageUrlFromPath(item.posterURL) : null,
-  year: parseInt(item.year, 10),
-  productionCountries: item.country ? item.country.split(', ').map(R.trim) : [],
-  runtime: parseRuntime(item.filmLength),
-  genres: (item.genre || '').split(', '),
-  kpRating: parseFloat(item.rating),
-  kpRatingVoteCount: parseInt(
-    (item.ratingVoteCount || '').replace(' ', ''), 10,
-  ),
-}));
+) => ({
+  items: (items || []).map((item: KinopoiskApi$FilmsListItem) => ({
+    kpId: parseInt(item.id, 10),
+    title: item.nameRU,
+    originalTitle: item.nameEN,
+    posterUrl: item.posterURL ? imageUrlFromPath(item.posterURL) : null,
+    year: parseInt(item.year, 10),
+    productionCountries: item.country
+      ? item.country.split(', ').map(R.trim)
+      : [],
+    runtime: parseRuntime(item.filmLength),
+    genres: (item.genre || '').split(', '),
+    kpRating: parseFloat(item.rating),
+    kpRatingVoteCount: parseInt(
+      (item.ratingVoteCount || '').replace(' ', ''), 10,
+    ),
+  })),
+});
 
 export default filmInfoListFromRes;

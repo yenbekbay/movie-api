@@ -53,6 +53,22 @@ export type TmdbApi$Video = {
   size: number,
   type: string,
 };
+export type TmdbApi$CreatedBy = {
+  id: number,
+  name: string,
+  profile_path: ?string,
+};
+export type TmdbApi$TvNetwork = {
+  id: number,
+  name: string,
+};
+export type TmdbApi$TvShowSeason = {
+  air_date: string,
+  episode_count: number,
+  id: number,
+  poster_path: ?string,
+  season_number: number,
+};
 
 export type TmdbApi$GetMovieDetailsResponse = {
   adult: boolean,
@@ -87,6 +103,45 @@ export type TmdbApi$GetMovieDetailsResponse = {
   },
   keywords?: {
     keywords: Array<TmdbApi$Keyword>,
+  },
+  videos?: {
+    results: Array<TmdbApi$Video>,
+  },
+};
+export type TmdbApi$GetTvShowDetailsResponse = {
+  backdrop_path: ?string,
+  created_by: Array<TmdbApi$CreatedBy>,
+  episode_run_time: Array<number>,
+  first_air_date: ?string,
+  genres: Array<TmdbApi$Genre>,
+  homepage: ?string,
+  id: string,
+  in_production: boolean,
+  languages: Array<string>,
+  last_air_date: ?string,
+  name: string,
+  networks: Array<TmdbApi$TvNetwork>,
+  number_of_episodes: number,
+  number_of_seasons: number,
+  origin_country: Array<string>,
+  original_language: string,
+  original_name: string,
+  overview: string,
+  popularity: number,
+  poster_path: ?string,
+  production_companies: Array<TmdbApi$ProductionCompany>,
+  seasons: Array<TmdbApi$TvShowSeason>,
+  status: string,
+  type: string,
+  vote_average: number,
+  vote_count: number,
+
+  credits?: {
+    cast: Array<TmdbApi$CastMember>,
+    crew: Array<TmdbApi$CrewMember>,
+  },
+  keywords?: {
+    results: Array<TmdbApi$Keyword>,
   },
   videos?: {
     results: Array<TmdbApi$Video>,

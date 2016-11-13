@@ -19,6 +19,7 @@ Object {
   "genres": "Array<String>",
   "homepage": "String",
   "imdbId": "String",
+  "keywords": "Array<String>",
   "originalLanguage": "String",
   "originalTitle": "String",
   "posterUrl": "String",
@@ -34,6 +35,7 @@ Object {
   "tmdbPopularity": "Number",
   "tmdbRating": "Number",
   "tmdbRatingVoteCount": "Number",
+  "videos": "Array<Object>",
 }
 `;
 
@@ -41,11 +43,56 @@ exports[`TMDB fetches tv show id by imdb id 1`] = `1399`;
 
 exports[`TMDB fetches tv show id by title 1`] = `1399`;
 
+exports[`TMDB fetches tv show info from tmdb for a given id 1`] = `
+Object {
+  "backdropUrl": "String",
+  "createdBy": "Array<Object>",
+  "credits": Object {
+    "cast": "Array<Object>",
+    "crew": "Array<Object>",
+  },
+  "episodeRuntime": "Array<Number>",
+  "firstAirDate": "String",
+  "genres": "Array<String>",
+  "homepage": "String",
+  "inProduction": "Boolean",
+  "keywords": "Array<String>",
+  "languages": "Array<String>",
+  "lastAirDate": "String",
+  "name": "String",
+  "networks": "Array<String>",
+  "numberOfEpisodes": "Number",
+  "numberOfSeasons": "Number",
+  "originCountry": "Array<String>",
+  "originalLanguage": "String",
+  "originalName": "String",
+  "posterUrl": "String",
+  "productionCompanies": "Array<String>",
+  "seasons": "Array<Object>",
+  "status": "String",
+  "synopsis": "String",
+  "tmdbId": "Number",
+  "tmdbPopularity": "Number",
+  "tmdbRating": "Number",
+  "tmdbRatingVoteCount": "Number",
+  "type": "String",
+  "videos": Array [],
+}
+`;
+
 exports[`TMDB formats movie info response according to graphql query 1`] = `
 Object {
   "imdbId": "String",
   "synopsis": "String",
   "title": "String",
+  "tmdbId": "Number",
+}
+`;
+
+exports[`TMDB formats tv show info response according to graphql query 1`] = `
+Object {
+  "name": "String",
+  "synopsis": "String",
   "tmdbId": "Number",
 }
 `;

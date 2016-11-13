@@ -4,7 +4,7 @@ import crypto from 'crypto';
 import querystring from 'querystring';
 
 import DataLoader from 'dataloader';
-import dateFormat from 'date-fns/format';
+import moment from 'moment';
 import R from 'ramda';
 import rp from 'request-promise-native';
 
@@ -59,8 +59,8 @@ type Endpoint =
 
 const applyQueryToUrl = (
   url: string,
-  query: void | { [key: string]: mixed },
-) => `${url}${query ? `?${querystring.stringify(query)}` : ''}`;
+  query: { [key: string]: mixed } = {},
+) => `${url}?${querystring.stringify(query)}`;
 
 type Rp = (options: Object) => Promise<any>;
 type Loader = { load: (url: string) => Promise<any> };
@@ -73,7 +73,7 @@ class KinopoiskConnector {
       'Image-Scale': '3',
       'User-Agent': 'Android client (5.1 / api22), ru.kinopoisk/3.7.0 (45)',
       cityID: '1',
-      clientDate: dateFormat(new Date(), 'HH:mm MM.dd.YYYY'),
+      clientDate: moment(new Date()).format('HH:mm MM.dd.YYYY'),
       ClientId: crypto
         .createHash('md5')
         .update(String(Math.floor(Math.random() * (99999 + 1))))

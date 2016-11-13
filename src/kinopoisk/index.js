@@ -1,6 +1,7 @@
 /* @flow */
 
 import { transformResWithGqlQuery } from '../utils';
+import cinemaInfoFromRes from './cinemaInfoFromRes';
 import filmCreditsFromRes from './filmCreditsFromRes';
 import filmGalleryFromRes from './filmGalleryFromRes';
 import filmIdFromSearchResults from './filmIdFromSearchResults';
@@ -8,9 +9,12 @@ import filmInfoFromRes from './filmInfoFromRes';
 import filmInfoListFromRes from './filmInfoListFromRes';
 import KinopoiskConnector from './connector';
 import type {
+  KinopoiskApi$Cinema,
   KinopoiskApi$City,
   KinopoiskApi$Country,
   KinopoiskApi$GetAllCitiesViewResponse,
+  KinopoiskApi$GetCinemaDetailView,
+  KinopoiskApi$GetCinemasResponse,
   KinopoiskApi$GetCountryViewResponse,
   KinopoiskApi$GetFilmResponse,
   KinopoiskApi$GetFilmsListResponse,
@@ -103,6 +107,48 @@ class Kinopoisk {
       id: parseInt(cityID, 10),
       name: cityName,
     }));
+  };
+
+  getCinemasInCity = async (cityId: number) => {
+    const res: ?KinopoiskApi$GetCinemasResponse =
+      await this._connector.apiGet('getKPCinemas', {
+        cityID: cityId,
+      });
+
+    if (!res) return null;
+
+    return (res.items || []).map(({
+      cinemaID, cinemaName, address, lon, lat,
+    }: KinopoiskApi$Cinema) => ({
+      id: parseInt(cinemaID, 10),
+      name: cinemaName,
+      address,
+      location: {
+        lat: parseFloat(lat),
+        lng: parseFloat(lon),
+      },
+    }));
+  };
+
+  getCinemaInfo = async ({ cinemaId, date, utcOffset }: {
+    cinemaId: number,
+    date?: string,
+    utcOffset?: string,
+  }, query: void | string) => {
+    if (date && !/^\d{2}\.\d{2}\.\d{4}$/.test(date)) {
+      // eslint-disable-next-line max-len
+      throw new Error(`Invalid date "${date}". Please provide a date in the DD.MM.YYYY format`);
+    }
+
+    const res: ?KinopoiskApi$GetCinemaDetailView =
+      await this._connector.apiGet('getKPCinemaDetailView', {
+        cinemaID: cinemaId,
+        date,
+      });
+
+    if (!res) return null;
+
+    return transformResWithGqlQuery(cinemaInfoFromRes(res, utcOffset), query);
   };
 }
 

@@ -1475,10 +1475,6 @@ dataloader@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/dataloader/-/dataloader-1.2.0.tgz#3f73ea657c492c860c1633348adc55ca9bf2107e"
 
-date-fns@^1.10.0:
-  version "1.10.0"
-  resolved "https://registry.yarnpkg.com/date-fns/-/date-fns-1.10.0.tgz#fdb0d980ae744b7538f430d7fc4a1ec4e1c2234b"
-
 dateformat@^1.0.11, dateformat@^1.0.12:
   version "1.0.12"
   resolved "https://registry.yarnpkg.com/dateformat/-/dateformat-1.0.12.tgz#9f124b67594c937ff706932e4a642cca8dbbfee9"
@@ -3587,6 +3583,10 @@ mkdirp@^0.5.0, mkdirp@^0.5.1, "mkdirp@>=0.5 0", mkdirp@~0.5.1, mkdirp@0.5.x:
 modify-values@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/modify-values/-/modify-values-1.0.0.tgz#e2b6cdeb9ce19f99317a53722f3dbf5df5eaaab2"
+
+moment:
+  version "2.16.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.16.0.tgz#f38f2c97c9889b0ee18fc6cc392e1e443ad2da8e"
 
 ms@0.7.1:
   version "0.7.1"

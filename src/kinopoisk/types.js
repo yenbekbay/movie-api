@@ -36,6 +36,33 @@ export type KinopoiskApi$City = {
   cityID: string,
   cityName: string,
 };
+export type KinopoiskApi$Cinema = {
+  class: 'KPCinemaCell',
+  cinemaID: string,
+  cinemaName: string,
+  address?: ?string,
+  lon: string,
+  lat: string,
+  metro?: ?string,
+  hasNoSeances?: boolean,
+};
+export type KinopoiskApi$Showtime = {
+  time: string,
+  formats: { format: Array<string> },
+};
+export type KinopoiskApi$MovieShowtimes = {
+  class: 'KPSeanceCell',
+  filmID: string,
+  nameRU: string,
+  nameEN?: ?string,
+  year?: ?string,
+  rating?: ?string,
+  ratingVoteCount?: ?string,
+  posterURL?: ?string,
+  country?: ?string,
+  genre?: ?string,
+  seance: Array<KinopoiskApi$Showtime>,
+};
 
 export type KinopoiskApi$GetStaffResponse = {
   creators?: Array<Array<KinopoiskApi$CrewMember>>,
@@ -87,4 +114,31 @@ export type KinopoiskApi$GetAllCitiesViewResponse = {
   countryID: string,
   countryName: string,
   cityData?: Array<KinopoiskApi$City>,
+};
+export type KinopoiskApi$GetCinemasResponse = {
+  class: 'KPCinemas',
+  cityID: string,
+  cityName: string,
+  items?: Array<KinopoiskApi$Cinema>,
+};
+export type KinopoiskApi$GetCinemaDetailView = {
+  class: 'KPCinemaDetailView',
+  cinemaDetail?: {
+    cinemaID: string,
+    cinemaName: string,
+    rating?: ?string,
+    voteCount?: ?string,
+    cinemaLocation?: {
+      lon: string,
+      lat: string,
+      addressDescription: string,
+    },
+    phones: Array<{ phone: string }>,
+    cinemaWeb?: ?string,
+    cinemaUrl: string,
+    seance?: {
+      date: string,
+      items: Array<KinopoiskApi$MovieShowtimes>,
+    },
+  },
 };

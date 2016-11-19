@@ -3,6 +3,7 @@
 import querystring from 'querystring';
 
 import DataLoader from 'dataloader';
+import PromiseThrottle from 'promise-throttle';
 import rp from 'request-promise-native';
 
 import { userAgent } from '../utils';
@@ -34,9 +35,14 @@ class TmdbConnector {
     });
   }
 
+  _throttleQueue = new PromiseThrottle({
+    requestsPerSecond: 3, // TMDB's rate limit is 40 requests / 10 seconds
+    promiseImplementation: Promise,
+  });
+
   apiLoader: { load: (url: string) => Promise<any> } = new DataLoader(
-    (urls: Array<string>) => Promise.all(
-      urls.map((url: string) => this._rp({ uri: url, json: true })),
+    (urls: Array<string>) => this._throttleQueue.addAll(
+      urls.map((url: string) => () => this._rp({ uri: url, json: true })),
     ), {
       // The TMDB API doesn't have batching, so we should send requests
       // as soon as we know about them

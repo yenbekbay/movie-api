@@ -3928,6 +3928,10 @@ progress@^1.1.8:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/progress/-/progress-1.1.8.tgz#e260c78f6161cdd9b0e56cc3e0a85de17c7a57be"
 
+promise-throttle:
+  version "0.3.1"
+  resolved "https://registry.yarnpkg.com/promise-throttle/-/promise-throttle-0.3.1.tgz#7483b8ac95712d02acde458a24362929e8258ccd"
+
 proto-props@^0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/proto-props/-/proto-props-0.2.1.tgz#5e01dc2675a0de9abfa76e799dfa334d6f483f4b"

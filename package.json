@@ -104,6 +104,7 @@
     "npm-run-all": "^3.1.1",
     "rimraf": "^2.5.4",
     "standard-version": "^3.0.0",
+    "type-detect": "^4.0.0",
     "validate-commit-msg": "^2.8.2"
   }
 }

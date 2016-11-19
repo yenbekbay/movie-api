@@ -1,123 +1,162 @@
 exports[`Kinopoisk fetches cinema info for given arguments 1`] = `
 Object {
-  "address": "String",
-  "homepage": "String",
-  "id": "Number",
+  "address": "string",
+  "homepage": "string",
+  "id": "number",
   "location": Object {
-    "lat": "Number",
-    "lng": "Number",
+    "lat": "number",
+    "lng": "number",
   },
-  "name": "String",
-  "phoneNumbers": "Array<Object>",
-  "showtimes": "Array<Object>",
-}
-`;
-
-exports[`Kinopoisk fetches cinema info for given arguments 2`] = `
-Object {
-  "filmId": "Number",
-  "items": "Array<Object>",
-}
-`;
-
-exports[`Kinopoisk fetches cinema info for given arguments 3`] = `
-Object {
-  "date": "String",
-  "formats": "Array<String>",
-  "time": "String",
-  "timestamp": "Date",
+  "name": "string",
+  "phoneNumbers": Array [
+    Object {
+      "phone": "string",
+    },
+  ],
+  "showtimes": Array [
+    Object {
+      "filmId": "number",
+      "items": Array [
+        Object {
+          "date": "string",
+          "formats": "Array<string>",
+          "time": "string",
+          "timestamp": "Date",
+        },
+      ],
+    },
+  ],
 }
 `;
 
 exports[`Kinopoisk fetches cinemas for a given city id 1`] = `
 Object {
-  "address": "String",
-  "id": "Number",
-  "location": Object {
-    "lat": "Number",
-    "lng": "Number",
-  },
-  "name": "String",
+  "cinemas": Array [
+    Object {
+      "address": "string",
+      "id": "number",
+      "location": Object {
+        "lat": "number",
+        "lng": "number",
+      },
+      "name": "string",
+    },
+  ],
 }
 `;
 
 exports[`Kinopoisk fetches movie credits for a given id 1`] = `
 Object {
-  "cast": "Array<Object>",
+  "cast": Array [
+    Object {
+      "name": "string",
+      "photoUrl": "string",
+    },
+  ],
   "crew": Object {
-    "cinematographers": "Array<Object>",
-    "composers": "Array<Object>",
-    "directors": "Array<Object>",
-    "producers": "Array<Object>",
-    "writers": "Array<Object>",
+    "cinematographers": Array [
+      Object {
+        "name": "string",
+        "photoUrl": "string",
+      },
+    ],
+    "composers": Array [
+      Object {
+        "name": "string",
+        "photoUrl": "string",
+      },
+    ],
+    "directors": Array [
+      Object {
+        "name": "string",
+        "photoUrl": "string",
+      },
+    ],
+    "producers": Array [
+      Object {
+        "name": "string",
+        "photoUrl": "string",
+      },
+    ],
+    "writers": Array [
+      Object {
+        "name": "string",
+        "photoUrl": "string",
+      },
+    ],
   },
-}
-`;
-
-exports[`Kinopoisk fetches movie credits for a given id 2`] = `
-Object {
-  "name": "String",
-  "photoUrl": "String",
 }
 `;
 
 exports[`Kinopoisk fetches movie gallery for a given id 1`] = `
 Object {
-  "behindTheScenes": "Array<String>",
-  "posters": "Array<String>",
-  "stills": "Array<String>",
+  "behindTheScenes": "Array<string>",
+  "posters": "Array<string>",
+  "stills": "Array<string>",
 }
 `;
 
 exports[`Kinopoisk fetches movie info for a given id 1`] = `
 Object {
-  "ageRating": "Number",
-  "genres": "Array<String>",
-  "imdbRating": "Number",
-  "imdbRatingVoteCount": "Number",
-  "kpId": "Number",
-  "kpRating": "Number",
-  "kpRatingVoteCount": "Number",
-  "mpaaRating": "String",
-  "originalTitle": "String",
-  "posterUrl": "String",
-  "productionCountries": "Array<String>",
-  "rtCriticsRating": "Number",
-  "rtCriticsRatingVoteCount": "Number",
-  "runtime": "Number",
-  "stills": "Array<String>",
-  "synopsis": "String",
-  "title": "String",
-  "year": "Number",
+  "ageRating": "number",
+  "genres": "Array<string>",
+  "imdbRating": "number",
+  "imdbRatingVoteCount": "number",
+  "kpId": "number",
+  "kpRating": "number",
+  "kpRatingVoteCount": "number",
+  "mpaaRating": "string",
+  "originalTitle": "string",
+  "posterUrl": "string",
+  "productionCountries": "Array<string>",
+  "rtCriticsRating": "number",
+  "rtCriticsRatingVoteCount": "number",
+  "runtime": "number",
+  "stills": "Array<string>",
+  "synopsis": "string",
+  "title": "string",
+  "year": "number",
 }
 `;
 
 exports[`Kinopoisk fetches similar movies for a given id 1`] = `
 Object {
-  "genres": "Array<String>",
-  "kpId": "Number",
-  "kpRating": "Number",
-  "kpRatingVoteCount": "Number",
-  "originalTitle": "String",
-  "posterUrl": "String",
-  "productionCountries": "Array<String>",
-  "runtime": "Number",
-  "title": "String",
-  "year": "Number",
+  "items": Array [
+    Object {
+      "genres": "Array<string>",
+      "kpId": "number",
+      "kpRating": "number",
+      "kpRatingVoteCount": "number",
+      "originalTitle": "string",
+      "posterUrl": "string",
+      "productionCountries": "Array<string>",
+      "runtime": "number",
+      "title": "string",
+      "year": "number",
+    },
+  ],
 }
 `;
 
 exports[`Kinopoisk fetches supported cities for a given country id 1`] = `
 Object {
-  "id": "Number",
-  "name": "String",
+  "cities": Array [
+    Object {
+      "id": "number",
+      "name": "string",
+    },
+  ],
 }
 `;
 
 exports[`Kinopoisk fetches supported countries 1`] = `
 Object {
-  "id": "Number",
-  "name": "String",
+  "countries": Array [
+    Object {
+      "id": "number",
+      "name": "string",
+    },
+  ],
 }
 `;
 
@@ -127,50 +166,61 @@ exports[`Kinopoisk finds best tv show id for a given query 1`] = `464963`;
 
 exports[`Kinopoisk formats cinema info response according to graphql query 1`] = `
 Object {
-  "id": "Number",
-  "name": "String",
-  "showtimes": "Array<Object>",
-}
-`;
-
-exports[`Kinopoisk formats cinema info response according to graphql query 2`] = `
-Object {
-  "timestamp": "Date",
+  "id": "number",
+  "name": "string",
+  "showtimes": Array [
+    Object {
+      "items": Array [
+        Object {
+          "timestamp": "Date",
+        },
+      ],
+    },
+  ],
 }
 `;
 
 exports[`Kinopoisk formats movie credits response according to graphql query 1`] = `
 Object {
-  "name": "String",
-  "photoUrl": "String",
-}
-`;
-
-exports[`Kinopoisk formats movie credits response according to graphql query 2`] = `
-Object {
-  "name": "String",
-  "photoUrl": "String",
+  "cast": Array [
+    Object {
+      "name": "string",
+      "photoUrl": "string",
+    },
+  ],
+  "crew": Object {
+    "cinematographers": Array [
+      Object {
+        "name": "string",
+        "photoUrl": "string",
+      },
+    ],
+  },
 }
 `;
 
 exports[`Kinopoisk formats movie gallery response according to graphql query 1`] = `
 Object {
-  "posters": "Array<String>",
-  "stills": "Array<String>",
+  "posters": "Array<string>",
+  "stills": "Array<string>",
 }
 `;
 
 exports[`Kinopoisk formats movie info response according to graphql query 1`] = `
 Object {
-  "kpId": "Number",
-  "synopsis": "String",
-  "title": "String",
+  "kpId": "number",
+  "synopsis": "string",
+  "title": "string",
 }
 `;
 
 exports[`Kinopoisk formats similar movies response according to graphql query 1`] = `
 Object {
-  "kpId": "Number",
-  "title": "String",
+  "items": Array [
+    Object {
+      "kpId": "number",
+      "title": "string",
+    },
+  ],
 }
 `;

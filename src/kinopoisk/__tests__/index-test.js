@@ -1,10 +1,8 @@
 /* @flow */
 
-import {
-  modelFromObject,
-  modelFromFirstElement,
-  modelFromFirstElementAtPath,
-} from '../../test-utils';
+import moment from 'moment';
+
+import { modelFromObject } from '../../test-utils';
 import Kinopoisk from '../';
 
 const filmId = 714888; // Star Wars: The Force Awakens
@@ -54,7 +52,6 @@ describe('Kinopoisk', () => {
     const res = await kp.getFilmCredits(filmId);
 
     expect(modelFromObject(res)).toMatchSnapshot();
-    expect(modelFromFirstElementAtPath('cast')(res)).toMatchSnapshot();
   });
 
   it('formats movie credits response according to graphql query', async () => {
@@ -72,10 +69,7 @@ describe('Kinopoisk', () => {
       }
     `);
 
-    expect(modelFromFirstElementAtPath('cast')(res)).toMatchSnapshot();
-    expect(
-      modelFromFirstElementAtPath('crew.cinematographers')(res),
-    ).toMatchSnapshot();
+    expect(modelFromObject(res)).toMatchSnapshot();
   });
 
   it('fetches movie gallery for a given id', async () => {
@@ -96,7 +90,7 @@ describe('Kinopoisk', () => {
   it('fetches similar movies for a given id', async () => {
     const res = await kp.getSimilarFilms(filmId);
 
-    expect(modelFromFirstElementAtPath('items')(res)).toMatchSnapshot();
+    expect(modelFromObject(res)).toMatchSnapshot();
   });
 
   it('formats similar movies response according to graphql query', async () => {
@@ -109,46 +103,42 @@ describe('Kinopoisk', () => {
       }
     `);
 
-    expect(modelFromFirstElementAtPath('items')(res)).toMatchSnapshot();
+    expect(modelFromObject(res)).toMatchSnapshot();
   });
 
   it('fetches supported countries', async () => {
     const res = await kp.getSupportedCountries();
 
-    expect(modelFromFirstElement(res)).toMatchSnapshot();
+    expect(modelFromObject({ countries: res })).toMatchSnapshot();
   });
 
   it('fetches supported cities for a given country id', async () => {
     const res = await kp.getSupportedCities(countryId);
 
-    expect(modelFromFirstElement(res)).toMatchSnapshot();
+    expect(modelFromObject({ cities: res })).toMatchSnapshot();
   });
 
   it('fetches cinemas for a given city id', async () => {
     const res = await kp.getCinemasInCity(cityId);
 
-    expect(modelFromFirstElement(res)).toMatchSnapshot();
+    expect(modelFromObject({ cinemas: res })).toMatchSnapshot();
   });
 
   it('fetches cinema info for given arguments', async () => {
     const res = await kp.getCinemaInfo({
       cinemaId,
-      date: '14.11.2016',
+      date: moment().format('DD.MM.YYYY'),
       utcOffset: '+0600',
     });
 
     expect(modelFromObject(res)).toMatchSnapshot();
-    expect(modelFromFirstElementAtPath('showtimes')(res)).toMatchSnapshot();
-    expect(
-      modelFromFirstElementAtPath('showtimes.0.items')(res),
-    ).toMatchSnapshot();
   });
 
   it('formats cinema info response according to graphql query', async () => {
     const res = await kp.getCinemaInfo(
       {
         cinemaId,
-        date: '14.11.2016',
+        date: moment().format('DD.MM.YYYY'),
         utcOffset: '+0600',
       }, `
         {
@@ -164,8 +154,5 @@ describe('Kinopoisk', () => {
     );
 
     expect(modelFromObject(res)).toMatchSnapshot();
-    expect(
-      modelFromFirstElementAtPath('showtimes.0.items')(res),
-    ).toMatchSnapshot();
   });
 });

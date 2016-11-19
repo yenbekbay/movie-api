@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.3.0"></a>
+# [0.3.0](https://github.com/anvilabs/movie-api/compare/v0.2.0...v0.3.0) (2016-11-19)
+
+
+### Features
+
+* **tmdb:** add throttling to respect TMDB API's rate limits ([e428a61](https://github.com/anvilabs/movie-api/commit/e428a61))
+* add IMDB source ([5f935b8](https://github.com/anvilabs/movie-api/commit/5f935b8))
+
+
+
 <a name="0.2.0"></a>
 # [0.2.0](https://github.com/anvilabs/movie-api/compare/v0.1.0...v0.2.0) (2016-11-13)
 

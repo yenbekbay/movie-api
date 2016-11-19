@@ -1,0 +1,6 @@
+exports[`IMDB fetches movie rating by id 1`] = `
+Object {
+  "imdbRating": "number",
+  "imdbRatingVoteCount": "number",
+}
+`;

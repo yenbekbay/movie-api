@@ -492,6 +492,24 @@ const tmdb = new Tmdb({
 })();
 ```
 
+#### Basic IMDB example
+
+```js
+import { Imdb } from 'movie-api';
+
+const imdb = new Imdb({
+  userId: process.env.IMDB_USER_ID,
+});
+
+(async () => {
+  const movieRating = await imdb.getRating({
+    imdbId: 'tt2488496', // Star Wars: The Force Awakens
+  });
+  console.log(movieRating);
+  // { imdbRating: 8.2, imdbRatingVoteCount: 598161 }
+});
+```
+
 ## License
 
 [MIT License](./LICENSE) © Anvilabs LLC

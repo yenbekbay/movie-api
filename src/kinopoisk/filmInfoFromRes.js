@@ -24,15 +24,16 @@ const filmInfoFromRes = (
   mpaaRating: res.ratingMPAA,
   kpRating: parseFloat(res.ratingData.rating),
   kpRatingVoteCount: parseInt(
-    (res.ratingData.ratingVoteCount || '').replace(' ', ''), 10,
+    String(res.ratingData.ratingVoteCount || '').replace(' ', ''), 10,
   ),
   imdbRating: parseFloat(res.ratingData.ratingIMDb),
   imdbRatingVoteCount: parseInt(
-    (res.ratingData.ratingIMDbVoteCount || '').replace(' ', ''), 10,
+    String(res.ratingData.ratingIMDbVoteCount || '').replace(' ', ''), 10,
   ),
   rtCriticsRating: parseInt(res.ratingData.ratingFilmCritics, 10),
   rtCriticsRatingVoteCount: parseInt(
-    (res.ratingData.ratingFilmCriticsVoteCount || '').replace(' ', ''), 10,
+    String(res.ratingData.ratingFilmCriticsVoteCount || '').replace(' ', ''),
+    10,
   ),
   stills: (res.gallery || []).map(
     ({ preview }: KinopoiskApi$GalleryItem) => imageUrlFromPath(

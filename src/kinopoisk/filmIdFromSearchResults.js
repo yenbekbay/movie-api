@@ -40,7 +40,7 @@ const scrapeResults = (html: string): Array<SearchResult> => {
           (country: ?string) => !!country && isNaN(parseInt(country, 10)),
         ),
       )(infoNode.text());
-      const year = parseInt(R.head(infoNode.text().match(/\d+/)), 10);
+      const year = parseInt(R.head(infoNode.text().match(/\d+/) || []), 10);
 
       return { id, title, countries, year };
     });

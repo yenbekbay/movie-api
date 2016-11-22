@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.5.0"></a>
+# [0.5.0](https://github.com/anvilabs/movie-api/compare/v0.4.0...v0.5.0) (2016-11-22)
+
+
+### Bug Fixes
+
+* **kinopoisk:** fix crashes on empty search results ([6f4339b](https://github.com/anvilabs/movie-api/commit/6f4339b))
+
+
+### Features
+
+* **kinopoisk:** stop filtering search results by title similarity ([4d12814](https://github.com/anvilabs/movie-api/commit/4d12814))
+
+
+
 <a name="0.4.0"></a>
 # [0.4.0](https://github.com/anvilabs/movie-api/compare/v0.3.1...v0.4.0) (2016-11-22)
 

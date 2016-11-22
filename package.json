@@ -1,6 +1,6 @@
 {
   "name": "movie-api",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Get info for movies and TV shows",
   "repository": "anvilabs/movie-api",
   "homepage": "https://github.com/anvilabs/movie-api#readme",

@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+# [0.4.0](https://github.com/anvilabs/movie-api/compare/v0.3.1...v0.4.0) (2016-11-22)
+
+
+### Features
+
+* **imdb:** add reasonable throttling to rating requests ([e664a61](https://github.com/anvilabs/movie-api/commit/e664a61))
+* **kinopoisk:** add reasonable throttling to all requests ([b052c08](https://github.com/anvilabs/movie-api/commit/b052c08))
+
+
+
 <a name="0.3.1"></a>
 ## [0.3.1](https://github.com/anvilabs/movie-api/compare/v0.3.0...v0.3.1) (2016-11-19)
 

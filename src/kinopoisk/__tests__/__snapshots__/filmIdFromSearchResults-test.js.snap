@@ -13,23 +13,6 @@ exports[`kinopoisk/filmIdFromSearchResults filters results 2`] = `
 Array [
   Object {
     "countries": Array [],
-    "id": 1,
-    "title": "Звёздные войны",
-    "year": 2015,
-  },
-  Object {
-    "countries": Array [],
-    "id": 2,
-    "title": "Звездные войны",
-    "year": 2016,
-  },
-]
-`;
-
-exports[`kinopoisk/filmIdFromSearchResults filters results 3`] = `
-Array [
-  Object {
-    "countries": Array [],
     "id": 2,
     "title": "foo",
     "year": 2016,
@@ -43,7 +26,7 @@ Array [
 ]
 `;
 
-exports[`kinopoisk/filmIdFromSearchResults filters results 4`] = `
+exports[`kinopoisk/filmIdFromSearchResults filters results 3`] = `
 Array [
   Object {
     "countries": Array [

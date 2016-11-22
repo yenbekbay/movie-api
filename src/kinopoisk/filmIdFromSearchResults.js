@@ -2,7 +2,6 @@
 
 import cheerio from 'cheerio';
 import R from 'ramda';
-import similarity from 'similarity';
 
 export type SearchQuery = {
   title: string,
@@ -52,7 +51,6 @@ const filterResults = (
   results: Array<?SearchResult>,
 ): Array<SearchResult> => R.filter(R.allPass([
   Boolean,
-  ({ title }: SearchResult) => similarity(title, query.title) >= 0.8,
   (query.year
     ? ({ year }: SearchResult) => year === query.year
     : R.always(true)),
@@ -68,7 +66,6 @@ const filterResults = (
 const filmIdFromSearchResults = (html: string, query: SearchQuery) => R.pipe(
   scrapeResults,
   R.curry(filterResults)(query),
-  R.sortBy(({ title }: SearchResult) => similarity(title, query.title)),
   R.head,
   R.prop('id'),
 )(html);

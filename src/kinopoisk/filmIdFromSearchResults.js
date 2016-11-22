@@ -25,7 +25,7 @@ const scrapeResults = (html: string): Array<SearchResult> => {
     .map((snippet: any) => {
       const titleNode = $(snippet).find('.film-snippet__title-link');
       const id = parseInt(
-        R.nth(1, titleNode.attr('href').match(/\/film\/(.+)\//)),
+        R.nth(1, titleNode.attr('href').match(/\/film\/(.+)\//) || []),
         10,
       );
 
@@ -66,8 +66,7 @@ const filterResults = (
 const filmIdFromSearchResults = (html: string, query: SearchQuery) => R.pipe(
   scrapeResults,
   R.curry(filterResults)(query),
-  R.head,
-  R.prop('id'),
+  R.path(['0', 'id']),
 )(html);
 
 export {

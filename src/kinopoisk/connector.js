@@ -5,6 +5,7 @@ import querystring from 'querystring';
 
 import DataLoader from 'dataloader';
 import moment from 'moment';
+import PromiseThrottle from 'promise-throttle';
 import R from 'ramda';
 import rp from 'request-promise-native';
 
@@ -87,14 +88,24 @@ class KinopoiskConnector {
     jar: true,
   });
 
+  _apiThrottleQueue = new PromiseThrottle({
+    requestsPerSecond: 3,
+    promiseImplementation: Promise,
+  });
+
   _htmlRp: Rp = rp.defaults({
     headers: { 'User-Agent': userAgent },
     gzip: true,
   });
 
+  _htmlThrottleQueue = new PromiseThrottle({
+    requestsPerSecond: 3,
+    promiseImplementation: Promise,
+  });
+
   apiLoader: Loader = new DataLoader(
-    (urls: Array<string>) => Promise.all(
-      urls.map(async (url: string) => this._apiRp({
+    (urls: Array<string>) => this._apiThrottleQueue.addAll(
+      urls.map((url: string) => () => this._apiRp({
         uri: url,
         qs: {
           key: crypto
@@ -110,8 +121,8 @@ class KinopoiskConnector {
   );
 
   htmlLoader: Loader = new DataLoader(
-    (urls: Array<string>) => Promise.all(
-      urls.map((url: string) => this._htmlRp({ uri: url })),
+    (urls: Array<string>) => this._htmlThrottleQueue.addAll(
+      urls.map((url: string) => () => this._htmlRp({ uri: url })),
     ), {
       batch: false,
     },

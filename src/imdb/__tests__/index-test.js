@@ -3,7 +3,7 @@
 import { modelFromObject } from '../../test-utils';
 import Imdb from '../index';
 
-const movieId = 'tt2488496'; // Star Wars: The Force Awakens
+const movieId = 'tt3330764'; // Star Wars: The Force Awakens
 
 describe('IMDB', () => {
   let imdb: Imdb;

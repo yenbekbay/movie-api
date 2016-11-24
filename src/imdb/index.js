@@ -39,7 +39,10 @@ class Imdb {
     ).html();
 
     return popularity
-      ? (parseInt(R.head(popularity.match(/\d+/) || []), 10) || null)
+      ? (parseInt(
+          R.head(popularity.replace(',', '').match(/\d+/) || []),
+          10,
+        ) || null)
       : null;
   };
 }

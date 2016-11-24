@@ -2,6 +2,18 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.0"></a>
+# [0.8.0](https://github.com/anvilabs/movie-api/compare/v0.7.0...v0.8.0) (2016-11-24)
+
+
+### Features
+
+* **imdb:** add the `getPopularity` method ([1b37f1c](https://github.com/anvilabs/movie-api/commit/1b37f1c))
+* **kinopoisk:** decrease requests per second for html requests ([68e8111](https://github.com/anvilabs/movie-api/commit/68e8111))
+* **kinopoisk:** use a random useragent for html requests ([909ce76](https://github.com/anvilabs/movie-api/commit/909ce76))
+
+
+
 <a name="0.7.0"></a>
 # [0.7.0](https://github.com/anvilabs/movie-api/compare/v0.5.1...v0.7.0) (2016-11-24)
 

@@ -510,6 +510,46 @@ const imdb = new Imdb({
 });
 ```
 
+### Basic Trakt example
+
+```js
+import { Trakt } from 'movie-api';
+
+const trakt = new Trakt({
+  apiKey: process.env.TRAKT_API_KEY,
+});
+
+(async () => {
+  const movieId = await trakt.getId({
+    imdbId: 'tt2488496', // Star Wars: The Force Awakens
+  });
+  console.log(movieId);
+  // star-wars-the-force-awakens-2015
+
+  const movieStats = await trakt.getMovieStats(
+    movieId,
+    // optionally specify desired fields with a GraphQL query
+    `
+      {
+        watchers
+        plays
+        collectors
+        comments
+        lists
+        votes
+      }
+    `,
+  );
+  console.log(movieStats);
+  // { watchers: 'number',
+  //   plays: 'number',
+  //   collectors: 'number',
+  //   comments: 'number',
+  //   lists: 'number',
+  //   votes: 'number' }
+});
+```
+
 ## License
 
 [MIT License](./LICENSE) © Anvilabs LLC

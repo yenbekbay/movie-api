@@ -1,7 +1,8 @@
 /* @flow */
 
+import Imdb from './imdb';
 import Kinopoisk from './kinopoisk';
 import Tmdb from './tmdb';
-import Imdb from './imdb';
+import Trakt from './trakt';
 
-export { Kinopoisk, Tmdb, Imdb };
+export { Kinopoisk, Tmdb, Imdb, Trakt };

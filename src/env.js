@@ -14,4 +14,5 @@ const requiredEnvVariable = (variableName: string) => {
 export default {
   getTmdbApiKey: () => requiredEnvVariable('TMDB_API_KEY'),
   getImdbUserId: () => requiredEnvVariable('IMDB_USER_ID'),
+  getTraktApiKey: () => requiredEnvVariable('TRAKT_API_KEY'),
 };

@@ -1,0 +1,19 @@
+exports[`Trakt fetches movie id by imdb id 1`] = `"star-wars-the-force-awakens-2015"`;
+
+exports[`Trakt fetches movie stats for a given id 1`] = `
+Object {
+  "collectors": "number",
+  "comments": "number",
+  "lists": "number",
+  "plays": "number",
+  "votes": "number",
+  "watchers": "number",
+}
+`;
+
+exports[`Trakt formats movie stats response according to graphql query 1`] = `
+Object {
+  "votes": "number",
+  "watchers": "number",
+}
+`;

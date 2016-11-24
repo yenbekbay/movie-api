@@ -71,6 +71,7 @@
     "parent-package-json": "^2.0.0",
     "promise-throttle": "^0.3.1",
     "ramda": "^0.22.1",
+    "random-useragent": "^0.3.1",
     "request": "^2.78.0",
     "request-promise-native": "^1.0.3"
   },

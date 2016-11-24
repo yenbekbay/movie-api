@@ -6,9 +6,10 @@ import DataLoader from 'dataloader';
 import moment from 'moment';
 import PromiseThrottle from 'promise-throttle';
 import R from 'ramda';
+import randomUseragent from 'random-useragent';
 import rp from 'request-promise-native';
 
-import { userAgent, applyQueryToUrl } from '../utils';
+import { applyQueryToUrl } from '../utils';
 
 const KINOPOISK_API_ROOT = 'https://ext.kinopoisk.ru/ios/3.11.0';
 const KINOPOISK_API_KEY = 'a17qbcw1du0aedm';
@@ -88,7 +89,7 @@ class KinopoiskConnector {
   });
 
   _htmlRp: Rp = rp.defaults({
-    headers: { 'User-Agent': userAgent },
+    headers: { 'User-Agent': randomUseragent.getRandom() },
     gzip: true,
   });
 

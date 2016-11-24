@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.7.0"></a>
+# [0.7.0](https://github.com/anvilabs/movie-api/compare/v0.5.1...v0.7.0) (2016-11-24)
+
+
+### Features
+
+* add Trakt source ([501ae9b](https://github.com/anvilabs/movie-api/commit/501ae9b))
+
+
+
 <a name="0.5.1"></a>
 ## [0.5.1](https://github.com/anvilabs/movie-api/compare/v0.5.0...v0.5.1) (2016-11-22)
 

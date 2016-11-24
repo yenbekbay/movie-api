@@ -1,12 +1,10 @@
 /* @flow */
 
-import querystring from 'querystring';
-
 import DataLoader from 'dataloader';
 import PromiseThrottle from 'promise-throttle';
 import rp from 'request-promise-native';
 
-import { userAgent } from '../utils';
+import { userAgent, applyQueryToUrl } from '../utils';
 import env from '../env';
 
 const TMDB_API_ROOT = 'https://api.themoviedb.org/3';
@@ -54,7 +52,7 @@ class TmdbConnector {
     endpoint: string,
     query: { [key: string]: mixed },
   ) => this.apiLoader.load(
-    `${TMDB_API_ROOT}/${endpoint}?${querystring.stringify(query)}`,
+    applyQueryToUrl(`${TMDB_API_ROOT}/${endpoint}`, query),
   );
 }
 

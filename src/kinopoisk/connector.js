@@ -1,7 +1,6 @@
 /* @flow */
 
 import crypto from 'crypto';
-import querystring from 'querystring';
 
 import DataLoader from 'dataloader';
 import moment from 'moment';
@@ -9,7 +8,7 @@ import PromiseThrottle from 'promise-throttle';
 import R from 'ramda';
 import rp from 'request-promise-native';
 
-import { userAgent } from '../utils';
+import { userAgent, applyQueryToUrl } from '../utils';
 
 const KINOPOISK_API_ROOT = 'https://ext.kinopoisk.ru/ios/3.11.0';
 const KINOPOISK_API_KEY = 'a17qbcw1du0aedm';
@@ -57,11 +56,6 @@ type Endpoint =
  // Geo Reference
  | 'getKPCountryView'
  | 'getKPAllCitiesView';
-
-const applyQueryToUrl = (
-  url: string,
-  query: { [key: string]: mixed } = {},
-) => `${url}?${querystring.stringify(query)}`;
 
 type Rp = (options: Object) => Promise<any>;
 type Loader = { load: (url: string) => Promise<any> };

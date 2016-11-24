@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.8.1"></a>
+## [0.8.1](https://github.com/anvilabs/movie-api/compare/v0.8.0...v0.8.1) (2016-11-24)
+
+
+### Bug Fixes
+
+* **imdb:** return correct popularity for over 999 ([7c584d7](https://github.com/anvilabs/movie-api/commit/7c584d7))
+
+
+
 <a name="0.8.0"></a>
 # [0.8.0](https://github.com/anvilabs/movie-api/compare/v0.7.0...v0.8.0) (2016-11-24)
 

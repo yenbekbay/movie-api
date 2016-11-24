@@ -502,11 +502,17 @@ const imdb = new Imdb({
 });
 
 (async () => {
-  const movieRating = await imdb.getRating({
-    imdbId: 'tt2488496', // Star Wars: The Force Awakens
-  });
+  const movieRating = await imdb.getRating(
+    'tt2488496', // Star Wars: The Force Awakens
+  );
   console.log(movieRating);
   // { imdbRating: 8.2, imdbRatingVoteCount: 598161 }
+
+  const moviePopularity = await imdb.getPopularity(
+    'tt2488496', // Star Wars: The Force Awakens
+  );
+  console.log(moviePopularity);
+  // 81
 });
 ```
 

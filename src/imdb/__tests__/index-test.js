@@ -15,4 +15,8 @@ describe('IMDB', () => {
   it('fetches movie rating by id', async () => {
     expect(modelFromObject(await imdb.getRating(movieId))).toMatchSnapshot();
   });
+
+  it('fetches movie popularity by id', async () => {
+    expect(typeof await imdb.getPopularity(movieId)).toEqual('number');
+  });
 });

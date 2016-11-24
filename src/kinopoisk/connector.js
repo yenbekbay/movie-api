@@ -94,7 +94,7 @@ class KinopoiskConnector {
   });
 
   _htmlThrottleQueue = new PromiseThrottle({
-    requestsPerSecond: 3,
+    requestsPerSecond: 2,
     promiseImplementation: Promise,
   });
 

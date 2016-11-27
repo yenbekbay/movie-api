@@ -23,7 +23,8 @@
   ],
   "scripts": {
     "commit": "git-cz",
-    "build": "yarn run clean && babel --out-dir ./lib --ignore **/__tests__,**/__mocks__ ./src",
+    "build": "yarn run clean && babel --out-dir ./lib --ignore **/__tests__,**/__mocks__ ./src && npm run build:flow",
+    "build:flow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\\/src\\\//\\\/lib\\\//g'`.flow; done",
     "clean": "rimraf lib && mkdir lib",
     "prepublish": "yarn run build",
     "test": "npm-run-all --parallel typecheck lint jest",

@@ -36,7 +36,7 @@ class Tmdb {
         { query: query.title, year: query.year },
       );
 
-      return R.pipe(R.prop('results'), R.head, R.prop('id'))(res);
+      return R.pipe(R.propOr([], 'results'), R.head, R.prop('id'))(res);
     }
 
     return null;
@@ -62,7 +62,7 @@ class Tmdb {
         { query: query.title, year: query.year },
       );
 
-      return R.pipe(R.prop('results'), R.head, R.prop('id'))(res);
+      return R.pipe(R.propOr([], 'results'), R.head, R.prop('id'))(res);
     }
 
     return null;

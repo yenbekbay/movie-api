@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.10.0"></a>
+# [0.10.0](https://github.com/anvilabs/movie-api/compare/v0.9.0...v0.10.0) (2016-11-28)
+
+
+### Features
+
+* **Kinopoisk:** filter search results by title similarity ([bd482d7](https://github.com/anvilabs/movie-api/commit/bd482d7))
+
+
+
 <a name="0.9.0"></a>
 # [0.9.0](https://github.com/anvilabs/movie-api/compare/v0.8.1...v0.9.0) (2016-11-27)
 

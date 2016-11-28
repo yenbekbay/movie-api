@@ -74,7 +74,8 @@
     "ramda": "^0.22.1",
     "random-useragent": "^0.3.1",
     "request": "^2.78.0",
-    "request-promise-native": "^1.0.3"
+    "request-promise-native": "^1.0.3",
+    "similarity": "^1.1.0"
   },
   "devDependencies": {
     "@types/cheerio": "^0.17.31",

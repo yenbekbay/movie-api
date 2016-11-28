@@ -2,6 +2,7 @@
 
 import cheerio from 'cheerio';
 import R from 'ramda';
+import similarity from 'similarity';
 
 export type SearchQuery = {
   title: string,
@@ -13,6 +14,7 @@ export type SearchQuery = {
 type SearchResult = {
   id: number,
   title: string,
+  originalTitle?: ?string,
   countries: Array<string>,
   year: number,
 };
@@ -32,7 +34,10 @@ const scrapeResults = (html: string): Array<SearchResult> => {
       if (isNaN(id)) return null;
 
       const infoNode = $(snippet).find('.film-snippet__info');
-      const title = titleNode.text().replace(/\s\s+/g, ' ');
+      const title = $(snippet).find('meta[itemprop="name"]').attr('content');
+      const originalTitle = $(snippet)
+        .find('meta[itemprop="alternateName"]')
+        .attr('content');
       const countries = R.pipe(
         R.split(','),
         R.map(R.trim),
@@ -42,7 +47,7 @@ const scrapeResults = (html: string): Array<SearchResult> => {
       )(infoNode.text());
       const year = parseInt(R.head(infoNode.text().match(/\d+/) || []), 10);
 
-      return { id, title, countries, year };
+      return { id, title, originalTitle, countries, year };
     });
 };
 
@@ -51,6 +56,9 @@ const filterResults = (
   results: Array<?SearchResult>,
 ): Array<SearchResult> => R.filter(R.allPass([
   Boolean,
+  ({ title, originalTitle }: SearchResult) =>
+    similarity(title, query.title) >= 0.8 ||
+    (originalTitle && similarity(originalTitle, query.title) >= 0.8),
   (query.year
     ? ({ year }: SearchResult) => year === query.year
     : R.always(true)),

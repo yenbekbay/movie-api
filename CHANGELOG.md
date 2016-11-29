@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.10.2"></a>
+## [0.10.2](https://github.com/anvilabs/movie-api/compare/v0.10.1...v0.10.2) (2016-11-29)
+
+
+### Bug Fixes
+
+* work out remaining ramda bugs ([6782ad4](https://github.com/anvilabs/movie-api/commit/6782ad4))
+
+
+
 <a name="0.10.1"></a>
 ## [0.10.1](https://github.com/anvilabs/movie-api/compare/v0.10.0...v0.10.1) (2016-11-28)
 

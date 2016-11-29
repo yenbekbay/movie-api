@@ -19,10 +19,7 @@ class Trakt {
   }) => {
     const res = await this._connector.apiGet(`search/imdb/${query.imdbId}`);
 
-    return R.pipe(
-      R.head,
-      R.path(['movie', 'ids', 'slug']),
-    )(res || []);
+    return R.path([0, 'movie', 'ids', 'slug'], res);
   };
 
   getMovieStats = async (id: string, query: void | string) => {

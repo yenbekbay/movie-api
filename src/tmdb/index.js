@@ -27,7 +27,7 @@ class Tmdb {
         { external_source: 'imdb_id' },
       );
 
-      return R.pipe(R.propOr([], 'tv_results'), R.head, R.prop('id'))(res);
+      return R.pipe(R.propOr([], 'tv_results'), R.path([0, 'id']))(res);
     }
 
     if (query.title) {
@@ -36,7 +36,7 @@ class Tmdb {
         { query: query.title, year: query.year },
       );
 
-      return R.pipe(R.propOr([], 'results'), R.head, R.prop('id'))(res);
+      return R.pipe(R.propOr([], 'results'), R.path([0, 'id']))(res);
     }
 
     return null;
@@ -53,7 +53,7 @@ class Tmdb {
         { external_source: 'imdb_id' },
       );
 
-      return R.pipe(R.propOr([], 'movie_results'), R.head, R.prop('id'))(res);
+      return R.pipe(R.propOr([], 'movie_results'), R.path([0, 'id']))(res);
     }
 
     if (query.title) {
@@ -62,7 +62,7 @@ class Tmdb {
         { query: query.title, year: query.year },
       );
 
-      return R.pipe(R.propOr([], 'results'), R.head, R.prop('id'))(res);
+      return R.pipe(R.propOr([], 'results'), R.path([0, 'id']))(res);
     }
 
     return null;

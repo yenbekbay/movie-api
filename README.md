@@ -23,7 +23,7 @@ yarn add movie-api # npm install movie-api --save
 
 The following examples assume that you have a working ES2016 environment with support for the [`async` / `await` feature](http://babeljs.io/docs/plugins/transform-async-to-generator/).
 
-#### Basic Kinopoisk example
+#### Kinopoisk example
 
 ```js
 import { Kinopoisk } from 'movie-api';
@@ -155,7 +155,7 @@ const kp = new Kinopoisk();
 })();
 ```
 
-#### Basic TMDB example
+#### TMDB example
 
 ```js
 import { Tmdb } from 'movie-api';
@@ -285,7 +285,7 @@ const tmdb = new Tmdb({
 })();
 ```
 
-#### Basic IMDB example
+#### IMDB example
 
 ```js
 import { Imdb } from 'movie-api';
@@ -309,7 +309,7 @@ const imdb = new Imdb({
 });
 ```
 
-### Basic Trakt example
+#### Trakt example
 
 ```js
 import { Trakt } from 'movie-api';

@@ -38,7 +38,7 @@ class Tmdb {
       return R.pipe(R.propOr([], 'results'), R.path([0, 'id']))(res);
     }
 
-    return null;
+    throw new Error('Either an IMDB ID or a title required in query');
   };
 
   getMovieId = async (query: {
@@ -64,7 +64,7 @@ class Tmdb {
       return R.pipe(R.propOr([], 'results'), R.path([0, 'id']))(res);
     }
 
-    return null;
+    throw new Error('Either an IMDB ID or a title required in query');
   };
 
   getMovieInfo = async (id: number) => {

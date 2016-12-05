@@ -100,7 +100,7 @@
     "dotenv": "^2.0.0",
     "eslint": "^3.9.1",
     "eslint-config-anvilabs": "^2.0.1",
-    "flow-bin": "^0.35.0",
+    "flow-bin": "^0.36.0",
     "husky": "^0.11.9",
     "jest": "^17.0.0",
     "npm-run-all": "^3.1.1",

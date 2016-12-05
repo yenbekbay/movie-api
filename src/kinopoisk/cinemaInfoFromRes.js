@@ -14,6 +14,8 @@ const timestampForShowtime = (
   const timeMoment = moment(time, 'HH.mm');
   const dateMoment = moment(date, 'DD.MM.YYYY').utcOffset(utcOffset);
 
+  if (!dateMoment) return null;
+
   const hours = timeMoment.hours();
   const minutes = timeMoment.minutes();
 

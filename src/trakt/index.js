@@ -4,7 +4,10 @@ import R from 'ramda';
 
 import movieInfoFromRes from './movieInfoFromRes';
 import TraktConnector from './connector';
-import type { TraktApi$MovieStatsResponse } from './types';
+import type {
+  TraktApi$MovieStatsResponse,
+  TraktApi$MovieSummaryResponse,
+} from './types';
 import type { TraktConnectorConfig } from './connector';
 
 class Trakt {

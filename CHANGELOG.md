@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.11.0"></a>
+# [0.11.0](https://github.com/anvilabs/movie-api/compare/v0.10.2...v0.11.0) (2016-12-05)
+
+
+### Features
+
+* remove graphql querying functionality ([35f3e50](https://github.com/anvilabs/movie-api/commit/35f3e50))
+* **tmdb:** throw errors for invalid queries ([d1603b9](https://github.com/anvilabs/movie-api/commit/d1603b9))
+* **trakt:** add `getMovieInfo` method and rename `getId` to `getSlug` ([dfa778f](https://github.com/anvilabs/movie-api/commit/dfa778f))
+
+
+### BREAKING CHANGES
+
+* tmdb: `Tmdb#getTvShowId` and `Tmdb#getMovieId` will now throw errors instead of returning null if provided invalid queries
+* trakt: `Trakt#getId` has been replaced by `Trakt#getSlug`
+* the optional graphql query parameter, which has been available for many of the API's methods, no longer has any effect
+
+
+
 <a name="0.10.2"></a>
 ## [0.10.2](https://github.com/anvilabs/movie-api/compare/v0.10.1...v0.10.2) (2016-11-29)
 

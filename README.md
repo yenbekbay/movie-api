@@ -9,7 +9,7 @@
 
 > Get info for movies and TV shows
 
-Supported sources: [Kinopoisk](https://kinopoisk.ru), [TMDB](https://www.themoviedb.org/).
+Supported sources: [Kinopoisk](https://kinopoisk.ru), [TMDB](https://www.themoviedb.org), [IMDB (ratings and popularities)](http://imdb.com), [Trakt](http://trakt.tv).
 
 **Warning:** This module is experimental, and the API is likely to change.
 
@@ -161,7 +161,7 @@ const kp = new Kinopoisk();
 import { Tmdb } from 'movie-api';
 
 const tmdb = new Tmdb({
-  apiKey: process.env.TMDB_API_KEY,
+  apiKey: process.env.TMDB_API_KEY, // required, refer to https://www.themoviedb.org/faq/api
   language: 'ru', // optional, "ru" by default
 });
 
@@ -291,7 +291,7 @@ const tmdb = new Tmdb({
 import { Imdb } from 'movie-api';
 
 const imdb = new Imdb({
-  userId: process.env.IMDB_USER_ID,
+  userId: process.env.IMDB_USER_ID, // required, extract from your profile page url (should be in the following format: urXXXXXXXX)
 });
 
 (async () => {
@@ -315,15 +315,37 @@ const imdb = new Imdb({
 import { Trakt } from 'movie-api';
 
 const trakt = new Trakt({
-  apiKey: process.env.TRAKT_API_KEY,
+  apiKey: process.env.TRAKT_API_KEY, // required, refer to http://docs.trakt.apiary.io
 });
 
 (async () => {
-  const movieId = await trakt.getId({
+  const movieSlug = await trakt.getSlug({
     imdbId: 'tt2488496', // Star Wars: The Force Awakens
+    // or alternatively
+    // tmdbId: 140607',
   });
-  console.log(movieId);
+  console.log(movieSlug);
   // star-wars-the-force-awakens-2015
+
+  const movieInfo = await trakt.getMovieInfo(movieSlug);
+  console.log(movieInfo);
+  // { title: 'Star Wars: The Force Awakens',
+  //   year: 2015,
+  //   traktId: 94024,
+  //   traktSlug: 'star-wars-the-force-awakens-2015',
+  //   tmdbId: 140607,
+  //   imdbId: 'tt2488496',
+  //   tagline: 'Every generation has a story.',
+  //   synopsis: 'Thirty years after defeating the Galactic Empire, Han Solo and his allies face a new threat from the evil Kylo Ren and his army of Stormtroopers.',
+  //   releaseDate: '2015-12-18',
+  //   runtime: 136,
+  //   ytTrailerId: 'sGbxmsDFVnE',
+  //   homepage: 'http://www.starwars.com/films/star-wars-episode-vii',
+  //   traktRating: 8.23577,
+  //   traktRatingVoteCount: 20715,
+  //   originalLanguage: 'en',
+  //   genres: [ 'action', 'adventure', 'fantasy', 'science-fiction' ],
+  //   mpaaRating: 'PG-13' }
 
   const movieStats = await trakt.getMovieStats(movieId);
   console.log(movieStats);

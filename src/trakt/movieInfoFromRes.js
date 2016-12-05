@@ -17,7 +17,7 @@ const movieInfoFromRes = (
   synopsis: res.overview,
   releaseDate: res.released,
   runtime: res.runtime,
-  ytTrailerId: R.nth(1, (res.trailer || '').match(/^\/watch\?v=(.*)/) || []),
+  ytTrailerId: R.nth(1, (res.trailer || '').match(/\/watch\?v=(.*)/) || []),
   homepage: res.homepage,
   traktRating: res.rating,
   traktRatingVoteCount: res.votes,

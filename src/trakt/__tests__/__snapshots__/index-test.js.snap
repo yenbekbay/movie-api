@@ -1,6 +1,26 @@
-exports[`Trakt fetches movie id by imdb id 1`] = `"star-wars-the-force-awakens-2015"`;
+exports[`Trakt fetches movie info for a given trakt slug 1`] = `
+Object {
+  "genres": "Array<string>",
+  "homepage": "string",
+  "imdbId": "string",
+  "mpaaRating": "string",
+  "originalLanguage": "string",
+  "releaseDate": "string",
+  "runtime": "number",
+  "synopsis": "string",
+  "tagline": "string",
+  "title": "string",
+  "tmdbId": "number",
+  "traktId": "number",
+  "traktRating": "number",
+  "traktRatingVoteCount": "number",
+  "traktSlug": "string",
+  "year": "number",
+  "ytTrailerId": "string",
+}
+`;
 
-exports[`Trakt fetches movie stats for a given id 1`] = `
+exports[`Trakt fetches movie stats for a given trakt slug 1`] = `
 Object {
   "collectors": "number",
   "comments": "number",
@@ -11,9 +31,4 @@ Object {
 }
 `;
 
-exports[`Trakt formats movie stats response according to graphql query 1`] = `
-Object {
-  "votes": "number",
-  "watchers": "number",
-}
-`;
+exports[`Trakt fetches trakt slug by imdb id 1`] = `"star-wars-the-force-awakens-2015"`;

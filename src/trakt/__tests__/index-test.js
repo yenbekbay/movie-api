@@ -13,11 +13,17 @@ describe('Trakt', () => {
     trakt = new Trakt();
   });
 
-  it('fetches movie id by imdb id', async () => {
-    expect(await trakt.getId({ imdbId })).toMatchSnapshot();
+  it('fetches trakt slug by imdb id', async () => {
+    expect(await trakt.getSlug({ imdbId })).toMatchSnapshot();
   });
 
-  it('fetches movie stats for a given id', async () => {
+  it('fetches movie info for a given trakt slug', async () => {
+    expect(
+      modelFromObject(await trakt.getMovieInfo(traktId)),
+    ).toMatchSnapshot();
+  });
+
+  it('fetches movie stats for a given trakt slug', async () => {
     expect(
       modelFromObject(await trakt.getMovieStats(traktId)),
     ).toMatchSnapshot();

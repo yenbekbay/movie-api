@@ -34,9 +34,7 @@ class Kinopoisk {
       'getKPFilmDetailView', { filmID: filmId, still_limit: 100, sr: 1 },
     );
 
-    if (!res) return null;
-
-    return filmInfoFromRes(res);
+    return res ? filmInfoFromRes(res) : null;
   };
 
   getFilmId = async (query: SearchQuery): Promise<?number> => {
@@ -52,18 +50,14 @@ class Kinopoisk {
     const res: ?KinopoiskApi$GetStaffResponse =
       await this._connector.apiGet('getStaffList', { filmID: filmId });
 
-    if (!res) return null;
-
-    return filmCreditsFromRes(res);
+    return res ? filmCreditsFromRes(res) : null;
   };
 
   getFilmGallery = async (filmId: number) => {
     const res: ?KinopoiskApi$GetGalleryResponse =
       await this._connector.apiGet('getGallery', { filmID: filmId });
 
-    if (!res) return null;
-
-    return filmGalleryFromRes(res);
+    return res ? filmGalleryFromRes(res) : null;
   };
 
   getSimilarFilms = async (filmId: number) => {
@@ -73,9 +67,7 @@ class Kinopoisk {
         type: 'kp_similar_films',
       });
 
-    if (!res) return null;
-
-    return filmInfoListFromRes(res);
+    return res ? filmInfoListFromRes(res) : null;
   };
 
   getSupportedCountries = async () => {
@@ -145,9 +137,7 @@ class Kinopoisk {
         date,
       });
 
-    if (!res) return null;
-
-    return cinemaInfoFromRes(res, utcOffset);
+    return res ? cinemaInfoFromRes(res, utcOffset) : null;
   };
 }
 

@@ -32,7 +32,7 @@ class Trakt {
       return R.path([0, query.isTvShow ? 'show' : 'movie', 'ids', 'slug'], res);
     }
 
-    throw new Error('Either a IMDB ID or and TMDB ID required');
+    throw new Error('Either an IMDB ID or a TMDB ID required in query');
   };
 
   getMovieInfo = async (slug: string) => {

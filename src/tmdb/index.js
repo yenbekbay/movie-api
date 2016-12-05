@@ -73,9 +73,7 @@ class Tmdb {
       { append_to_response: ['credits', 'keywords', 'videos'].join(',') },
     );
 
-    if (!res) return null;
-
-    return movieInfoFromRes(res);
+    return res ? movieInfoFromRes(res) : null;
   };
 
   getTvShowInfo = async (id: number) => {
@@ -84,9 +82,7 @@ class Tmdb {
       { append_to_response: ['credits', 'keywords', 'videos'].join(',') },
     );
 
-    if (!res) return null;
-
-    return tvShowInfoFromRes(res);
+    return res ? tvShowInfoFromRes(res) : null;
   };
 }
 

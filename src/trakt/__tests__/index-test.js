@@ -22,15 +22,4 @@ describe('Trakt', () => {
       modelFromObject(await trakt.getMovieStats(traktId)),
     ).toMatchSnapshot();
   });
-
-  it('formats movie stats response according to graphql query', async () => {
-    const res = await trakt.getMovieStats(traktId, `
-      {
-        watchers
-        votes
-      }
-    `);
-
-    expect(modelFromObject(res)).toMatchSnapshot();
-  });
 });

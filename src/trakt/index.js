@@ -2,7 +2,6 @@
 
 import R from 'ramda';
 
-import { transformResWithGqlQuery } from '../utils';
 import TraktConnector from './connector';
 import type { TraktApi$MovieStatsResponse } from './types';
 import type { TraktConnectorConfig } from './connector';
@@ -22,14 +21,12 @@ class Trakt {
     return R.path([0, 'movie', 'ids', 'slug'], res);
   };
 
-  getMovieStats = async (id: string, query: void | string) => {
+  getMovieStats = async (id: string) => {
     const res: ?TraktApi$MovieStatsResponse = await this._connector.apiGet(
       `movies/${id}/stats`,
     );
 
-    if (!res) return null;
-
-    return transformResWithGqlQuery(res, query);
+    return res || null;
   };
 }
 

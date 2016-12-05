@@ -39,32 +39,7 @@ const kp = new Kinopoisk();
   console.log(movieId);
   // 714888
 
-  const movieInfo = await kp.getFilmInfo(
-    movieId,
-    // optionally specify desired fields with a GraphQL query
-    `
-      {
-        kpId
-        title
-        originalTitle
-        posterUrl
-        year
-        productionCountries
-        synopsis
-        runtime
-        genres
-        ageRating
-        mpaaRating
-        kpRating
-        kpRatingVoteCount
-        imdbRating
-        imdbRatingVoteCount
-        rtCriticsRating
-        rtCriticsRatingVoteCount
-        stills
-      }
-    `,
-  );
+  const movieInfo = await kp.getFilmInfo(movieId);
   console.log(util.inspect(movieInfo, { depth: null, maxArrayLength: 1 }));
   // { kpId: 714888,
   //   title: 'Звёздные войны: Пробуждение силы',
@@ -87,27 +62,7 @@ const kp = new Kinopoisk();
   //    [ 'http://st.kp.yandex.net/images/kadr/2751407.jpg',
   //      ... 99 more items ] }
 
-  const movieCredits = await kp.getFilmCredits(
-    movieId,
-    // optionally specify desired fields with a GraphQL query
-    `
-      {
-        cast { ...MemberProfile }
-        crew {
-          cinematographers { ...MemberProfile }
-          composers { ...MemberProfile }
-          directors { ...MemberProfile }
-          producers { ...MemberProfile }
-          writers { ...MemberProfile }
-        }
-      }
-
-      fragment MemberProfile on Member {
-        name
-        photoUrl
-      }
-    `,
-  );
+  const movieCredits = await kp.getFilmCredits(movieId);
   console.log(util.inspect(movieCredits, { depth: null, maxArrayLength: 1 }));
   // { cast:
   //     [ { name: 'Джон Бойега',
@@ -132,17 +87,7 @@ const kp = new Kinopoisk();
   //           photoUrl: 'http://st.kp.yandex.net/images/actor_iphone/iphone360_26537.jpg?d=20131017121035' },
   //         ... 3 more items ] } }
 
-  const movieGallery = await kp.getFilmGallery(
-    movieId,
-    // optionally specify desired fields with a GraphQL query
-    `
-      {
-        stills
-        posters
-        behindTheScenes
-      }
-    `,
-  );
+  const movieGallery = await kp.getFilmGallery(movieId);
   console.log(util.inspect(movieGallery, { depth: null, maxArrayLength: 1 }));
   // { stills:
   //     [ 'http://st.kp.yandex.net/images/kadr/2751407.jpg',
@@ -154,26 +99,7 @@ const kp = new Kinopoisk();
   //     [ 'http://st.kp.yandex.net/images/kadr/2751387.jpg',
   //       ... 46 more items ] }
 
-  const similarMovies = await kp.getSimilarFilms(
-    movieId,
-    // optionally specify desired fields with a GraphQL query
-    `
-      {
-        items {
-          kpId
-          title
-          originalTitle
-          posterUrl
-          year
-          productionCountries
-          runtime
-          genres
-          kpRating
-          kpRatingVoteCount
-        }
-      }
-    `,
-  );
+  const similarMovies = await kp.getSimilarFilms(movieId);
   console.log(util.inspect(similarMovies, { depth: null, maxArrayLength: 1 }));
   // { items:
   //     [ { kpId: 255129,
@@ -208,32 +134,11 @@ const kp = new Kinopoisk();
   //     location: { lat: 43.232695, lng: 76.879001 } },
   //   ... 27 more items ]
 
-  const cinemaInfo = await kp.getCinemaInfo(
-    {
-      cinemaId: 280616, // Есентай (Кинопарк 11) (Almaty, Kazakhstan)
-      date: '14.11.2016',
-      utcOffset: '+0600',
-    }, `
-      {
-        id
-        name
-        address
-        location {
-          lat
-          lng
-        }
-        showtimes {
-          filmId
-          items {
-            time
-            date
-            timestamp
-            formats
-          }
-        }
-      }
-    `,
-  );
+  const cinemaInfo = await kp.getCinemaInfo({
+    cinemaId: 280616, // Есентай (Кинопарк 11) (Almaty, Kazakhstan)
+    date: '14.11.2016',
+    utcOffset: '+0600',
+  });
   console.log(util.inspect(cinemaInfo, { depth: null, maxArrayLength: 1 }));
   // { id: 280616,
   //   name: 'Есентай (Кинопарк 11)',
@@ -278,62 +183,7 @@ const tmdb = new Tmdb({
   console.log(tvShowId);
   // 1399
 
-  const movieInfo = await tmdb.getMovieInfo(
-    movieId,
-    // optionally specify desired fields with a GraphQL query
-    `
-      {
-        backdropUrl
-        budget
-        genres
-        homepage
-        tmdbId
-        imdbId
-        originalLanguage
-        originalTitle
-        synopsis
-        tmdbPopularity
-        posterUrl
-        productionCompanies
-        productionCountries {
-          iso_3166_1
-          name
-        }
-        releaseDate
-        revenue
-        runtime
-        tagline
-        title
-        tmdbRating
-        tmdbRatingVoteCount
-        credits {
-          cast { ...MemberProfile }
-          crew {
-            cinematographers { ...MemberProfile }
-            composers { ...MemberProfile }
-            directors { ...MemberProfile }
-            producers { ...MemberProfile }
-            writers { ...MemberProfile }
-          }
-        }
-        keywords
-        videos {
-          iso_639_1
-          iso_3166_1
-          key
-          name
-          site
-          size
-          type
-        }
-      }
-
-      fragment MemberProfile on Member {
-        name
-        photoUrl
-      }
-    `,
-  );
+  const movieInfo = await tmdb.getMovieInfo(movieId);
   console.log(util.inspect(movieInfo, { depth: null, maxArrayLength: 1 }));
   // { backdropUrl: 'https://image.tmdb.org/t/p/w1000/c2Ax8Rox5g6CneChwy1gmu4UbSb.jpg',
   //   budget: 200000000,
@@ -386,64 +236,7 @@ const tmdb = new Tmdb({
   //        size: 720,
   //        type: 'Trailer' } ] }
 
-  const tvShowInfo = await tmdb.getTvShowInfo(
-    tvShowId,
-    // optionally specify desired fields with a GraphQL query
-    `
-      {
-        backdropUrl
-        createdBy { ...MemberProfile }
-        episodeRuntime
-        firstAirDate
-        genres
-        homepage
-        tmdbId
-        inProduction
-        languages
-        lastAirDate
-        name
-        networks
-        numberOfEpisodes
-        numberOfSeasons
-        originCountry
-        originalLanguage
-        originalName
-        synopsis
-        tmdbPopularity
-        posterUrl
-        productionCompanies
-        seasons {
-          airDate
-          episodeCount
-          posterUrl
-          seasonNumber
-        }
-        status
-        type
-        tmdbRating
-        tmdbRatingVoteCount
-        credits {
-          cast { ...MemberProfile }
-          crew { ...MemberProfile }
-        }
-        keywords
-        videos {
-          iso_639_1
-          iso_3166_1
-          key
-          name
-          site
-          size
-          type
-        }
-      }
-
-      fragment MemberProfile on Member {
-        name
-        photoUrl
-      }
-    `,
-  );
+  const tvShowInfo = await tmdb.getTvShowInfo(tvShowId);
   console.log(util.inspect(tvShowInfo, { depth: null, maxArrayLength: 1 }));
   // { backdropUrl: 'https://image.tmdb.org/t/p/w1000/mUkuc2wyV9dHLG0D0Loaw5pO2s8.jpg',
   //   createdBy:
@@ -532,20 +325,7 @@ const trakt = new Trakt({
   console.log(movieId);
   // star-wars-the-force-awakens-2015
 
-  const movieStats = await trakt.getMovieStats(
-    movieId,
-    // optionally specify desired fields with a GraphQL query
-    `
-      {
-        watchers
-        plays
-        collectors
-        comments
-        lists
-        votes
-      }
-    `,
-  );
+  const movieStats = await trakt.getMovieStats(movieId);
   console.log(movieStats);
   // { watchers: 'number',
   //   plays: 'number',

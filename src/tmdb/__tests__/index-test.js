@@ -39,34 +39,9 @@ describe('TMDB', () => {
     expect(modelFromObject(await tmdb.getMovieInfo(movieId))).toMatchSnapshot();
   });
 
-  it('formats movie info response according to graphql query', async () => {
-    const res = await tmdb.getMovieInfo(movieId, `
-      {
-        tmdbId
-        imdbId
-        title
-        synopsis
-      }
-    `);
-
-    expect(modelFromObject(res)).toMatchSnapshot();
-  });
-
   it('fetches tv show info from tmdb for a given id', async () => {
     expect(modelFromObject(
       await tmdb.getTvShowInfo(tvShowId),
     )).toMatchSnapshot();
-  });
-
-  it('formats tv show info response according to graphql query', async () => {
-    const res = await tmdb.getTvShowInfo(tvShowId, `
-      {
-        tmdbId
-        name
-        synopsis
-      }
-    `);
-
-    expect(modelFromObject(res)).toMatchSnapshot();
   });
 });

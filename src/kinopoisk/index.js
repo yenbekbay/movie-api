@@ -1,6 +1,5 @@
 /* @flow */
 
-import { transformResWithGqlQuery } from '../utils';
 import cinemaInfoFromRes from './cinemaInfoFromRes';
 import filmCreditsFromRes from './filmCreditsFromRes';
 import filmGalleryFromRes from './filmGalleryFromRes';
@@ -30,14 +29,14 @@ class Kinopoisk {
     this._connector = new KinopoiskConnector();
   }
 
-  getFilmInfo = async (filmId: number, query: void | string) => {
+  getFilmInfo = async (filmId: number) => {
     const res: ?KinopoiskApi$GetFilmResponse = await this._connector.apiGet(
       'getKPFilmDetailView', { filmID: filmId, still_limit: 100, sr: 1 },
     );
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(filmInfoFromRes(res), query);
+    return filmInfoFromRes(res);
   };
 
   getFilmId = async (query: SearchQuery): Promise<?number> => {
@@ -49,25 +48,25 @@ class Kinopoisk {
     return filmIdFromSearchResults(html, query);
   };
 
-  getFilmCredits = async (filmId: number, query: void | string) => {
+  getFilmCredits = async (filmId: number) => {
     const res: ?KinopoiskApi$GetStaffResponse =
       await this._connector.apiGet('getStaffList', { filmID: filmId });
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(filmCreditsFromRes(res), query);
+    return filmCreditsFromRes(res);
   };
 
-  getFilmGallery = async (filmId: number, query: void | string) => {
+  getFilmGallery = async (filmId: number) => {
     const res: ?KinopoiskApi$GetGalleryResponse =
       await this._connector.apiGet('getGallery', { filmID: filmId });
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(filmGalleryFromRes(res), query);
+    return filmGalleryFromRes(res);
   };
 
-  getSimilarFilms = async (filmId: number, query: void | string) => {
+  getSimilarFilms = async (filmId: number) => {
     const res: ?KinopoiskApi$GetFilmsListResponse =
       await this._connector.apiGet('getKPFilmsList', {
         filmID: filmId,
@@ -76,7 +75,7 @@ class Kinopoisk {
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(filmInfoListFromRes(res), query);
+    return filmInfoListFromRes(res);
   };
 
   getSupportedCountries = async () => {
@@ -134,7 +133,7 @@ class Kinopoisk {
     cinemaId: number,
     date?: string,
     utcOffset?: string,
-  }, query: void | string) => {
+  }) => {
     if (date && !/^\d{2}\.\d{2}\.\d{4}$/.test(date)) {
       // eslint-disable-next-line max-len
       throw new Error(`Invalid date "${date}". Please provide a date in the DD.MM.YYYY format`);
@@ -148,7 +147,7 @@ class Kinopoisk {
 
     if (!res) return null;
 
-    return transformResWithGqlQuery(cinemaInfoFromRes(res, utcOffset), query);
+    return cinemaInfoFromRes(res, utcOffset);
   };
 }
 

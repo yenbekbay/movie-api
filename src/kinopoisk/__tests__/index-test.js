@@ -28,18 +28,6 @@ describe('Kinopoisk', () => {
     expect(modelFromObject(await kp.getFilmInfo(filmId))).toMatchSnapshot();
   });
 
-  it('formats movie info response according to graphql query', async () => {
-    const res = await kp.getFilmInfo(filmId, `
-      {
-        kpId
-        title
-        synopsis
-      }
-    `);
-
-    expect(modelFromObject(res)).toMatchSnapshot();
-  });
-
   it('finds best movie id for a given query', async () => {
     expect(await kp.getFilmId(movieQuery)).toMatchSnapshot();
   }, 7000);
@@ -54,54 +42,12 @@ describe('Kinopoisk', () => {
     expect(modelFromObject(res)).toMatchSnapshot();
   });
 
-  it('formats movie credits response according to graphql query', async () => {
-    const res = await kp.getFilmCredits(filmId, `
-      {
-        cast { ...MemberProfile }
-        crew {
-          cinematographers { ...MemberProfile }
-        }
-      }
-
-      fragment MemberProfile on Member {
-        name
-        photoUrl
-      }
-    `);
-
-    expect(modelFromObject(res)).toMatchSnapshot();
-  });
-
   it('fetches movie gallery for a given id', async () => {
     expect(modelFromObject(await kp.getFilmGallery(filmId))).toMatchSnapshot();
   });
 
-  it('formats movie gallery response according to graphql query', async () => {
-    const res = await kp.getFilmGallery(filmId, `
-      {
-        stills
-        posters
-      }
-    `);
-
-    expect(modelFromObject(res)).toMatchSnapshot();
-  });
-
   it('fetches similar movies for a given id', async () => {
     const res = await kp.getSimilarFilms(filmId);
-
-    expect(modelFromObject(res)).toMatchSnapshot();
-  });
-
-  it('formats similar movies response according to graphql query', async () => {
-    const res = await kp.getSimilarFilms(filmId, `
-      {
-        items {
-          kpId
-          title
-        }
-      }
-    `);
 
     expect(modelFromObject(res)).toMatchSnapshot();
   });
@@ -130,28 +76,6 @@ describe('Kinopoisk', () => {
       date: moment().format('DD.MM.YYYY'),
       utcOffset: '+0600',
     });
-
-    expect(modelFromObject(res)).toMatchSnapshot();
-  });
-
-  it('formats cinema info response according to graphql query', async () => {
-    const res = await kp.getCinemaInfo(
-      {
-        cinemaId,
-        date: moment().format('DD.MM.YYYY'),
-        utcOffset: '+0600',
-      }, `
-        {
-          id
-          name
-          showtimes {
-            items {
-              timestamp
-            }
-          }
-        }
-      `,
-    );
 
     expect(modelFromObject(res)).toMatchSnapshot();
   });

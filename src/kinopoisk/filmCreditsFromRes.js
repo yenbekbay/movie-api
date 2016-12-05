@@ -31,8 +31,8 @@ const filmCreditsFromRes = (
   R.pick(['actor', 'director', 'producer', 'writer', 'composer', 'operator']),
   R.map(R.pipe(
     R.slice(0, 10),
-    R.map(({ nameRU, posterURL }: KinopoiskApi$CrewMember) => ({
-      name: nameRU,
+    R.map(({ nameRU, nameEN, posterURL }: KinopoiskApi$CrewMember) => ({
+      name: nameRU || nameEN,
       photoUrl: posterURL ? imageUrlFromPath(posterURL) : null,
     })),
   )),

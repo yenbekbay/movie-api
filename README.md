@@ -13,6 +13,16 @@ Supported sources: [Kinopoisk](https://kinopoisk.ru), [TMDB](https://www.themovi
 
 **Warning:** This module is experimental, and the API is likely to change.
 
+## Table of Contents
+
+- [Installation](#installation)
+- [Usage](#usage)
+  - [Kinopoisk example](#kinopoisk-example)
+  - [TMDB example](#tmdb-example)
+  - [IMDB example](#imdb-example)
+  - [Trakt example](#trakt-example)
+- [License](#license)
+
 ## Installation
 
 ```bash

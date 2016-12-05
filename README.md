@@ -31,16 +31,14 @@ import { Kinopoisk } from 'movie-api';
 const kp = new Kinopoisk();
 
 (async () => {
-  const movieId = await kp.getFilmId({
+  const kpFilmId = await kp.getFilmId({
     title: 'Звёздные войны: Пробуждение силы',
     year: 2015, // optionally specify release year
     countries: ['США'], // optionally specify production countries
   });
-  console.log(movieId);
   // 714888
 
-  const movieInfo = await kp.getFilmInfo(movieId);
-  console.log(util.inspect(movieInfo, { depth: null, maxArrayLength: 1 }));
+  const kpFilmInfo = await kp.getFilmInfo(kpFilmId);
   // { kpId: 714888,
   //   title: 'Звёздные войны: Пробуждение силы',
   //   originalTitle: 'Star Wars: Episode VII - The Force Awakens',
@@ -62,8 +60,7 @@ const kp = new Kinopoisk();
   //    [ 'http://st.kp.yandex.net/images/kadr/2751407.jpg',
   //      ... 99 more items ] }
 
-  const movieCredits = await kp.getFilmCredits(movieId);
-  console.log(util.inspect(movieCredits, { depth: null, maxArrayLength: 1 }));
+  const kpFilmCredits = await kp.getFilmCredits(kpFilmId);
   // { cast:
   //     [ { name: 'Джон Бойега',
   //         photoUrl: 'http://st.kp.yandex.net/images/actor_iphone/iphone360_2196854.jpg?d=20130703131657' },
@@ -87,8 +84,7 @@ const kp = new Kinopoisk();
   //           photoUrl: 'http://st.kp.yandex.net/images/actor_iphone/iphone360_26537.jpg?d=20131017121035' },
   //         ... 3 more items ] } }
 
-  const movieGallery = await kp.getFilmGallery(movieId);
-  console.log(util.inspect(movieGallery, { depth: null, maxArrayLength: 1 }));
+  const kpFilmGallery = await kp.getFilmGallery(kpFilmId);
   // { stills:
   //     [ 'http://st.kp.yandex.net/images/kadr/2751407.jpg',
   //       ... 136 more items ],
@@ -99,8 +95,7 @@ const kp = new Kinopoisk();
   //     [ 'http://st.kp.yandex.net/images/kadr/2751387.jpg',
   //       ... 46 more items ] }
 
-  const similarMovies = await kp.getSimilarFilms(movieId);
-  console.log(util.inspect(similarMovies, { depth: null, maxArrayLength: 1 }));
+  const kpSimilarMovies = await kp.getSimilarFilms(kpFilmId);
   // { items:
   //     [ { kpId: 255129,
   //         title: 'Звездный путь',
@@ -114,32 +109,28 @@ const kp = new Kinopoisk();
   //         kpRatingVoteCount: 104436 },
   //       ... 5 more items ] }
 
-  const countries = await kp.getSupportedCountries();
-  console.log(util.inspect(countries, { depth: null, maxArrayLength: 1 }));
+  const kpCountries = await kp.getSupportedCountries();
   // [ { id: 69, name: 'Беларусь' }, ... 4 more items ]
 
-  const cities = await kp.getSupportedCities(
+  const kpCities = await kp.getSupportedCities(
     122, // Kazakhstan
   );
-  console.log(util.inspect(cities, { depth: null, maxArrayLength: 1 }));
   // [ { id: 5546, name: 'Актау' }, ... 20 more items ]
 
-  const cinemas = await kp.getCinemasInCity(
+  const kpCinemas = await kp.getCinemasInCity(
     706, // Almaty, Kazakhstan
   );
-  console.log(util.inspect(cinemas, { depth: null, maxArrayLength: 1 }));
   // [ { id: 280504,
   //     name: 'Chaplin ADK 3D',
   //     address: 'ТРЦ «ADK» ул. Сатпаева, 90 (уг. ул. Тлендиева)',
   //     location: { lat: 43.232695, lng: 76.879001 } },
   //   ... 27 more items ]
 
-  const cinemaInfo = await kp.getCinemaInfo({
+  const kpCinemaInfo = await kp.getCinemaInfo({
     cinemaId: 280616, // Есентай (Кинопарк 11) (Almaty, Kazakhstan)
     date: '14.11.2016',
     utcOffset: '+0600',
   });
-  console.log(util.inspect(cinemaInfo, { depth: null, maxArrayLength: 1 }));
   // { id: 280616,
   //   name: 'Есентай (Кинопарк 11)',
   //   address: 'г. Алма-Ата, пр. Аль-Фараби, 77/7',
@@ -166,25 +157,14 @@ const tmdb = new Tmdb({
 });
 
 (async () => {
-  const movieId = await tmdb.getMovieId({
+  const tmdbMovieId = await tmdb.getMovieId({
     title: 'Star Wars: The Force Awakens',
     // or alternatively
     // imdbId: 'tt2488496',
   });
-  console.log(movieId);
   // 140607
 
-  const tvShowId = await tmdb.getTvShowId({
-    title: 'Game of Thrones',
-    // or alternatively
-    // imdbId: 'tt0944947',
-    isTvShow: true,
-  });
-  console.log(tvShowId);
-  // 1399
-
-  const movieInfo = await tmdb.getMovieInfo(movieId);
-  console.log(util.inspect(movieInfo, { depth: null, maxArrayLength: 1 }));
+  const tmdbMovieInfo = await tmdb.getMovieInfo(tmdbMovieId);
   // { backdropUrl: 'https://image.tmdb.org/t/p/w1000/c2Ax8Rox5g6CneChwy1gmu4UbSb.jpg',
   //   budget: 200000000,
   //   genres: [ 'боевик', ... 3 more items ],
@@ -236,8 +216,14 @@ const tmdb = new Tmdb({
   //        size: 720,
   //        type: 'Trailer' } ] }
 
-  const tvShowInfo = await tmdb.getTvShowInfo(tvShowId);
-  console.log(util.inspect(tvShowInfo, { depth: null, maxArrayLength: 1 }));
+  const tmdbTvShowId = await tmdb.getTvShowId({
+    title: 'Game of Thrones',
+    // or alternatively
+    // imdbId: 'tt0944947',
+  });
+  // 1399
+
+  const tmdbTvShowInfo = await tmdb.getTvShowInfo(tmdbTvShowId);
   // { backdropUrl: 'https://image.tmdb.org/t/p/w1000/mUkuc2wyV9dHLG0D0Loaw5pO2s8.jpg',
   //   createdBy:
   //    [ { name: 'David Benioff',
@@ -295,16 +281,14 @@ const imdb = new Imdb({
 });
 
 (async () => {
-  const movieRating = await imdb.getRating(
+  const imdbRating = await imdb.getRating(
     'tt2488496', // Star Wars: The Force Awakens
   );
-  console.log(movieRating);
   // { imdbRating: 8.2, imdbRatingVoteCount: 598161 }
 
-  const moviePopularity = await imdb.getPopularity(
+  const imdbPopularity = await imdb.getPopularity(
     'tt2488496', // Star Wars: The Force Awakens
   );
-  console.log(moviePopularity);
   // 81
 });
 ```
@@ -319,16 +303,14 @@ const trakt = new Trakt({
 });
 
 (async () => {
-  const movieSlug = await trakt.getSlug({
+  const traktMovieSlug = await trakt.getSlug({
     imdbId: 'tt2488496', // Star Wars: The Force Awakens
     // or alternatively
     // tmdbId: 140607',
   });
-  console.log(movieSlug);
   // star-wars-the-force-awakens-2015
 
-  const movieInfo = await trakt.getMovieInfo(movieSlug);
-  console.log(movieInfo);
+  const traktMovieInfo = await trakt.getMovieInfo(traktMovieSlug);
   // { title: 'Star Wars: The Force Awakens',
   //   year: 2015,
   //   traktId: 94024,
@@ -347,14 +329,13 @@ const trakt = new Trakt({
   //   genres: [ 'action', 'adventure', 'fantasy', 'science-fiction' ],
   //   mpaaRating: 'PG-13' }
 
-  const movieStats = await trakt.getMovieStats(movieId);
-  console.log(movieStats);
-  // { watchers: 'number',
-  //   plays: 'number',
-  //   collectors: 'number',
-  //   comments: 'number',
-  //   lists: 'number',
-  //   votes: 'number' }
+  const traktMovieStats = await trakt.getMovieStats(traktMovieSlug);
+  // { watchers: 93693,
+  //   plays: 168161,
+  //   collectors: 42595,
+  //   comments: 122,
+  //   lists: 26231,
+  //   votes: 20715 }
 });
 ```
 

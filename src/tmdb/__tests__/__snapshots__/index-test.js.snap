@@ -160,20 +160,3 @@ Object {
   "videos": Array [],
 }
 `;
-
-exports[`TMDB formats movie info response according to graphql query 1`] = `
-Object {
-  "imdbId": "string",
-  "synopsis": "string",
-  "title": "string",
-  "tmdbId": "number",
-}
-`;
-
-exports[`TMDB formats tv show info response according to graphql query 1`] = `
-Object {
-  "name": "string",
-  "synopsis": "string",
-  "tmdbId": "number",
-}
-`;

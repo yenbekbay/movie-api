@@ -1,8 +1,18 @@
 /* @flow */
 
-import { __filterResults } from '../filmIdFromSearchResults';
+import {
+  __isSimilarToQuery,
+  __filterResults,
+} from '../filmIdFromSearchResults';
 
 describe('kinopoisk/filmIdFromSearchResults', () => {
+  it('checks strings for similarity', () => {
+    expect(__isSimilarToQuery(
+      'Star Wars: Episode VII - The Force Awakens',
+      'Star Wars: The Force Awakens',
+    )).toBe(true);
+  });
+
   it('filters results', () => {
     /* eslint-disable max-len */
     expect(__filterResults({ title: 'foo' }, [

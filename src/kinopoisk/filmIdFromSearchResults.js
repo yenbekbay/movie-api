@@ -2,6 +2,7 @@
 
 import R from 'ramda';
 import similarity from 'similarity';
+import words from 'lodash.words';
 
 export type SearchQuery = {
   title: string,
@@ -16,6 +17,27 @@ type SearchResult = {
   originalTitle?: ?string,
   countries: Array<string>,
   year: number,
+};
+
+const isSimilarToQuery = (str: string, query: string): boolean => {
+  if (similarity(str, query) >= 0.8) return true;
+
+  const strWords = words(str);
+  const queryWords = words(query);
+
+  const diff = R.reduce(
+    (acc: Array<string>, val: string) => {
+      if (R.contains(val, acc)) {
+        return R.remove(R.indexOf(val, acc), 1, acc);
+      }
+
+      return acc;
+    },
+    queryWords,
+    strWords,
+  );
+
+  return diff.length === 0;
 };
 
 const scrapeResults = (
@@ -54,8 +76,8 @@ const filterResults = (
 ): Array<SearchResult> => R.filter(R.allPass([
   Boolean,
   ({ title, originalTitle }: SearchResult) =>
-    similarity(title, query.title) >= 0.8 ||
-    (originalTitle && similarity(originalTitle, query.title) >= 0.8),
+    isSimilarToQuery(title, query.title) ||
+    (originalTitle && isSimilarToQuery(originalTitle, query.title)),
   (query.year
     ? ({ year }: SearchResult) => year === query.year
     : R.always(true)),
@@ -75,6 +97,7 @@ const filmIdFromSearchResults = (html: string, query: SearchQuery) => R.pipe(
 )(html);
 
 export {
+  isSimilarToQuery as __isSimilarToQuery,
   scrapeResults as __scrapeResults,
   filterResults as __filterResults,
 };

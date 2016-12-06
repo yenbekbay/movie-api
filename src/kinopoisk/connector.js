@@ -6,10 +6,10 @@ import DataLoader from 'dataloader';
 import moment from 'moment';
 import PromiseThrottle from 'promise-throttle';
 import R from 'ramda';
-import randomUseragent from 'random-useragent';
 import rp from 'request-promise-native';
 
 import { applyQueryToUrl } from '../utils';
+import HtmlConnector from '../HtmlConnector';
 
 const KINOPOISK_API_ROOT = 'https://ext.kinopoisk.ru/ios/3.11.0';
 const KINOPOISK_API_KEY = 'a17qbcw1du0aedm';
@@ -61,7 +61,7 @@ type Endpoint =
 type Rp = (options: Object) => Promise<any>;
 type Loader = { load: (url: string) => Promise<any> };
 
-class KinopoiskConnector {
+class KinopoiskConnector extends HtmlConnector {
   _apiRp: Rp = rp.defaults({
     headers: {
       'Android-Api-Version': '22',
@@ -88,15 +88,12 @@ class KinopoiskConnector {
     promiseImplementation: Promise,
   });
 
-  _htmlRp: Rp = rp.defaults({
-    headers: { 'User-Agent': randomUseragent.getRandom() },
-    gzip: true,
-  });
-
-  _htmlThrottleQueue = new PromiseThrottle({
-    requestsPerSecond: 2,
-    promiseImplementation: Promise,
-  });
+  constructor() {
+    super({
+      rootUrl: KINOPOISK_PLUS_ROOT,
+      rps: 2,
+    });
+  }
 
   apiLoader: Loader = new DataLoader(
     (urls: Array<string>) => this._apiThrottleQueue.addAll(
@@ -115,14 +112,6 @@ class KinopoiskConnector {
     },
   );
 
-  htmlLoader: Loader = new DataLoader(
-    (urls: Array<string>) => this._htmlThrottleQueue.addAll(
-      urls.map((url: string) => () => this._htmlRp({ uri: url })),
-    ), {
-      batch: false,
-    },
-  );
-
   apiGet = async (
     endpoint: Endpoint,
     query: void | { [key: string]: mixed },
@@ -135,13 +124,6 @@ class KinopoiskConnector {
 
     return R.prop('data')(json);
   };
-
-  htmlGet = (
-    path: string,
-    query: void | { [key: string]: mixed },
-  ) => this.htmlLoader.load(
-    applyQueryToUrl(`${KINOPOISK_PLUS_ROOT}/${path}`, query),
-  );
 }
 
 export default KinopoiskConnector;

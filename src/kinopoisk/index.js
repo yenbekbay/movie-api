@@ -38,12 +38,12 @@ class Kinopoisk {
   };
 
   getFilmId = async (query: SearchQuery): Promise<?number> => {
-    const html = await this._connector.htmlGet(
+    const $ = await this._connector.htmlGet(
       `search/${query.isTvShow ? 'series' : 'films'}`,
       { text: query.title },
     );
 
-    return filmIdFromSearchResults(html, query);
+    return filmIdFromSearchResults($, query);
   };
 
   getFilmCredits = async (filmId: number) => {

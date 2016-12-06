@@ -1,6 +1,5 @@
 /* @flow */
 
-import cheerio from 'cheerio';
 import R from 'ramda';
 
 import ImdbConnector from './connector';
@@ -30,9 +29,7 @@ class Imdb {
   };
 
   getPopularity = async (imdbId: string) => {
-    const html = await this._connector.htmlGet(`title/${imdbId}`);
-
-    const $ = cheerio.load(html);
+    const $ = await this._connector.htmlGet(`title/${imdbId}`);
 
     const popularity = $(
       '.titleReviewBar > div:last-child .titleReviewBarSubItem .subText',

@@ -1,6 +1,5 @@
 /* @flow */
 
-import cheerio from 'cheerio';
 import R from 'ramda';
 import similarity from 'similarity';
 
@@ -19,37 +18,35 @@ type SearchResult = {
   year: number,
 };
 
-const scrapeResults = (html: string): Array<SearchResult> => {
-  const $ = cheerio.load(html);
+const scrapeResults = (
+  $: () => Object,
+): Array<SearchResult> => $('.film-snippet')
+  .get()
+  .map((snippet: any) => {
+    const titleNode = $(snippet).find('.film-snippet__title-link');
+    const id = parseInt(
+      R.nth(1, titleNode.attr('href').match(/\/film\/(.+)\//) || []),
+      10,
+    );
 
-  return $('.film-snippet')
-    .get()
-    .map((snippet: any) => {
-      const titleNode = $(snippet).find('.film-snippet__title-link');
-      const id = parseInt(
-        R.nth(1, titleNode.attr('href').match(/\/film\/(.+)\//) || []),
-        10,
-      );
+    if (isNaN(id)) return null;
 
-      if (isNaN(id)) return null;
+    const infoNode = $(snippet).find('.film-snippet__info');
+    const title = $(snippet).find('meta[itemprop="name"]').attr('content');
+    const originalTitle = $(snippet)
+      .find('meta[itemprop="alternateName"]')
+      .attr('content');
+    const countries = R.pipe(
+      R.split(','),
+      R.map(R.trim),
+      R.filter(
+        (country: ?string) => !!country && isNaN(parseInt(country, 10)),
+      ),
+    )(infoNode.text());
+    const year = parseInt(R.head(infoNode.text().match(/\d+/) || []), 10);
 
-      const infoNode = $(snippet).find('.film-snippet__info');
-      const title = $(snippet).find('meta[itemprop="name"]').attr('content');
-      const originalTitle = $(snippet)
-        .find('meta[itemprop="alternateName"]')
-        .attr('content');
-      const countries = R.pipe(
-        R.split(','),
-        R.map(R.trim),
-        R.filter(
-          (country: ?string) => !!country && isNaN(parseInt(country, 10)),
-        ),
-      )(infoNode.text());
-      const year = parseInt(R.head(infoNode.text().match(/\d+/) || []), 10);
-
-      return { id, title, originalTitle, countries, year };
-    });
-};
+    return { id, title, originalTitle, countries, year };
+  });
 
 const filterResults = (
   query: SearchQuery,

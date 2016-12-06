@@ -4,6 +4,7 @@ import cheerio from 'cheerio';
 import DataLoader from 'dataloader';
 import PromiseThrottle from 'promise-throttle';
 import randomUseragent from 'random-useragent';
+import retry from 'async-retry';
 import rp from 'request-promise-native';
 
 class HtmlConnector {
@@ -30,11 +31,22 @@ class HtmlConnector {
 
   htmlLoader: { load: (url: string) => Promise<any> } = new DataLoader(
     (opts: Array<string>) => this._htmlThrottleQueue.addAll(
-      opts.map((options: string) => async () => {
-        const res = await this._htmlRp(JSON.parse(options));
+      opts.map((options: string) => () => retry(
+        async (bail: (err: Error) => Promise<any>) => {
+          try {
+            const res = await this._htmlRp(JSON.parse(options));
 
-        return cheerio.load(res);
-      }),
+            return cheerio.load(res);
+          } catch (err) {
+            if (err.statusCode === 403) {
+              return bail(err);
+            }
+
+            throw err;
+          }
+        },
+        { retries: 5 },
+      )),
     ), {
       batch: false,
     },

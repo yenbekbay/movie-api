@@ -42,14 +42,7 @@
   dependencies:
     "@types/request" "*"
 
-"@types/request@*":
-  version "0.0.33"
-  resolved "https://registry.yarnpkg.com/@types/request/-/request-0.0.33.tgz#6f5e780af6ca547d268c42bd610dd12cf3db2903"
-  dependencies:
-    "@types/form-data" "*"
-    "@types/node" "*"
-
-"@types/request@^0.0.36":
+"@types/request@*", "@types/request@^0.0.36":
   version "0.0.36"
   resolved "https://registry.yarnpkg.com/@types/request/-/request-0.0.36.tgz#e845870fc5fa372402d9f5c19fccc4ca0a5af543"
   dependencies:
@@ -245,6 +238,13 @@ assert-plus@^1.0.0:
 async-each@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/async-each/-/async-each-1.0.1.tgz#19d386a1d9edc6e7c1c85d388aedbcc56d33602d"
+
+async-retry@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/async-retry/-/async-retry-0.2.1.tgz#a8ca3a101bc146dd75de5e6464263f26c1fcd44f"
+  dependencies:
+    babel-runtime "6.5.0"
+    retry "0.9.0"
 
 async@1.x, async@^1.4.0, async@^1.4.2:
   version "1.5.2"
@@ -916,6 +916,12 @@ babel-register@^6.18.0:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
+babel-runtime@6.5.0:
+  version "6.5.0"
+  resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.5.0.tgz#fb7c1889069bd9f8200238a9bc6ad5b5e8ab5bfb"
+  dependencies:
+    core-js "^1.2.0"
+
 babel-runtime@^6.0.0, babel-runtime@^6.11.6, babel-runtime@^6.18.0, babel-runtime@^6.9.0, babel-runtime@^6.9.1:
   version "6.18.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.18.0.tgz#0f4177ffd98492ef13b9f823e9994a02584c9078"
@@ -1407,6 +1413,10 @@ conventional-recommended-bump@^0.3.0:
 convert-source-map@^1.1.0:
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/convert-source-map/-/convert-source-map-1.3.0.tgz#e9f3e9c6e2728efc2676696a70eb382f73106a67"
+
+core-js@^1.2.0:
+  version "1.2.7"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-1.2.7.tgz#652294c14651db28fa93bd2d5ff2983a4f08c636"
 
 core-js@^2.4.0:
   version "2.4.1"
@@ -4123,6 +4133,10 @@ restore-cursor@^1.0.1:
   dependencies:
     exit-hook "^1.0.0"
     onetime "^1.0.0"
+
+retry@0.9.0:
+  version "0.9.0"
+  resolved "https://registry.yarnpkg.com/retry/-/retry-0.9.0.tgz#6f697e50a0e4ddc8c8f7fb547a9b60dead43678d"
 
 right-align@^0.1.1:
   version "0.1.3"

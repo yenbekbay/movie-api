@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.13.0"></a>
+# [0.13.0](https://github.com/anvilabs/movie-api/compare/v0.12.0...v0.13.0) (2016-12-06)
+
+
+### Features
+
+* **kinopoisk:** improve search accuracy ([a6b0674](https://github.com/anvilabs/movie-api/commit/a6b0674))
+
+
+
 <a name="0.12.0"></a>
 # [0.12.0](https://github.com/anvilabs/movie-api/compare/v0.11.1...v0.12.0) (2016-12-06)
 

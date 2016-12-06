@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.12.0"></a>
+# [0.12.0](https://github.com/anvilabs/movie-api/compare/v0.11.1...v0.12.0) (2016-12-06)
+
+
+### Features
+
+* retry html requests when applicable ([d6ab4aa](https://github.com/anvilabs/movie-api/commit/d6ab4aa))
+
+
+
 <a name="0.11.1"></a>
 ## [0.11.1](https://github.com/anvilabs/movie-api/compare/v0.11.0...v0.11.1) (2016-12-05)
 

@@ -1,7 +1,5 @@
 /* @flow */
 
-import R from 'ramda';
-
 import { imageUrlFromPath, parseRuntime } from './utils';
 import type {
   KinopoiskApi$FilmsListItem,
@@ -17,9 +15,9 @@ const filmInfoListFromRes = (
     originalTitle: item.nameEN,
     posterUrl: item.posterURL ? imageUrlFromPath(item.posterURL) : null,
     year: parseInt(item.year, 10),
-    productionCountries: item.country
-      ? item.country.split(', ').map(R.trim)
-      : [],
+    productionCountries: (item.country || '')
+      .split(', ')
+      .map((country: string) => country.trim()),
     runtime: parseRuntime(item.filmLength),
     genres: (item.genre || '').split(', '),
     kpRating: parseFloat(item.rating),

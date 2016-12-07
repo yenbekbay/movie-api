@@ -16,7 +16,9 @@ const filmInfoFromRes = (
   originalTitle: res.nameEN,
   posterUrl: res.posterURL ? imageUrlFromPath(res.posterURL) : null,
   year: parseInt(res.year, 10),
-  productionCountries: res.country ? res.country.split(', ').map(R.trim) : [],
+  productionCountries: (res.country || '')
+    .split(', ')
+    .map((country: string) => country.trim()),
   synopsis: res.description,
   runtime: parseRuntime(res.filmLength),
   genres: (res.genre || '').split(', '),

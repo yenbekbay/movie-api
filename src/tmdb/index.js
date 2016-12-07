@@ -67,19 +67,25 @@ class Tmdb {
     throw new Error('Either an IMDB ID or a title required in query');
   };
 
-  getMovieInfo = async (id: number) => {
+  getMovieInfo = async (id: number, language: void | string) => {
     const res: ?TmdbApi$GetMovieDetailsResponse = await this._connector.apiGet(
       `movie/${id}`,
-      { append_to_response: ['credits', 'keywords', 'videos'].join(',') },
+      {
+        append_to_response: ['credits', 'keywords', 'videos'].join(','),
+        language: language || undefined,
+      },
     );
 
     return res ? movieInfoFromRes(res) : null;
   };
 
-  getTvShowInfo = async (id: number) => {
+  getTvShowInfo = async (id: number, language: void | string) => {
     const res: ?Object = await this._connector.apiGet(
       `tv/${id}`,
-      { append_to_response: ['credits', 'keywords', 'videos'].join(',') },
+      {
+        append_to_response: ['credits', 'keywords', 'videos'].join(','),
+        language: language || undefined,
+      },
     );
 
     return res ? tvShowInfoFromRes(res) : null;

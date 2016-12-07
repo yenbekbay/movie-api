@@ -43,8 +43,8 @@ const kp = new Kinopoisk();
 (async () => {
   const kpFilmId = await kp.getFilmId({
     title: 'Звёздные войны: Пробуждение силы',
-    year: 2015, // optionally specify release year
-    countries: ['США'], // optionally specify production countries
+    year: 2015, // optional
+    countries: ['США'], // optional
   });
   // 714888
 
@@ -174,7 +174,11 @@ const tmdb = new Tmdb({
   });
   // 140607
 
-  const tmdbMovieInfo = await tmdb.getMovieInfo(tmdbMovieId);
+  const tmdbMovieInfo = await tmdb.getMovieInfo(
+    tmdbMovieId,
+    // optionally override requested language
+    // 'en',
+  );
   // { backdropUrl: 'https://image.tmdb.org/t/p/w1000/c2Ax8Rox5g6CneChwy1gmu4UbSb.jpg',
   //   budget: 200000000,
   //   genres: [ 'боевик', ... 3 more items ],
@@ -233,7 +237,11 @@ const tmdb = new Tmdb({
   });
   // 1399
 
-  const tmdbTvShowInfo = await tmdb.getTvShowInfo(tmdbTvShowId);
+  const tmdbTvShowInfo = await tmdb.getTvShowInfo(
+    tmdbTvShowId,
+    // optionally override requested language
+    // 'en',
+  );
   // { backdropUrl: 'https://image.tmdb.org/t/p/w1000/mUkuc2wyV9dHLG0D0Loaw5pO2s8.jpg',
   //   createdBy:
   //    [ { name: 'David Benioff',

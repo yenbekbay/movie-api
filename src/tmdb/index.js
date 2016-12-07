@@ -19,7 +19,7 @@ class Tmdb {
     title?: string,
     year?: number,
     imdbId?: string,
-  }) => {
+  }): Promise<?number> => {
     if (query.imdbId) {
       const res = await this._connector.apiGet(
         `find/${query.imdbId}`,
@@ -45,7 +45,7 @@ class Tmdb {
     title?: string,
     year?: number,
     imdbId?: string,
-  }) => {
+  }): Promise<?number> => {
     if (query.imdbId) {
       const res = await this._connector.apiGet(
         `find/${query.imdbId}`,

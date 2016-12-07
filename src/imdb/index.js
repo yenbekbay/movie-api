@@ -5,6 +5,11 @@ import R from 'ramda';
 import ImdbConnector from './connector';
 import type { ImdbConnectorConfig } from './connector';
 
+type ImdbRating = {
+  imdbRating: ?number,
+  imdbRatingVoteCount: ?number,
+};
+
 class Imdb {
   _connector: ImdbConnector;
 
@@ -12,19 +17,17 @@ class Imdb {
     this._connector = new ImdbConnector(config);
   }
 
-  getRating = async (imdbId: string) => {
+  getRating = async (imdbId: string): Promise<ImdbRating> => {
     const res = await this._connector.ratingsGet(imdbId);
 
     return R.pipe(
       R.propOr('{}', '1'),
       JSON.parse,
       R.prop('resource'),
-      (resource: ?Object) => (
-        !resource ? {} : {
-          imdbRating: resource.rating,
-          imdbRatingVoteCount: resource.ratingCount,
-        }
-      ),
+      (resource: ?Object) => ({
+        imdbRating: resource ? resource.rating : NaN,
+        imdbRatingVoteCount: resource ? resource.ratingCount : NaN,
+      }),
     )(res.match(/^imdb\.rating\.run\((.*)\)$/));
   };
 

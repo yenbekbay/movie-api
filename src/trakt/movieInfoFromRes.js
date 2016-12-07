@@ -4,6 +4,10 @@ import R from 'ramda';
 
 import type { TraktApi$MovieSummaryResponse } from './types';
 
+const trailerYtTrailerIdFromRes = (
+  res: TraktApi$MovieSummaryResponse,
+): ?string => R.nth(1, (res.trailer || '').match(/\/watch\?v=(.*)/) || []);
+
 const movieInfoFromRes = (
   res: TraktApi$MovieSummaryResponse,
 ) => ({
@@ -17,7 +21,7 @@ const movieInfoFromRes = (
   synopsis: res.overview,
   releaseDate: res.released,
   runtime: res.runtime,
-  ytTrailerId: R.nth(1, (res.trailer || '').match(/\/watch\?v=(.*)/) || []),
+  ytTrailerId: trailerYtTrailerIdFromRes(res),
   homepage: res.homepage,
   traktRating: res.rating,
   traktRatingVoteCount: res.votes,

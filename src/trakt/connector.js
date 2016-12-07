@@ -4,7 +4,7 @@ import DataLoader from 'dataloader';
 import PromiseThrottle from 'promise-throttle';
 import rp from 'request-promise-native';
 
-import { userAgent, applyQueryToUrl } from '../utils';
+import { userAgent } from '../utils';
 import env from '../env';
 
 const TRAKT_API_ROOT = 'https://api.trakt.tv';
@@ -39,8 +39,10 @@ class TraktConnector {
   });
 
   apiLoader: { load: (url: string) => Promise<any> } = new DataLoader(
-    (urls: Array<string>) => this._throttleQueue.addAll(
-      urls.map((url: string) => () => this._rp({ uri: url })),
+    (optionsHashes: Array<string>) => this._throttleQueue.addAll(
+      optionsHashes.map(
+        (optionsHash: string) => () => this._rp(JSON.parse(optionsHash)),
+      ),
     ), {
       batch: false,
     },
@@ -50,7 +52,10 @@ class TraktConnector {
     endpoint: string,
     query: void | { [key: string]: mixed },
   ) => this.apiLoader.load(
-    applyQueryToUrl(`${TRAKT_API_ROOT}/${endpoint}`, query),
+    JSON.stringify({
+      uri: `${TRAKT_API_ROOT}/${endpoint}`,
+      qs: query || {},
+    }),
   );
 }
 

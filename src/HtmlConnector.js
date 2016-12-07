@@ -30,11 +30,11 @@ class HtmlConnector {
   }
 
   htmlLoader: { load: (url: string) => Promise<any> } = new DataLoader(
-    (opts: Array<string>) => this._htmlThrottleQueue.addAll(
-      opts.map((options: string) => () => retry(
+    (optionsHashes: Array<string>) => this._htmlThrottleQueue.addAll(
+      optionsHashes.map((optionsHash: string) => () => retry(
         async (bail: (err: Error) => Promise<any>) => {
           try {
-            const res = await this._htmlRp(JSON.parse(options));
+            const res = await this._htmlRp(JSON.parse(optionsHash));
 
             return cheerio.load(res);
           } catch (err) {

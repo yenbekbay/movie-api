@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.14.0"></a>
+# [0.14.0](https://github.com/anvilabs/movie-api/compare/v0.13.0...v0.14.0) (2016-12-07)
+
+
+### Features
+
+* **tmdb:** add an ability to override language for responses ([7755f4f](https://github.com/anvilabs/movie-api/commit/7755f4f))
+* add missing flow typings ([a54c433](https://github.com/anvilabs/movie-api/commit/a54c433))
+
+
+
 <a name="0.13.0"></a>
 # [0.13.0](https://github.com/anvilabs/movie-api/compare/v0.12.0...v0.13.0) (2016-12-06)
 

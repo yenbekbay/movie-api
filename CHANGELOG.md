@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.14.2"></a>
+## [0.14.2](https://github.com/anvilabs/movie-api/compare/v0.14.1...v0.14.2) (2016-12-13)
+
+
+### Bug Fixes
+
+* **kinopoisk:** account for missing `ratingData` in `getFilm`'s response ([7ccb86c](https://github.com/anvilabs/movie-api/commit/7ccb86c))
+
+
+
 <a name="0.14.1"></a>
 ## [0.14.1](https://github.com/anvilabs/movie-api/compare/v0.14.0...v0.14.1) (2016-12-07)
 

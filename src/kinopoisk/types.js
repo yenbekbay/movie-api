@@ -1,6 +1,14 @@
 /* @flow */
 
 export type KinopoiskApi$MovieType = 'KPFilm' | 'KPSerial';
+export type KinopoiskApi$RatingData = {
+  rating?: ?string,
+  ratingVoteCount?: ?(string | number),
+  ratingIMDb?: ?string,
+  ratingIMDbVoteCount?: ?(string | number),
+  ratingFilmCritics?: ?string,
+  ratingFilmCriticsVoteCount?: ?(string | number),
+};
 export type KinopoiskApi$GalleryItem = {
   preview: string,
 };
@@ -79,14 +87,7 @@ export type KinopoiskApi$GetFilmResponse = {
   nameRU: string,
   posterURL?: ?string,
   ratingAgeLimits?: ?string,
-  ratingData: {
-    rating?: ?string,
-    ratingVoteCount?: ?(string | number),
-    ratingIMDb?: ?string,
-    ratingIMDbVoteCount?: ?(string | number),
-    ratingFilmCritics?: ?string,
-    ratingFilmCriticsVoteCount?: ?(string | number),
-  },
+  ratingData?: ?KinopoiskApi$RatingData,
   ratingMPAA?: ?string,
   slogan?: ?string,
   type: KinopoiskApi$MovieType,

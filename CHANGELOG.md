@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.14.3"></a>
+## [0.14.3](https://github.com/anvilabs/movie-api/compare/v0.14.2...v0.14.3) (2016-12-21)
+
+
+### Bug Fixes
+
+* **kinopoisk:** use fallback values for missing api results ([a02b0ac](https://github.com/anvilabs/movie-api/commit/a02b0ac))
+
+
+
 <a name="0.14.2"></a>
 ## [0.14.2](https://github.com/anvilabs/movie-api/compare/v0.14.1...v0.14.2) (2016-12-13)
 

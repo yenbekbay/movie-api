@@ -53,7 +53,7 @@ const showtimesFromRes = (
 const cinemaInfoFromRes = (
   { cinemaDetail }: KinopoiskApi$GetCinemaDetailView,
   utcOffset: ?string,
-) => (!cinemaDetail ? {} : ({
+) => (!cinemaDetail ? null : ({
   id: parseInt(cinemaDetail.cinemaID, 10),
   name: cinemaDetail.cinemaName,
   address: (cinemaDetail.cinemaLocation || {}).addressDescription,

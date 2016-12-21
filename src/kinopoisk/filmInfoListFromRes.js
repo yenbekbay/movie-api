@@ -7,9 +7,9 @@ import type {
 } from './types';
 
 const filmInfoListFromRes = (
-  { items }: KinopoiskApi$GetFilmsListResponse,
+  { items = [] }: KinopoiskApi$GetFilmsListResponse,
 ) => ({
-  items: (items || []).map((item: KinopoiskApi$FilmsListItem) => ({
+  items: items.map((item: KinopoiskApi$FilmsListItem) => ({
     kpId: parseInt(item.id, 10),
     title: item.nameRU,
     originalTitle: item.nameEN,

@@ -19,11 +19,11 @@ const imageUrlFromGalleryItem = (
 );
 
 const filmGalleryFromRes = ({
-  gallery: { kadr, poster, kadr_sp: kadrSp } = {},
+  gallery: { kadr = [], poster = [], kadr_sp: kadrSp = [] } = {},
 }: KinopoiskApi$GetGalleryResponse): Gallery => ({
-  stills: (kadr || []).map(imageUrlFromGalleryItem),
-  posters: (poster || []).map(imageUrlFromGalleryItem),
-  behindTheScenes: (kadrSp || []).map(imageUrlFromGalleryItem),
+  stills: kadr.map(imageUrlFromGalleryItem),
+  posters: poster.map(imageUrlFromGalleryItem),
+  behindTheScenes: kadrSp.map(imageUrlFromGalleryItem),
 });
 
 export default filmGalleryFromRes;

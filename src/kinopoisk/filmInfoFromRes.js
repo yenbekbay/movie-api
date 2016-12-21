@@ -13,8 +13,8 @@ const filmInfoFromRes = (
 
   return {
     kpId: parseInt(res.filmID, 10),
-    title: res.nameRU,
-    originalTitle: res.nameEN,
+    title: res.nameRU || null,
+    originalTitle: res.nameEN || null,
     posterUrl: res.posterURL ? imageUrlFromPath(res.posterURL) : null,
     year: parseInt(res.year, 10),
     productionCountries: (res.country || '')

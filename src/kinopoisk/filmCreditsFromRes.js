@@ -24,7 +24,7 @@ type Credits = {
 };
 
 const filmCreditsFromRes = (
-  { creators }: KinopoiskApi$GetStaffResponse,
+  { creators = [] }: KinopoiskApi$GetStaffResponse,
 ): Credits => R.pipe(
   R.flatten,
   R.groupBy(R.prop('professionKey')),
@@ -37,13 +37,13 @@ const filmCreditsFromRes = (
     })),
   )),
   ({ actor, director, producer, writer, composer, operator }: Object) => ({
-    cast: actor,
+    cast: actor || [],
     crew: {
-      directors: director,
-      producers: producer,
-      writers: writer,
-      composers: composer,
-      cinematographers: operator,
+      directors: director || [],
+      producers: producer || [],
+      writers: writer || [],
+      composers: composer || [],
+      cinematographers: operator || [],
     },
   }),
 )(creators);

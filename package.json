@@ -45,7 +45,7 @@
       "lcov"
     ],
     "setupFiles": [
-      "scripts/jest-env.js"
+      "./scripts/jest-env.js"
     ],
     "testEnvironment": "node",
     "testPathDirs": [

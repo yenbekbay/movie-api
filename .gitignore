@@ -19,3 +19,7 @@ coverage
 # Private environment variables
 #
 /.env
+
+# ESLint
+#
+/.eslintcache

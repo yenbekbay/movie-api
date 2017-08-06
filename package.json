@@ -31,10 +31,21 @@
     "clean": "rimraf lib && mkdir lib",
     "build": "yarn clean && babel --out-dir lib --ignore **/__tests__,**/__mocks__ src && yarn build:flow",
     "build:flow": "find src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
+    "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "yarn test",
     "release": "standard-version",
     "prepublish": "yarn build"
+  },
+  "lint-staged": {
+    "{*.js,{scripts,src}/**/*.js}": [
+      "eslint --cache --fix",
+      "git add"
+    ],
+    "{*.json,.vscode/*.json}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "jest": {
     "collectCoverageFrom": [
@@ -89,6 +100,7 @@
     "flow-bin": "^0.52.0",
     "husky": "^0.14.3",
     "jest": "^20.0.4",
+    "lint-staged": "^4.0.2",
     "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
     "rimraf": "^2.6.1",

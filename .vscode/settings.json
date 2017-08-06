@@ -2,10 +2,19 @@
   "editor.renderWhitespace": "boundary",
   "editor.rulers": [80],
   "editor.tabSize": 2,
-
-  "files.exclude": {
-    "coverage": true
+  "[json]": {
+    "editor.formatOnSave": true
   },
 
-  "javascript.validate.enable": false
+  "eslint.autoFixOnSave": true,
+
+  "files.exclude": {
+    "coverage/": true,
+    "lib/": true,
+    ".eslintcache": true
+  },
+
+  "javascript.validate.enable": false,
+
+  "prettier.javascriptEnable": []
 }

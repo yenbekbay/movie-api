@@ -1,18 +1,21 @@
 # macOS
+#
 .DS_Store
 
 # node.js
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules/
-
-# Logs
-*.log
-
-# Private environment variables
-.env
+#
+/node_modules/
+/npm-debug.log
+/yarn-error.log
 
 # Coverage directory used by jest
+#
 coverage
 
 # Compiled files
-lib
+#
+/lib/
+
+# Private environment variables
+#
+/.env

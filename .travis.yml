@@ -1,19 +1,17 @@
 language: node_js
 node_js:
-- '7'
-install:
-- npm install -g yarn
-- yarn
+  - node
 cache:
+  yarn: true
   directories:
-  - "~/.yarn-cache"
-  - "~/.nvm"
-script:
-- yarn run test:ci
+    - node_modules
 branches:
   only:
-  - master
+    - master
 notifications:
   email: false
   slack:
+    on_pull_requests: false
     secure: X0Qzu/dTBdcWcpCUZCOfvfmUJ7WHmTZpphj2aLclMIkxwKXhHThKcNB+XlJqVpu8aPEnrpyRGP+yT0XDpf+byUmuCAdIBhDQty/AHWpRAECr33cX0gao/Jycee/NrZjCsO2hgcKVSIeYM7vELXEktXENzBad8aWQ9Mxzpy780Wukz0ZW9Zdw6aBJvRBRvxtfLFzMWO+zN718kubwYZPLe3Jw6nunCSMZIiQyZrcZzC0JmwMANGcUSnuM0chJjuhL5bmmJMadz/1nv4Lif5UjOXCoEM0hP2he/TLXDcF6I6O79/XoY/C8VJMJ9y2dzDC8/ETPWjCPbBTVgvovfEKo/2NGyFSCtzXjxCtt/d/rEh68exzzFjUBAosjFXzvAnKGoPZuct2WFGCSGt6F4WOCT/dkwmHVdqNNSYYcHTBrItipsDBpFINgerLKsemm4ObXB2a4mmkTCh7tntidkPQ9k3aW/5GF5vQRPvy1tk2uFdjGFP696LEfwsOE/xZDz6yLiR4xPDZ5ukZI+CXQ2optIV9b2iTYjRSdFmiCfgyRohLxkihd/BRao1X1nOhZAdS3L1g8VSj0ykga52gsvNIAlOwmmdM8kXaqxhTy2AQk4COoff4xuBH7XXhmnebeJ7tVYJBvVeqO0/ZcKENtJ5tq2dHUaypDtZ1zoq7OJKz6oaI=
+script:
+  - yarn test:ci

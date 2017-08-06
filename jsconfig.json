@@ -1,10 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es6",
+    "noLib": true,
     "allowSyntheticDefaultImports": true
   },
-  "exclude": [
-    "flow-typed",
-    "node_modules"
-  ]
+  "include": ["*.js", "scripts/**/*.js", "src/**/*.js"]
 }

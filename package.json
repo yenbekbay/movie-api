@@ -19,6 +19,7 @@
   "main": "lib/index.js",
   "files": ["lib/"],
   "scripts": {
+    "sync-types": "flow-typed install --overwrite --skip",
     "typecheck": "flow .",
     "lint": "eslint --cache .",
     "lint:fix": "eslint --cache --fix .",
@@ -83,6 +84,7 @@
     "eslint": "^4.4.0",
     "eslint-config-anvilabs": "^11.0.0",
     "flow-bin": "^0.52.0",
+    "flow-typed": "^2.1.5",
     "husky": "^0.14.3",
     "jest": "^20.0.4",
     "lint-staged": "^4.0.2",
@@ -90,6 +92,7 @@
     "prettier": "^1.5.3",
     "rimraf": "^2.6.1",
     "standard-version": "^4.2.0",
+    "type-detect": "^4.0.3",
     "validate-commit-msg": "^2.14.0"
   }
 }

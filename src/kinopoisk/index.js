@@ -20,7 +20,7 @@ import type {
   KinopoiskApi$GetGalleryResponse,
   KinopoiskApi$GetStaffResponse,
 } from './types';
-import type { SearchQuery } from './filmIdFromSearchResults';
+import type {SearchQuery} from './filmIdFromSearchResults';
 
 class Kinopoisk {
   _connector: KinopoiskConnector;
@@ -31,111 +31,130 @@ class Kinopoisk {
 
   getFilmInfo = async (filmId: number) => {
     const res: ?KinopoiskApi$GetFilmResponse = await this._connector.apiGet(
-      'getKPFilmDetailView', { filmID: filmId, still_limit: 100, sr: 1 },
+      'getKPFilmDetailView',
+      {filmID: filmId, still_limit: 100, sr: 1},
     );
 
     return res ? filmInfoFromRes(res) : null;
   };
 
-  getFilmId = async (query: SearchQuery): Promise<?number> => {
+  getFilmId = async (query: SearchQuery) => {
     const $ = await this._connector.htmlGet(
       `search/${query.isTvShow ? 'series' : 'films'}`,
-      { text: query.title },
+      {text: query.title},
     );
 
     return filmIdFromSearchResults($, query);
   };
 
   getFilmCredits = async (filmId: number) => {
-    const res: ?KinopoiskApi$GetStaffResponse =
-      await this._connector.apiGet('getStaffList', { filmID: filmId });
+    const res: ?KinopoiskApi$GetStaffResponse = await this._connector.apiGet(
+      'getStaffList',
+      {filmID: filmId},
+    );
 
     return res ? filmCreditsFromRes(res) : null;
   };
 
   getFilmGallery = async (filmId: number) => {
-    const res: ?KinopoiskApi$GetGalleryResponse =
-      await this._connector.apiGet('getGallery', { filmID: filmId });
+    const res: ?KinopoiskApi$GetGalleryResponse = await this._connector.apiGet(
+      'getGallery',
+      {filmID: filmId},
+    );
 
     return res ? filmGalleryFromRes(res) : null;
   };
 
   getSimilarFilms = async (filmId: number) => {
-    const res: ?KinopoiskApi$GetFilmsListResponse =
-      await this._connector.apiGet('getKPFilmsList', {
+    const res: ?KinopoiskApi$GetFilmsListResponse = await this._connector.apiGet(
+      'getKPFilmsList',
+      {
         filmID: filmId,
         type: 'kp_similar_films',
-      });
+      },
+    );
 
     return res ? filmInfoListFromRes(res) : null;
   };
 
   getSupportedCountries = async () => {
-    const res: ?KinopoiskApi$GetCountryViewResponse =
-      await this._connector.apiGet('getKPCountryView');
+    const res: ?KinopoiskApi$GetCountryViewResponse = await this._connector.apiGet(
+      'getKPCountryView',
+    );
 
     if (!res) return null;
 
     return res.countryData.map(
-      ({ countryID, countryName }: KinopoiskApi$Country,
-    ) => ({
-      id: parseInt(countryID, 10),
-      name: countryName,
-    }));
+      ({countryID, countryName}: KinopoiskApi$Country) => ({
+        id: parseInt(countryID, 10),
+        name: countryName,
+      }),
+    );
   };
 
   getSupportedCities = async (countryId: number) => {
-    const res: ?KinopoiskApi$GetAllCitiesViewResponse =
-      await this._connector.apiGet('getKPAllCitiesView', {
+    const res: ?KinopoiskApi$GetAllCitiesViewResponse = await this._connector.apiGet(
+      'getKPAllCitiesView',
+      {
         countryID: countryId,
-      });
+      },
+    );
 
     if (!res) return null;
 
-    return (res.cityData || []).map(
-      ({ cityID, cityName }: KinopoiskApi$City,
-    ) => ({
-      id: parseInt(cityID, 10),
-      name: cityName,
-    }));
+    return (res.cityData || [])
+      .map(({cityID, cityName}: KinopoiskApi$City) => ({
+        id: parseInt(cityID, 10),
+        name: cityName,
+      }));
   };
 
   getCinemasInCity = async (cityId: number) => {
-    const res: ?KinopoiskApi$GetCinemasResponse =
-      await this._connector.apiGet('getKPCinemas', {
+    const res: ?KinopoiskApi$GetCinemasResponse = await this._connector.apiGet(
+      'getKPCinemas',
+      {
         cityID: cityId,
-      });
+      },
+    );
 
     if (!res) return null;
 
-    return (res.items || []).map(({
-      cinemaID, cinemaName, address, lon, lat,
-    }: KinopoiskApi$Cinema) => ({
-      id: parseInt(cinemaID, 10),
-      name: cinemaName,
-      address,
-      location: {
-        lat: parseFloat(lat),
-        lng: parseFloat(lon),
-      },
-    }));
+    return (res.items || [])
+      .map(
+        ({cinemaID, cinemaName, address, lon, lat}: KinopoiskApi$Cinema) => ({
+          id: parseInt(cinemaID, 10),
+          name: cinemaName,
+          address,
+          location: {
+            lat: parseFloat(lat),
+            lng: parseFloat(lon),
+          },
+        }),
+      );
   };
 
-  getCinemaInfo = async ({ cinemaId, date, utcOffset }: {
+  getCinemaInfo = async ({
+    cinemaId,
+    date,
+    utcOffset,
+  }: {
     cinemaId: number,
     date?: string,
     utcOffset?: string,
   }) => {
     if (date && !/^\d{2}\.\d{2}\.\d{4}$/.test(date)) {
-      // eslint-disable-next-line max-len
-      throw new Error(`Invalid date "${date}". Please provide a date in the DD.MM.YYYY format`);
+      throw new Error(
+        `Invalid date "${date}". Please provide a date in the DD.MM.YYYY format`,
+      );
     }
 
-    const res: ?KinopoiskApi$GetCinemaDetailView =
-      await this._connector.apiGet('getKPCinemaDetailView', {
+    const res: ?KinopoiskApi$GetCinemaDetailView = await this._connector.apiGet(
+      'getKPCinemaDetailView',
+      {
         cinemaID: cinemaId,
         date,
-      });
+      },
+    );
 
     return res ? cinemaInfoFromRes(res, utcOffset) : null;
   };

@@ -2,7 +2,7 @@
 
 import moment from 'moment';
 
-import { modelFromObject } from '../../test-utils';
+import {modelFromObject} from '../../test-utils';
 import Kinopoisk from '../';
 
 const filmId = 714888; // Star Wars: The Force Awakens
@@ -28,13 +28,23 @@ describe('Kinopoisk', () => {
     expect(modelFromObject(await kp.getFilmInfo(filmId))).toMatchSnapshot();
   });
 
-  it('finds best movie id for a given query', async () => {
-    expect(await kp.getFilmId(movieQuery)).toMatchSnapshot();
-  }, 7000);
+  it(
+    'finds best movie id for a given query',
+    async () => {
+      expect(await kp.getFilmId(movieQuery)).toMatchSnapshot();
+    },
+    // $FlowFixMe
+    7000,
+  );
 
-  it('finds best tv show id for a given query', async () => {
-    expect(await kp.getFilmId(tvShowQuery)).toMatchSnapshot();
-  }, 7000);
+  it(
+    'finds best tv show id for a given query',
+    async () => {
+      expect(await kp.getFilmId(tvShowQuery)).toMatchSnapshot();
+    },
+    // $FlowFixMe
+    7000,
+  );
 
   it('fetches movie credits for a given id', async () => {
     const res = await kp.getFilmCredits(filmId);
@@ -55,19 +65,19 @@ describe('Kinopoisk', () => {
   it('fetches supported countries', async () => {
     const res = await kp.getSupportedCountries();
 
-    expect(modelFromObject({ countries: res })).toMatchSnapshot();
+    expect(modelFromObject({countries: res})).toMatchSnapshot();
   });
 
   it('fetches supported cities for a given country id', async () => {
     const res = await kp.getSupportedCities(countryId);
 
-    expect(modelFromObject({ cities: res })).toMatchSnapshot();
+    expect(modelFromObject({cities: res})).toMatchSnapshot();
   });
 
   it('fetches cinemas for a given city id', async () => {
     const res = await kp.getCinemasInCity(cityId);
 
-    expect(modelFromObject({ cinemas: res })).toMatchSnapshot();
+    expect(modelFromObject({cinemas: res})).toMatchSnapshot();
   });
 
   it('fetches cinema info for given arguments', async () => {

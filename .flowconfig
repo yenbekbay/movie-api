@@ -9,7 +9,6 @@
 flow-typed/
 
 [lints]
-sketchy-null=error
 untyped-type-import=error
 
 [options]

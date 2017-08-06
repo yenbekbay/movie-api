@@ -1,7 +1,7 @@
 /* @flow */
 
 import ImdbConnector from './connector';
-import type { ImdbConnectorConfig } from './connector';
+import type {ImdbConnectorConfig} from './connector';
 
 type ImdbRating = {
   imdbRating: ?number,
@@ -17,8 +17,8 @@ class Imdb {
 
   getRating = async (imdbId: string): Promise<ImdbRating> => {
     const res: string = await this._connector.ratingsGet(imdbId);
-    const rawJson: ?string =
-      (res.match(/^imdb\.rating\.run\((.*)\)$/) || [])[1];
+    const rawJson: ?string = (res.match(/^imdb\.rating\.run\((.*)\)$/) ||
+      [])[1];
     const json: ?{
       resource?: {
         ratingCount: number,
@@ -35,8 +35,9 @@ class Imdb {
 
   getPopularity = async (imdbId: string) => {
     const $ = await this._connector.htmlGet(`title/${imdbId}`);
-    const popularityHtml: ?string =
-      $('.titleReviewBar > div:last-child .titleReviewBarSubItem .subText').html(); // eslint-disable-line max-len
+    const popularityHtml: ?string = $(
+      '.titleReviewBar > div:last-child .titleReviewBarSubItem .subText',
+    ).html();
     const popularityText: ?string = popularityHtml
       ? (popularityHtml.replace(',', '').match(/\d+/) || [])[0]
       : null;

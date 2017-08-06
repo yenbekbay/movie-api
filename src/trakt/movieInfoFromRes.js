@@ -2,15 +2,13 @@
 
 import R from 'ramda';
 
-import type { TraktApi$MovieSummaryResponse } from './types';
+import type {TraktApi$MovieSummaryResponse} from './types';
 
 const trailerYtTrailerIdFromRes = (
   res: TraktApi$MovieSummaryResponse,
 ): ?string => R.nth(1, (res.trailer || '').match(/\/watch\?v=(.*)/) || []);
 
-const movieInfoFromRes = (
-  res: TraktApi$MovieSummaryResponse,
-) => ({
+const movieInfoFromRes = (res: TraktApi$MovieSummaryResponse) => ({
   title: res.title,
   year: res.year,
   traktId: res.ids.trakt,

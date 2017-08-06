@@ -1,14 +1,13 @@
 /* @flow */
 
-import { imageUrlFromPath, parseRuntime } from './utils';
+import {imageUrlFromPath, parseRuntime} from './utils';
 import type {
   KinopoiskApi$GalleryItem,
   KinopoiskApi$GetFilmResponse,
 } from './types';
 
-const filmInfoFromRes = (
-  res: KinopoiskApi$GetFilmResponse,
-) => {
+// eslint-disable-next-line complexity
+const filmInfoFromRes = (res: KinopoiskApi$GetFilmResponse) => {
   const ratingData = res.ratingData || {};
 
   return {
@@ -27,21 +26,23 @@ const filmInfoFromRes = (
     mpaaRating: res.ratingMPAA || null,
     kpRating: parseFloat(ratingData.rating),
     kpRatingVoteCount: parseInt(
-      String(ratingData.ratingVoteCount || '').replace(' ', ''), 10,
+      String(ratingData.ratingVoteCount || '').replace(' ', ''),
+      10,
     ),
     imdbRating: parseFloat(ratingData.ratingIMDb),
     imdbRatingVoteCount: parseInt(
-      String(ratingData.ratingIMDbVoteCount || '').replace(' ', ''), 10,
+      String(ratingData.ratingIMDbVoteCount || '').replace(' ', ''),
+      10,
     ),
     rtCriticsRating: parseInt(ratingData.ratingFilmCritics, 10),
     rtCriticsRatingVoteCount: parseInt(
-      String(ratingData.ratingFilmCriticsVoteCount || '').replace(' ', ''), 10,
+      String(ratingData.ratingFilmCriticsVoteCount || '').replace(' ', ''),
+      10,
     ),
-    stills: (res.gallery || []).map(
-      ({ preview }: KinopoiskApi$GalleryItem) => imageUrlFromPath(
-        preview.replace('kadr/sm_', 'kadr/'),
+    stills: (res.gallery || [])
+      .map(({preview}: KinopoiskApi$GalleryItem) =>
+        imageUrlFromPath(preview.replace('kadr/sm_', 'kadr/')),
       ),
-    ),
   };
 };
 

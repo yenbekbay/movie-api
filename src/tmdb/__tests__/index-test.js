@@ -1,6 +1,6 @@
 /* @flow */
 
-import { modelFromObject } from '../../test-utils';
+import {modelFromObject} from '../../test-utils';
 import Tmdb from '../index';
 
 const movieId = 140607; // Star Wars: The Force Awakens
@@ -14,25 +14,31 @@ describe('TMDB', () => {
   });
 
   it('fetches movie id by imdb id', async () => {
-    expect(await tmdb.getMovieId({ imdbId: 'tt2488496' })).toMatchSnapshot();
+    expect(await tmdb.getMovieId({imdbId: 'tt2488496'})).toMatchSnapshot();
   });
 
   it('fetches movie id by title', async () => {
-    expect(await tmdb.getMovieId({
-      title: 'Star Wars: The Force Awakens',
-    })).toMatchSnapshot();
+    expect(
+      await tmdb.getMovieId({
+        title: 'Star Wars: The Force Awakens',
+      }),
+    ).toMatchSnapshot();
   });
 
   it('fetches tv show id by imdb id', async () => {
-    expect(await tmdb.getTvShowId({
-      imdbId: 'tt0944947',
-    })).toMatchSnapshot();
+    expect(
+      await tmdb.getTvShowId({
+        imdbId: 'tt0944947',
+      }),
+    ).toMatchSnapshot();
   });
 
   it('fetches tv show id by title', async () => {
-    expect(await tmdb.getTvShowId({
-      title: 'Game of Thrones',
-    })).toMatchSnapshot();
+    expect(
+      await tmdb.getTvShowId({
+        title: 'Game of Thrones',
+      }),
+    ).toMatchSnapshot();
   });
 
   it('fetches movie info from tmdb for a given id', async () => {
@@ -40,8 +46,8 @@ describe('TMDB', () => {
   });
 
   it('fetches tv show info from tmdb for a given id', async () => {
-    expect(modelFromObject(
-      await tmdb.getTvShowInfo(tvShowId),
-    )).toMatchSnapshot();
+    expect(
+      modelFromObject(await tmdb.getTvShowInfo(tvShowId)),
+    ).toMatchSnapshot();
   });
 });

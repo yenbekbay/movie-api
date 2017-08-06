@@ -1,6 +1,6 @@
 /* @flow */
 
-import { modelFromObject } from '../../test-utils';
+import {modelFromObject} from '../../test-utils';
 import Trakt from '../index';
 
 const imdbId = 'tt2488496'; // Star Wars: The Force Awakens
@@ -14,7 +14,7 @@ describe('Trakt', () => {
   });
 
   it('fetches trakt slug by imdb id', async () => {
-    expect(await trakt.getSlug({ imdbId })).toMatchSnapshot();
+    expect(await trakt.getSlug({imdbId})).toMatchSnapshot();
   });
 
   it('fetches movie info for a given trakt slug', async () => {

@@ -1,5 +1,6 @@
 /* @flow */
 
+// eslint-disable-next-line no-process-env
 const optionalEnvVariable = (variableName: string) => process.env[variableName];
 const requiredEnvVariable = (variableName: string) => {
   const variable = optionalEnvVariable(variableName);
@@ -11,8 +12,10 @@ const requiredEnvVariable = (variableName: string) => {
   return variable;
 };
 
-export default {
+const env = {
   getTmdbApiKey: () => requiredEnvVariable('TMDB_API_KEY'),
   getImdbUserId: () => requiredEnvVariable('IMDB_USER_ID'),
   getTraktApiKey: () => requiredEnvVariable('TRAKT_API_KEY'),
 };
+
+export default env;

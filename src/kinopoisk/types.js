@@ -56,7 +56,7 @@ export type KinopoiskApi$Cinema = {
 };
 export type KinopoiskApi$Showtime = {
   time: string,
-  formats: { format: Array<string> },
+  formats: {format: Array<string>},
 };
 export type KinopoiskApi$MovieShowtimes = {
   class: 'KPSeanceCell',
@@ -134,7 +134,7 @@ export type KinopoiskApi$GetCinemaDetailView = {
       lat: string,
       addressDescription: string,
     },
-    phones: Array<{ phone: string }>,
+    phones: Array<{phone: string}>,
     cinemaWeb?: ?string,
     cinemaUrl: string,
     seance?: {

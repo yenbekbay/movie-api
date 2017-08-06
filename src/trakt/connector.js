@@ -4,7 +4,7 @@ import DataLoader from 'dataloader';
 import PromiseThrottle from 'promise-throttle';
 import rp from 'request-promise-native';
 
-import { userAgent } from '../utils';
+import {userAgent} from '../utils';
 import env from '../env';
 
 const TRAKT_API_ROOT = 'https://api.trakt.tv';
@@ -19,7 +19,7 @@ class TraktConnector {
   _language: string;
   _rp: (options: Object) => Promise<any>;
 
-  constructor({ apiKey }: TraktConnectorConfig = {}) {
+  constructor({apiKey}: TraktConnectorConfig = {}) {
     this._apiKey = apiKey || env.getTraktApiKey();
 
     this._rp = rp.defaults({
@@ -38,25 +38,25 @@ class TraktConnector {
     promiseImplementation: Promise,
   });
 
-  apiLoader: { load: (url: string) => Promise<any> } = new DataLoader(
-    (optionsHashes: Array<string>) => this._throttleQueue.addAll(
-      optionsHashes.map(
-        (optionsHash: string) => () => this._rp(JSON.parse(optionsHash)),
+  apiLoader: DataLoader<string, any> = new DataLoader(
+    (optionsHashes: Array<string>) =>
+      this._throttleQueue.addAll(
+        optionsHashes.map((optionsHash: string) => () =>
+          this._rp(JSON.parse(optionsHash)),
+        ),
       ),
-    ), {
+    {
       batch: false,
     },
   );
 
-  apiGet = (
-    endpoint: string,
-    query: void | { [key: string]: mixed },
-  ) => this.apiLoader.load(
-    JSON.stringify({
-      uri: `${TRAKT_API_ROOT}/${endpoint}`,
-      qs: query || {},
-    }),
-  );
+  apiGet = (endpoint: string, query: void | {[key: string]: mixed}) =>
+    this.apiLoader.load(
+      JSON.stringify({
+        uri: `${TRAKT_API_ROOT}/${endpoint}`,
+        qs: query || {},
+      }),
+    );
 }
 
 export default TraktConnector;

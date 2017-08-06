@@ -16,11 +16,9 @@ const getUserAgent = () => {
   return 'movie-api';
 };
 
-const applyQueryToUrl = (
-  url: string,
-  query: { [key: string]: mixed } = {},
-) => `${url}?${querystring.stringify(query)}`;
+const applyQueryToUrl = (url: string, query: {[key: string]: mixed} = {}) =>
+  `${url}?${querystring.stringify(query)}`;
 
 const userAgent = getUserAgent();
 
-export { userAgent, applyQueryToUrl };
+export {userAgent, applyQueryToUrl};

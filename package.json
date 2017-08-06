@@ -14,27 +14,26 @@
     "url": "http://yenbekbay.me"
   },
   "engines": {
-    "node": ">=6.0",
-    "npm": ">=3.0"
+    "node": ">=6.0.0"
   },
   "main": "lib/index.js",
   "files": [
     "lib/"
   ],
   "scripts": {
-    "build": "yarn run clean && babel --out-dir ./lib --ignore **/__tests__,**/__mocks__ ./src && npm run build:flow",
-    "build:flow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
-    "clean": "rimraf lib && mkdir lib",
-    "prepublish": "yarn run build",
-    "test": "npm-run-all --parallel typecheck lint jest",
-    "test:ci": "npm-run-all --parallel typecheck lint jest:coverage && codecov",
+    "typecheck": "flow ./src",
+    "lint": "eslint ./src",
     "jest": "jest",
     "jest:coverage": "jest --coverage",
-    "lint": "eslint ./src",
-    "typecheck": "flow ./src",
+    "test": "run-p --silent typecheck lint jest",
+    "test:ci": "run-p --silent typecheck lint jest:coverage && codecov",
+    "clean": "rimraf lib && mkdir lib",
+    "build": "yarn clean && babel --out-dir ./lib --ignore **/__tests__,**/__mocks__ ./src && yarn build:flow",
+    "build:flow": "find ./src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
     "commitmsg": "validate-commit-msg",
     "prepush": "yarn test",
-    "release": "standard-version"
+    "release": "standard-version",
+    "prepublish": "yarn build"
   },
   "jest": {
     "collectCoverageFrom": [

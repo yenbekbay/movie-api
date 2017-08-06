@@ -17,9 +17,7 @@
     "node": ">=6.0.0"
   },
   "main": "lib/index.js",
-  "files": [
-    "lib/"
-  ],
+  "files": ["lib/"],
   "scripts": {
     "typecheck": "flow .",
     "lint": "eslint --cache .",
@@ -28,9 +26,10 @@
     "jest:coverage": "jest --coverage",
     "test": "run-p --silent typecheck lint jest",
     "test:ci": "run-p --silent typecheck lint jest:coverage && codecov",
-    "clean": "rimraf lib && mkdir lib",
-    "build": "yarn clean && babel --out-dir lib --ignore **/__tests__,**/__mocks__ src && yarn build:flow",
-    "build:flow": "find src -name '*.js' -not -path '*/__*' | while read filepath; do cp $filepath `echo $filepath | sed 's/\\/src\\//\\/lib\\//g'`.flow; done",
+    "clean:build": "rimraf lib && mkdir lib",
+    "build:babel": "babel --out-dir lib --ignore **/__tests__,**/__mocks__ src",
+    "build:flow": "find src -type f -name '*.js' -not -path '*/__*' -exec sh -c 'cp $0 $(echo $0 | sed \"s/src\\//lib\\//g\").flow' {} \\;",
+    "build": "yarn clean:build && yarn build:babel && yarn build:flow",
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "yarn test",
@@ -38,28 +37,14 @@
     "prepublish": "yarn build"
   },
   "lint-staged": {
-    "{*.js,{scripts,src}/**/*.js}": [
-      "eslint --cache --fix",
-      "git add"
-    ],
-    "{*.json,.vscode/*.json}": [
-      "prettier --write",
-      "git add"
-    ]
+    "{*.js,{scripts,src}/**/*.js}": ["eslint --cache --fix", "git add"],
+    "{*.json,.vscode/*.json}": ["prettier --write", "git add"]
   },
   "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.js"
-    ],
-    "coverageReporters": [
-      "lcov"
-    ],
-    "roots": [
-      "<rootDir>/src"
-    ],
-    "setupFiles": [
-      "./scripts/jest-env.js"
-    ],
+    "collectCoverageFrom": ["src/**/*.js"],
+    "coverageReporters": ["lcov"],
+    "roots": ["<rootDir>/src"],
+    "setupFiles": ["./scripts/jest-env.js"],
     "testEnvironment": "node",
     "testRegex": "/__tests__/.*-test\\.js$"
   },

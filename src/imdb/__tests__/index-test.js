@@ -1,6 +1,6 @@
 /* @flow */
 
-import {modelFromObject} from '../../test-utils';
+import {modelFromObject} from '../../testUtils';
 import Imdb from '../index';
 
 const movieId = 'tt3330764'; // Star Wars: The Force Awakens

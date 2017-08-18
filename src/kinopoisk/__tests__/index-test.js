@@ -2,7 +2,7 @@
 
 import moment from 'moment';
 
-import {modelFromObject} from '../../test-utils';
+import {modelFromObject} from '../../testUtils';
 import Kinopoisk from '../';
 
 const filmId = 714888; // Star Wars: The Force Awakens

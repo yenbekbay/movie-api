@@ -5,7 +5,6 @@
 [![Coverage Status](https://img.shields.io/codecov/c/github/anvilabs/movie-api.svg)](https://codecov.io/gh/anvilabs/movie-api)
 [![Dependency Status](https://img.shields.io/david/anvilabs/movie-api.svg)](https://david-dm.org/anvilabs/movie-api)
 [![devDependency Status](https://img.shields.io/david/dev/anvilabs/movie-api.svg)](https://david-dm.org/anvilabs/movie-api?type=dev)
-[![Commitizen Friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli)
 
 > Get info for movies and TV shows
 
@@ -26,7 +25,9 @@ Supported sources: [Kinopoisk](https://kinopoisk.ru), [TMDB](https://www.themovi
 ## Installation
 
 ```bash
-yarn add movie-api # npm install movie-api --save
+$ yarn add movie-api
+# or
+$ npm install movie-api --save
 ```
 
 ## Usage
@@ -36,7 +37,7 @@ The following examples assume that you have a working ES2016 environment with su
 #### Kinopoisk example
 
 ```js
-import { Kinopoisk } from 'movie-api';
+import {Kinopoisk} from 'movie-api';
 
 const kp = new Kinopoisk();
 
@@ -159,7 +160,7 @@ const kp = new Kinopoisk();
 #### TMDB example
 
 ```js
-import { Tmdb } from 'movie-api';
+import {Tmdb} from 'movie-api';
 
 const tmdb = new Tmdb({
   apiKey: process.env.TMDB_API_KEY, // required, refer to https://www.themoviedb.org/faq/api
@@ -292,7 +293,7 @@ const tmdb = new Tmdb({
 #### IMDB example
 
 ```js
-import { Imdb } from 'movie-api';
+import {Imdb} from 'movie-api';
 
 const imdb = new Imdb({
   userId: process.env.IMDB_USER_ID, // required, extract from your profile page url (should be in the following format: urXXXXXXXX)
@@ -314,7 +315,7 @@ const imdb = new Imdb({
 #### Trakt example
 
 ```js
-import { Trakt } from 'movie-api';
+import {Trakt} from 'movie-api';
 
 const trakt = new Trakt({
   apiKey: process.env.TRAKT_API_KEY, // required, refer to http://docs.trakt.apiary.io

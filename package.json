@@ -1,6 +1,6 @@
 {
   "name": "movie-api",
-  "version": "0.14.4",
+  "version": "0.0.0-development",
   "description": "Get info for movies and TV shows",
   "repository": "anvilabs/movie-api",
   "homepage": "https://github.com/anvilabs/movie-api#readme",
@@ -34,8 +34,8 @@
     "precommit": "lint-staged",
     "commitmsg": "validate-commit-msg",
     "prepush": "yarn test",
-    "release": "standard-version",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
   },
   "lint-staged": {
     "{*.js,{scripts,src}/**/*.js}": ["eslint --cache --fix", "git add"],
@@ -91,7 +91,7 @@
     "npm-run-all": "^4.0.2",
     "prettier": "^1.5.3",
     "rimraf": "^2.6.1",
-    "standard-version": "^4.2.0",
+    "semantic-release": "^7.0.1",
     "type-detect": "^4.0.3",
     "validate-commit-msg": "^2.14.0"
   }

@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`kinopoisk/filmIdFromRes filters results by countries 1`] = `
+Array [
+  Object {
+    "countries": Array [
+      "США",
+      "Россия",
+      "Германия",
+    ],
+    "id": 2,
+    "title": "foo",
+    "year": 2016,
+  },
+  Object {
+    "countries": Array [
+      "США",
+      "Россия",
+    ],
+    "id": 4,
+    "title": "foo",
+    "year": 2016,
+  },
+]
+`;
+
+exports[`kinopoisk/filmIdFromRes filters results by title 1`] = `
+Array [
+  Object {
+    "countries": Array [],
+    "id": 1,
+    "title": "foo",
+    "year": 2016,
+  },
+]
+`;
+
+exports[`kinopoisk/filmIdFromRes filters results by title 2`] = `
+Array [
+  Object {
+    "countries": Array [],
+    "id": 1,
+    "title": "Звёздные войны",
+    "year": 2015,
+  },
+  Object {
+    "countries": Array [],
+    "id": 2,
+    "title": "Звездные войны",
+    "year": 2016,
+  },
+]
+`;
+
+exports[`kinopoisk/filmIdFromRes filters results by title 3`] = `
+Array [
+  Object {
+    "countries": Array [],
+    "id": 2,
+    "originalTitle": "Star Wars: Episode VII - The Force Awakens",
+    "title": "Звёздные войны",
+    "year": 2016,
+  },
+]
+`;
+
+exports[`kinopoisk/filmIdFromRes filters results by type (movie or tv show) 1`] = `
+Array [
+  Object {
+    "countries": Array [],
+    "id": 2,
+    "title": "Игра престолов (сериал)",
+    "year": 2011,
+  },
+]
+`;
+
+exports[`kinopoisk/filmIdFromRes filters results by type (movie or tv show) 2`] = `
+Array [
+  Object {
+    "countries": Array [],
+    "id": 3,
+    "title": "Звёздные войны",
+    "year": 2016,
+  },
+]
+`;
+
+exports[`kinopoisk/filmIdFromRes filters results by year 1`] = `
+Array [
+  Object {
+    "countries": Array [],
+    "id": 2,
+    "title": "foo",
+    "year": 2016,
+  },
+  Object {
+    "countries": Array [],
+    "id": 4,
+    "title": "foo",
+    "year": 2016,
+  },
+]
+`;

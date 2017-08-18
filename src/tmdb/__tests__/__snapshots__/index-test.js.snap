@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`TMDB fetches movie id by imdb id 1`] = `140607`;
 
 exports[`TMDB fetches movie id by title 1`] = `140607`;
@@ -121,7 +123,7 @@ Object {
         "department": "string",
         "job": "string",
         "name": "string",
-        "photoUrl": "null",
+        "photoUrl": "string",
       },
     ],
   },

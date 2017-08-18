@@ -19,5 +19,7 @@
 
   "javascript.validate.enable": false,
 
+  "jest.autoEnable": false,
+
   "prettier.javascriptEnable": []
 }

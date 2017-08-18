@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Trakt fetches movie info for a given trakt slug 1`] = `
 Object {
   "genres": "Array<string>",

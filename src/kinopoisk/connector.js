@@ -1,7 +1,5 @@
 /* @flow */
 
-import crypto from 'crypto';
-
 import DataLoader from 'dataloader';
 import moment from 'moment';
 import PromiseThrottle from 'promise-throttle';
@@ -9,11 +7,10 @@ import R from 'ramda';
 import rp from 'request-promise-native';
 
 import {applyQueryToUrl} from '../utils';
-import HtmlConnector from '../HtmlConnector';
 
-const KINOPOISK_API_ROOT = 'https://ext.kinopoisk.ru/ios/3.11.0';
-const KINOPOISK_API_KEY = 'a17qbcw1du0aedm';
-const KINOPOISK_PLUS_ROOT = 'https://plus.kinopoisk.ru';
+const KINOPOISK_API_ROOT = 'https://ext.kinopoisk.ru/ios/5.0.0';
+
+const KINOPOISK_REQUEST_HEADERS_API_URL = 'https://plex.filmingdata.com/reqh';
 
 type Endpoint =
   // Movie info
@@ -60,21 +57,16 @@ type Endpoint =
 
 type Rp = (options: Object) => Promise<any>;
 
-class KinopoiskConnector extends HtmlConnector {
+class KinopoiskConnector {
   _apiRp: Rp = rp.defaults({
     headers: {
-      'Android-Api-Version': '22',
-      'Cache-Control': 'max-stale=0',
       'Image-Scale': '3',
-      'User-Agent': 'Android client (5.1 / api22), ru.kinopoisk/3.7.0 (45)',
       cityID: '1',
-      clientDate: moment(new Date()).format('HH:mm MM.dd.YYYY'),
-      ClientId: crypto
-        .createHash('md5')
-        .update(String(Math.floor(Math.random() * (99999 + 1))))
-        .digest('hex'),
       countryID: '2',
+      'User-Agent': 'Android client (4.4 / api19), ru.kinopoisk/4.0.2 (52)',
       device: 'android',
+      'Android-Api-Version': '19',
+      clientDate: moment(new Date()).format('HH:mm MM.dd.YYYY'),
     },
     timeout: 4000,
     json: true,
@@ -87,32 +79,32 @@ class KinopoiskConnector extends HtmlConnector {
     promiseImplementation: Promise,
   });
 
-  constructor() {
-    super({
-      rootUrl: KINOPOISK_PLUS_ROOT,
-      rps: 2,
+  _getApiRequestHeaders = async (apiRequestUrl: string) => {
+    const response = await rp.head({
+      url: KINOPOISK_REQUEST_HEADERS_API_URL,
+      headers: {
+        'X-Kinopoisk-Url': apiRequestUrl,
+      },
+      resolveWithFullResponse: true,
     });
-  }
+
+    return {
+      'X-SIGNATURE': response.headers['x-signature'],
+      'X-TIMESTAMP': response.headers['x-timestamp'],
+    };
+  };
 
   apiLoader: DataLoader<string, any> = new DataLoader(
     (urls: Array<string>) =>
       this._apiThrottleQueue.addAll(
-        urls.map((url: string) => () =>
-          this._apiRp({
+        urls.map((url: string) => async () => {
+          const headers = await this._getApiRequestHeaders(url);
+
+          return this._apiRp({
             uri: url,
-            qs: {
-              key: crypto
-                .createHash('md5')
-                .update(
-                  `${url.replace(
-                    `${KINOPOISK_API_ROOT}/`,
-                    '',
-                  )}${KINOPOISK_API_KEY}`,
-                )
-                .digest('hex'),
-            },
-          }),
-        ),
+            headers,
+          });
+        }),
       ),
     {
       batch: false,

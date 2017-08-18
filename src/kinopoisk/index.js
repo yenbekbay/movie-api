@@ -3,7 +3,7 @@
 import cinemaInfoFromRes from './cinemaInfoFromRes';
 import filmCreditsFromRes from './filmCreditsFromRes';
 import filmGalleryFromRes from './filmGalleryFromRes';
-import filmIdFromSearchResults from './filmIdFromSearchResults';
+import filmIdFromRes from './filmIdFromRes';
 import filmInfoFromRes from './filmInfoFromRes';
 import filmInfoListFromRes from './filmInfoListFromRes';
 import KinopoiskConnector from './connector';
@@ -18,9 +18,10 @@ import type {
   KinopoiskApi$GetFilmResponse,
   KinopoiskApi$GetFilmsListResponse,
   KinopoiskApi$GetGalleryResponse,
+  KinopoiskApi$GetSearchInFilmsResponse,
   KinopoiskApi$GetStaffResponse,
 } from './types';
-import type {SearchQuery} from './filmIdFromSearchResults';
+import type {SearchQuery} from './filmIdFromRes';
 
 class Kinopoisk {
   _connector: KinopoiskConnector;
@@ -39,12 +40,12 @@ class Kinopoisk {
   };
 
   getFilmId = async (query: SearchQuery) => {
-    const $ = await this._connector.htmlGet(
-      `search/${query.isTvShow ? 'series' : 'films'}`,
-      {text: query.title},
+    const res: ?KinopoiskApi$GetSearchInFilmsResponse = await this._connector.apiGet(
+      'getKPSearchInFilms',
+      {keyword: query.title},
     );
 
-    return filmIdFromSearchResults($, query);
+    return res ? filmIdFromRes(res, query) : null;
   };
 
   getFilmCredits = async (filmId: number) => {

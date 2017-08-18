@@ -23,6 +23,7 @@ class HtmlConnector {
         'User-Agent': randomUseragent.getRandom(),
       },
       gzip: true,
+      jar: true,
     });
   }
 
@@ -33,9 +34,9 @@ class HtmlConnector {
           retry(
             async (bail: (err: Error) => Promise<any>) => {
               try {
-                const res = await this._htmlRp(JSON.parse(optionsHash));
+                const body = await this._htmlRp(JSON.parse(optionsHash));
 
-                return cheerio.load(res);
+                return cheerio.load(body);
               } catch (err) {
                 if (err.statusCode === 403) {
                   return bail(err);

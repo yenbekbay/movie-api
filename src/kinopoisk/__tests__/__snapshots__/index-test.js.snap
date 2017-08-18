@@ -1,3 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
 exports[`Kinopoisk fetches cinema info for given arguments 1`] = `
 Object {
   "address": "string",
@@ -13,19 +15,7 @@ Object {
       "phone": "string",
     },
   ],
-  "showtimes": Array [
-    Object {
-      "filmId": "number",
-      "items": Array [
-        Object {
-          "date": "string",
-          "formats": "Array<string>",
-          "time": "string",
-          "timestamp": "Date",
-        },
-      ],
-    },
-  ],
+  "showtimes": Array [],
 }
 `;
 

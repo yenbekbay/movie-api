@@ -22,6 +22,20 @@ export type KinopoiskApi$CrewMember = {
   professionText: string,
   professionKey: 'actor' | 'director' | 'producer' | 'writer' | 'composer',
 };
+export type KinopoiskApi$GetSearchInFilmsItem = {
+  id: string,
+  type: KinopoiskApi$MovieType,
+  nameRU: string,
+  nameEN?: ?string,
+  description?: ?string,
+  posterURL?: ?string,
+  filmLength?: ?string,
+  year?: ?string,
+  country?: ?string,
+  genre?: ?string,
+  rating?: ?string,
+  ratingVoteCount?: ?string,
+};
 export type KinopoiskApi$FilmsListItem = {
   type: KinopoiskApi$MovieType,
   id: string,
@@ -72,6 +86,10 @@ export type KinopoiskApi$MovieShowtimes = {
   seance: Array<KinopoiskApi$Showtime>,
 };
 
+export type KinopoiskApi$GetSearchInFilmsResponse = {
+  class: 'KPSearchInFilms',
+  searchFilms: Array<KinopoiskApi$GetSearchInFilmsItem>,
+};
 export type KinopoiskApi$GetStaffResponse = {
   creators?: Array<Array<KinopoiskApi$CrewMember>>,
 };

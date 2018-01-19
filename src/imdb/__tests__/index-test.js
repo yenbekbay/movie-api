@@ -3,7 +3,7 @@
 import {modelFromObject} from '../../testUtils';
 import Imdb from '../index';
 
-const movieId = 'tt3330764'; // Star Wars: The Force Awakens
+const sampleMovieId = 'tt3330764'; // Star Wars: The Force Awakens
 
 describe('IMDB', () => {
   let imdb: Imdb;
@@ -13,10 +13,12 @@ describe('IMDB', () => {
   });
 
   it('fetches movie rating by id', async () => {
-    expect(modelFromObject(await imdb.getRating(movieId))).toMatchSnapshot();
+    expect(
+      modelFromObject(await imdb.getRating(sampleMovieId)),
+    ).toMatchSnapshot();
   });
 
   it('fetches movie popularity by id', async () => {
-    expect(typeof await imdb.getPopularity(movieId)).toEqual('number');
+    expect(typeof await imdb.getPopularity(sampleMovieId)).toEqual('number');
   });
 });

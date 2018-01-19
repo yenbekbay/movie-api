@@ -3,8 +3,8 @@
 import {modelFromObject} from '../../testUtils';
 import Trakt from '../index';
 
-const imdbId = 'tt2488496'; // Star Wars: The Force Awakens
-const traktId = 'star-wars-the-force-awakens-2015';
+const sampleImdbId = 'tt2488496'; // Star Wars: The Force Awakens
+const sampleTraktId = 'star-wars-the-force-awakens-2015';
 
 describe('Trakt', () => {
   let trakt: Trakt;
@@ -14,18 +14,18 @@ describe('Trakt', () => {
   });
 
   it('fetches trakt slug by imdb id', async () => {
-    expect(await trakt.getSlug({imdbId})).toMatchSnapshot();
+    expect(await trakt.getSlug({sampleImdbId})).toMatchSnapshot();
   });
 
   it('fetches movie info for a given trakt slug', async () => {
     expect(
-      modelFromObject(await trakt.getMovieInfo(traktId)),
+      modelFromObject(await trakt.getMovieInfo(sampleTraktId)),
     ).toMatchSnapshot();
   });
 
   it('fetches movie stats for a given trakt slug', async () => {
     expect(
-      modelFromObject(await trakt.getMovieStats(traktId)),
+      modelFromObject(await trakt.getMovieStats(sampleTraktId)),
     ).toMatchSnapshot();
   });
 });

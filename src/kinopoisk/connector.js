@@ -6,7 +6,7 @@ import PromiseThrottle from 'promise-throttle';
 import R from 'ramda';
 import rp from 'request-promise-native';
 
-import {applyQueryToUrl} from '../utils';
+import {userAgent, applyQueryToUrl} from '../utils';
 
 const KINOPOISK_API_ROOT = 'https://ext.kinopoisk.ru/ios/5.0.0';
 
@@ -66,7 +66,7 @@ class KinopoiskConnector {
       'User-Agent': 'Android client (4.4 / api19), ru.kinopoisk/4.0.2 (52)',
       device: 'android',
       'Android-Api-Version': '19',
-      clientDate: moment(new Date()).format('HH:mm MM.dd.YYYY'),
+      clientDate: moment(new Date()).format('HH:mm dd.MM.YYYY'),
     },
     timeout: 4000,
     json: true,
@@ -84,6 +84,7 @@ class KinopoiskConnector {
       url: KINOPOISK_REQUEST_HEADERS_API_URL,
       headers: {
         'X-Kinopoisk-Url': apiRequestUrl,
+        'X-Server-ID': userAgent,
       },
       resolveWithFullResponse: true,
     });

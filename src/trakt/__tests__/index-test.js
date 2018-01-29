@@ -14,7 +14,7 @@ describe('Trakt', () => {
   });
 
   it('fetches trakt slug by imdb id', async () => {
-    expect(await trakt.getSlug({sampleImdbId})).toMatchSnapshot();
+    expect(await trakt.getSlug({imdIdb: sampleImdbId})).toMatchSnapshot();
   });
 
   it('fetches movie info for a given trakt slug', async () => {

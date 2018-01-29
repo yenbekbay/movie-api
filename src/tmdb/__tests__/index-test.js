@@ -3,8 +3,9 @@
 import {modelFromObject} from '../../testUtils';
 import Tmdb from '../index';
 
-const sampleMovieId = 140607; // Star Wars: The Force Awakens
-const sampleTvShowId = 1399; // Game of Thrones
+const sampleImdbId = 'tt2488496';
+const sampleTmdbMovieId = 140607; // Star Wars: The Force Awakens
+const sampleTmdbTvShowId = 1399; // Game of Thrones
 
 describe('TMDB', () => {
   let tmdb: Tmdb;
@@ -14,7 +15,7 @@ describe('TMDB', () => {
   });
 
   it('fetches movie id by imdb id', async () => {
-    expect(await tmdb.getMovieId({imdbId: 'tt2488496'})).toMatchSnapshot();
+    expect(await tmdb.getMovieId({imdbId: sampleImdbId})).toMatchSnapshot();
   });
 
   it('fetches movie id by title', async () => {
@@ -43,13 +44,13 @@ describe('TMDB', () => {
 
   it('fetches movie info from tmdb for a given id', async () => {
     expect(
-      modelFromObject(await tmdb.getMovieInfo(sampleMovieId)),
+      modelFromObject(await tmdb.getMovieInfo(sampleTmdbMovieId)),
     ).toMatchSnapshot();
   });
 
   it('fetches tv show info from tmdb for a given id', async () => {
     expect(
-      modelFromObject(await tmdb.getTvShowInfo(sampleTvShowId)),
+      modelFromObject(await tmdb.getTvShowInfo(sampleTmdbTvShowId)),
     ).toMatchSnapshot();
   });
 });

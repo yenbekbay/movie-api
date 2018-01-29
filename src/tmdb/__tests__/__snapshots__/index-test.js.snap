@@ -118,14 +118,7 @@ Object {
         "photoUrl": "string",
       },
     ],
-    "crew": Array [
-      Object {
-        "department": "string",
-        "job": "string",
-        "name": "string",
-        "photoUrl": "string",
-      },
-    ],
+    "crew": Array [],
   },
   "episodeRuntime": "Array<number>",
   "firstAirDate": "string",
@@ -159,6 +152,16 @@ Object {
   "tmdbRating": "number",
   "tmdbRatingVoteCount": "number",
   "type": "string",
-  "videos": Array [],
+  "videos": Array [
+    Object {
+      "iso_3166_1": "string",
+      "iso_639_1": "string",
+      "key": "string",
+      "name": "string",
+      "site": "string",
+      "size": "number",
+      "type": "string",
+    },
+  ],
 }
 `;

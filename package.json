@@ -2,16 +2,16 @@
   "name": "movie-api",
   "version": "0.0.0-development",
   "description": "Get info for movies and TV shows",
-  "repository": "anvilabs/movie-api",
-  "homepage": "https://github.com/anvilabs/movie-api#readme",
+  "repository": "yenbekbay/movie-api",
+  "homepage": "https://github.com/yenbekbay/movie-api#readme",
   "bugs": {
-    "url": "https://github.com/anvilabs/movie-api/issues"
+    "url": "https://github.com/yenbekbay/movie-api/issues"
   },
   "license": "MIT",
   "author": {
     "name": "Ayan Yenbekbay",
     "email": "ayan.yenb@gmail.com",
-    "url": "http://yenbekbay.me"
+    "url": "https://yenbekbay.me"
   },
   "engines": {
     "node": ">=6.0.0"
